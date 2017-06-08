@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-26T09:42:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_people" pageWidth="555" pageHeight="255" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b664383e-ba07-49d3-84c0-9826d5220549">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="ROOT_PATH" class="java.lang.String">
+		<parameterDescription><![CDATA[路径参数]]></parameterDescription>
+	</parameter>
+	<queryString language="JSON">
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[gender]]></fieldDescription>
+	</field>
+	<field name="birthday" class="java.lang.String">
+		<fieldDescription><![CDATA[birthday]]></fieldDescription>
+	</field>
+	<field name="telNum" class="java.lang.String">
+		<fieldDescription><![CDATA[telNum]]></fieldDescription>
+	</field>
+	<field name="certificateType" class="java.lang.String">
+		<fieldDescription><![CDATA[certificateType]]></fieldDescription>
+	</field>
+	<field name="certificateNum" class="java.lang.String">
+		<fieldDescription><![CDATA[certificateNum]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[address]]></fieldDescription>
+	</field>
+	<field name="caseSummary" class="java.lang.String">
+		<fieldDescription><![CDATA[caseSummary]]></fieldDescription>
+	</field>
+	<field name="caseNo" class="java.lang.String">
+		<fieldDescription><![CDATA[caseNo]]></fieldDescription>
+	</field>
+	<field name="enterDate" class="java.lang.String">
+		<fieldDescription><![CDATA[enterDate]]></fieldDescription>
+	</field>
+	<field name="enterReason" class="java.lang.String">
+		<fieldDescription><![CDATA[enterReason]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="255" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="255" uuid="2159dd0b-9bdf-4e21-ba49-544e92141ccb"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="微软雅黑" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[进
+入
+办
+案
+区
+人
+员
+基
+本
+情
+况]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="0" width="80" height="30" uuid="f05ede6e-45bd-4384-9965-df3491815d40">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="10"/>
+				</textElement>
+				<text><![CDATA[姓名]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="120" y="0" width="80" height="30" uuid="5d205068-cbbf-4fed-9e47-1d0d8a92d9b6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="0" width="40" height="30" uuid="2587f795-c6b0-4a1f-8004-11a0998ec6e2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[性别]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="240" y="0" width="40" height="30" uuid="0a54a9c2-7ed3-49eb-a0ce-5f8c1308c99b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="0" width="50" height="30" uuid="f1ff3f09-6608-48a8-b730-c1e15395d4d4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[出生日期]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="330" y="0" width="85" height="30" uuid="861ad9d2-0616-48c6-84e9-b689fe7363ef">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{birthday}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="415" y="0" width="50" height="30" uuid="2606dab4-6d2e-440f-9ac0-2aed2d6ce94b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[联系方式]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="465" y="0" width="90" height="30" uuid="89f6694e-2759-436a-a5c2-14684109254f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telNum}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="280" y="30" width="275" height="30" uuid="ca222174-f62f-4bcb-a3f5-979434fdb9d3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certificateNum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="30" width="80" height="30" uuid="05b243a3-7bdb-41e8-9a07-3548bf27110e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[证件号码]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="120" y="30" width="80" height="30" uuid="e558d4e0-b0b1-4c13-8ed7-921bf98963df"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certificateType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="30" width="80" height="30" uuid="91a42922-c6eb-4162-88fa-508972ae8bb2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="10"/>
+				</textElement>
+				<text><![CDATA[身份证件种类]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="60" width="80" height="30" uuid="9ebbe395-379c-452e-aa08-757a3d802363"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="10"/>
+				</textElement>
+				<text><![CDATA[家庭住址]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="90" width="80" height="135" uuid="b4a5657b-4eb2-46aa-8610-bc3097074636">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="10"/>
+				</textElement>
+				<text><![CDATA[进入办案区事由]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="120" y="60" width="435" height="30" uuid="4a8ae334-2675-48f9-973a-279f9ef06934"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="90" width="80" height="30" uuid="9be3ffcf-8a05-4ddd-8247-6aac932548a9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[案件编号]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="200" y="90" width="130" height="30" uuid="e7e3af7f-2984-45f8-8788-0f93a622018c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{caseNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="90" width="85" height="30" uuid="22e679c0-b1f1-41b4-8a4c-3b556edf256e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[案由]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="415" y="90" width="140" height="30" uuid="73951afa-6e34-4153-87e1-21ec9142a991"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{caseSummary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="440" y="120" width="115" height="25" uuid="80c614ea-b9a6-4690-a62f-d2675b1ace39">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[刑事传唤]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="145" width="115" height="25" uuid="4277a3f4-9fea-4362-98fe-0eb681c3f890"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[监视居住]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="170" width="115" height="25" uuid="5345a503-08b1-41a6-b530-bd16f57fc17c"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[其他]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="170" width="60" height="25" uuid="04e4bb6b-18d0-4056-9810-0425eb1ceb02"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[证人]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="145" width="60" height="25" uuid="53f847b1-3f25-41a8-accf-4d3d1b3a9d80"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[取保候审]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="120" width="60" height="25" uuid="e30884ae-61d1-41b8-8c67-46ef0d6f22c4">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[继续盘问]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="120" width="60" height="25" uuid="ed74cb7b-5da7-47b2-9c7c-1a68dd5b4de6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[治安传唤]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="145" width="60" height="25" uuid="9b51b36f-ce02-4efc-a1d0-ac3d994514f3"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[刑事拘留]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="170" width="60" height="25" uuid="8670235d-b408-4535-8112-56412dda04a5"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[被害人]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="120" width="60" height="25" uuid="84ea0e7f-55ca-471c-bdac-bc604e705b8a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[投案自首]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="145" width="60" height="25" uuid="afcb4cbd-64a1-49d4-9251-dccbd41aa463">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[拘传]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="170" width="60" height="25" uuid="5219a004-908f-4d7a-8daf-0dc8f73ba48c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[逮捕]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="195" width="80" height="30" uuid="da50dee8-2124-47d1-96f1-6dc65f84bd09"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[文书编号]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="200" y="195" width="130" height="30" uuid="a7834bee-e6a6-4868-a5cc-03785ef12881"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="195" width="85" height="30" uuid="77bbd547-69cd-4ddb-bcf5-a535ccc571a7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[办案民警签名]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="415" y="195" width="140" height="30" uuid="1ee9f2f4-648e-4b19-a4e5-3f22f3132ab8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="380" y="225" width="175" height="30" uuid="06c42a79-fbe7-4f0f-9e72-96dbda6e742a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="225" width="100" height="30" uuid="c7ba98e4-6841-47d7-9bd0-3ad4d7890a61"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[管理员签名]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="120" y="225" width="160" height="30" uuid="bb6e94c4-d1a1-4870-a9b9-99df24dcd2a3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{enterDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="225" width="80" height="30" uuid="e488469f-0d82-49bd-8e8a-64c090302cbd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="10"/>
+				</textElement>
+				<text><![CDATA[进入办案区时间]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="130" y="125" width="15" height="15" uuid="b03f1fbb-c50c-4a33-b68b-ca598aaf62fc">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("TAZS".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="225" y="125" width="15" height="15" uuid="3f3abe22-5f2c-476d-a185-e544fb923879">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("ZACH".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="320" y="125" width="15" height="15" uuid="8a40ef4f-c959-4e1a-834c-20710ea99fde">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("JXPW".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="415" y="125" width="15" height="15" uuid="1eb7ee8c-7928-47a5-81dc-5c7910b970f1">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("XSCH".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="130" y="150" width="15" height="15" uuid="ac509238-34cb-4b97-94dc-0f0d09b2222d">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("JC".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="130" y="175" width="15" height="15" uuid="0d9f21c7-e665-4078-870c-e20662822688">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("DB".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="225" y="150" width="15" height="15" uuid="ec7d21ba-8df3-4a39-b015-ed88ad5e69c9">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("XSJL".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="225" y="175" width="15" height="15" uuid="83180eaf-ecc8-4a76-90b7-55610c6c67eb">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("BHR".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="320" y="150" width="15" height="15" uuid="6761bf6d-48cf-4133-b3d5-8b3bb5165855">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("QBHS".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="320" y="175" width="15" height="15" uuid="e8e4dcdc-e0cd-4284-8813-bc3670fc49ef">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("ZR".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="415" y="150" width="15" height="15" uuid="60f3fbd9-133b-4c5f-b165-c395e7ee9bf2">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("JSJZ".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="415" y="175" width="15" height="15" uuid="505da5ed-4278-4d74-ba55-f8e6f8150919">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("QT".equals($F{enterReason})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

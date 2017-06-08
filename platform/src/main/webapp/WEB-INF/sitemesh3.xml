@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+
+    <!-- 默认装饰器 -->
+    <mapping decorator="/views/smart/layout/default_layout.jsp"/>
+
+    <!-- default_layout装饰器  -->
+    <!--<mapping path="/" decorator="/views/smart/layout/default_layout.jsp"/>
+    <mapping path="/home.htm" decorator="/views/smart/layout/default_layout.jsp"/>-->
+
+    <!-- smart_layout装饰器  -->
+    <mapping path="/users.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/roles.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/menus.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/groups.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/tutorials/*" decorator="/views/smart/layout/smart_layout.jsp"/>
+
+    <mapping path="/students.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/teachers.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/grades.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/courses.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+
+    <mapping path="/overviews.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseRecords.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/cases/dispute.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/cases/civil.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/cases/criminal.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseWarnings.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseScores/rank.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseScores/detail.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseRisks.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseMedias.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmEvaluations.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmClassifications.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmVideoCategories.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmPoliceStations.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmHandlingAreas.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmStations.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmStraps.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmCameras.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmCabinets.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmRooms.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmRoomLayout.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+
+    <!-- 指明满足“/exclude.jsp*”的页面，将被排除，不被装饰 -->
+    <mapping path="/*.do" exclue="true"/>
+    <mapping path="/login.htm*" exclue="true"/>
+    <mapping path="/*/edit.htm" exclue="true"/>
+    <mapping path="/*/load.htm" exclue="true"/>
+</sitemesh>

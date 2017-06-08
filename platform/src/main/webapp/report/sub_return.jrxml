@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-26T09:09:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_return" pageWidth="555" pageHeight="270" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d9ec6e03-754a-45f1-9dfc-39e291521a91">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="ROOT_PATH" class="java.lang.String">
+		<parameterDescription><![CDATA[路径参数]]></parameterDescription>
+	</parameter>
+	<queryString language="JSON">
+		<![CDATA[]]>
+	</queryString>
+	<field name="leaveDate" class="java.lang.String">
+		<fieldDescription><![CDATA[leaveDate]]></fieldDescription>
+	</field>
+	<field name="leaveReason" class="java.lang.String">
+		<fieldDescription><![CDATA[leaveReason]]></fieldDescription>
+	</field>
+	<field name="allReturnOrNot" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[allReturnOrNot]]></fieldDescription>
+	</field>
+	<field name="note" class="java.lang.String">
+		<fieldDescription><![CDATA[note]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="270" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="30" backcolor="#CCCCCC" uuid="853216ce-fa48-429e-ac5c-237babc2e04f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[离开办案区]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="120" height="30" uuid="4b11ba0b-d267-45b4-898d-64563c88e8f8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[离开时间]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="120" y="30" width="160" height="30" uuid="82ec9848-69ad-47d8-91a5-79f2dd95f7e3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leaveDate}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="380" y="30" width="175" height="30" uuid="1e674e82-e6f3-4fd0-9e1c-451f1608592d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leaveReason}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="30" width="100" height="30" uuid="6824c592-ae45-4258-a2a2-ea97e19f8ff5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[离开原因]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="40" height="180" uuid="fad0c282-c6f2-4fac-b872-38f7795fe065"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="微软雅黑" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[随
+身
+物
+品
+处
+理
+情
+况
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="60" width="160" height="30" uuid="0b8d665d-5fc2-4098-ba55-ae7e55f0d9da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[随身物品处理情况：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="60" width="120" height="30" uuid="ac71c293-2a25-4361-a413-eb692ded7a69"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[全部返还]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="90" width="160" height="30" uuid="36215717-53a0-4c22-a6d9-4b07a36cb2f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[未返还情况记载：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="90" width="355" height="30" uuid="70073032-bdb3-4c45-82fe-8967617a026a"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="40" y="120" width="515" height="90" uuid="2d85c9ce-b0df-4a9e-a14d-4914d34f50ff"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="210" width="80" height="30" uuid="d2a2feed-0658-4e7e-994d-e00084ba0aad"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[领取人签名]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="120" y="210" width="80" height="30" uuid="bdf00f2b-3b5d-433e-9c98-420cd6a890f2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="210" width="80" height="30" uuid="e538c38f-52f3-4aec-829b-2cf5977f69b1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[身份证号码]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="280" y="210" width="100" height="30" uuid="b88454b7-a3ad-40b2-8bd5-bb264527fa65"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="210" width="85" height="30" uuid="1be13556-10d7-471d-945f-117534c1f414"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[领取时间]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="465" y="210" width="90" height="30" uuid="008f7e23-7391-4ecf-8392-f8e44c779367"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="240" width="120" height="30" uuid="9a603877-ac7b-4fd2-885e-770a9506d30b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[管理员签名]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="120" y="240" width="435" height="30" uuid="5013b77d-210c-4150-9731-593f6aec44cd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="60" width="175" height="30" uuid="ac5556ca-4af2-4091-bffa-072e84bdff05"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[部分返还]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="205" y="65" width="20" height="20" uuid="3b35e9cf-4294-44f0-895d-6f8cb936dabe">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{allReturnOrNot} == null? "img/unchecked.png":
+$F{allReturnOrNot} == true? "img/checked.png":"img/unchecked.png")]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="355" y="65" width="20" height="20" uuid="b1e063e7-3c49-4f80-afaf-b0e19d10bd57">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{allReturnOrNot} == null? "img/unchecked.png":
+$F{allReturnOrNot} == false? "img/checked.png":"img/unchecked.png")]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

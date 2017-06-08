@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-26T09:44:49 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_inspect" pageWidth="555" pageHeight="330" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="71651974-8b46-496a-901b-fdfb3f43d9b5">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="ROOT_PATH" class="java.lang.String">
+		<parameterDescription><![CDATA[路径参数]]></parameterDescription>
+	</parameter>
+	<queryString language="JSON">
+		<![CDATA[]]>
+	</queryString>
+	<field name="statement" class="java.lang.String">
+		<fieldDescription><![CDATA[statement]]></fieldDescription>
+	</field>
+	<field name="inspection" class="java.lang.String">
+		<fieldDescription><![CDATA[inspection]]></fieldDescription>
+	</field>
+	<field name="collectItem" class="java.lang.String">
+		<fieldDescription><![CDATA[collectItem]]></fieldDescription>
+	</field>
+	<field name="collectOrNot" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[collectOrNot]]></fieldDescription>
+	</field>
+	<field name="storeOrNot" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[storeOrNot]]></fieldDescription>
+	</field>
+	<field name="verifyOrNot" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[verifyOrNot]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="330" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="240" width="555" height="30" backcolor="#CCCCCC" uuid="8efe8e6f-0324-451e-a8cb-005766324017"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[信息采集]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="270" width="120" height="30" uuid="9ac38a18-1a84-4df6-8f43-a5d7f7068657">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[信息采集]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="120" y="270" width="120" height="30" uuid="dd280545-72b9-4065-91c1-4c99897a31cd">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="270" width="90" height="30" uuid="d06da7d4-6d3a-438b-9a0c-a71ac7b7898d">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[采集项目]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="330" y="270" width="225" height="30" uuid="4e9153c4-dea0-492d-b27a-de6a164bc1b9">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="300" width="120" height="30" uuid="3aa44b17-5ff5-4ccd-af8a-3a09325c4044">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[信息入库]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="120" y="300" width="120" height="30" uuid="23c42214-72b5-4700-80a3-fc0f6d301de7">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="300" width="90" height="30" uuid="a44961ec-b674-4fe7-8e23-93a0ab86da1e">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[核对比查]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="330" y="300" width="225" height="30" uuid="c9dc3844-9fd4-4022-8309-6356c9909a84">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="130" y="278" width="15" height="15" uuid="8a418f1b-faeb-4b73-ae0e-24874d9c2bb7">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{collectOrNot} == null? "img/unchecked.png" : 
+$F{collectOrNot} == true? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="145" y="270" width="30" height="30" uuid="159e8bba-2d00-4865-9bd4-cc2ff2b2bd63">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[是]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="185" y="278" width="15" height="15" uuid="6b708087-6f53-4141-9c99-0d2641a024ce">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{collectOrNot} == null? "img/unchecked.png" : 
+$F{collectOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="200" y="270" width="30" height="30" uuid="c9c32cbe-a8ac-4140-b032-37957cee9caa">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[否]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="130" y="308" width="15" height="15" uuid="8c528f52-74e1-480e-8e8f-fe19f967b445">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{storeOrNot} == null ? "img/unchecked.png":
+$F{storeOrNot} == true ? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="145" y="300" width="30" height="30" uuid="ebb8444f-37b1-4ee8-8fa2-3841fdc264bd">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[是]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="185" y="308" width="15" height="15" uuid="ce1e06ea-c8b0-4fdc-98a8-1afdad0252d1">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{storeOrNot} == null ? "img/unchecked.png":
+$F{storeOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="200" y="300" width="30" height="30" uuid="7ffa0a9c-20e4-4aa1-aaa1-f9ae55be14c2">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[否]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="340" y="308" width="15" height="15" uuid="4d7b52d9-321b-4427-9771-7dbe1049fefb">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{verifyOrNot} == null? "img/unchecked.png" :
+$F{verifyOrNot} == true? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="355" y="300" width="30" height="30" uuid="42137346-616b-40d4-b53b-4cf71f63969c">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[是]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="395" y="308" width="15" height="15" uuid="f9fc54a1-324a-46d0-9915-47a36308a4d8">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+($F{verifyOrNot} == null? "img/unchecked.png" :
+$F{verifyOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="410" y="300" width="30" height="30" uuid="179dc1fb-983d-4a60-854e-4601a5cd9f68">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[否]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="340" y="278" width="15" height="15" uuid="7afc3bcf-3f25-44cf-aea1-026ef4c60e55">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("ZW".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="355" y="270" width="30" height="30" uuid="3209577a-a98c-43c0-876f-570bd066bfb6">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[指纹]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="395" y="278" width="15" height="15" uuid="84f6c7a9-f559-4761-8adc-602dd28e2dc0">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("XY".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="410" y="270" width="30" height="30" uuid="b3df3a83-1257-4d3d-8537-c52456729aec">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[血液]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="450" y="278" width="15" height="15" uuid="fc5fcced-5aa5-4f0c-988e-a6f7c03dcbeb">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("NY".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="465" y="270" width="30" height="30" uuid="c236b995-09b7-4493-a6e7-e0b6944e8724">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[尿液]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="505" y="278" width="15" height="15" uuid="6ab4a3a8-7fc6-41fc-8a96-340266b474f9">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + 
+("QT".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="520" y="270" width="30" height="30" uuid="5bce8912-9116-4ea3-83a8-8146462309d1">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[其他]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="30" backcolor="#CCCCCC" uuid="0f7fe049-47ff-4a42-9253-b02355ad4685"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[人身安全检查]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="280" height="30" uuid="d2e3990e-cd9f-4ff4-b41a-40859c04f358"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[自述症状：（既往病史、是否饮酒、是否患有传染性等疾病）]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="60" width="280" height="60" uuid="dbaa3ced-9441-4e76-ad7e-9a20d76a6d3f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{statement}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="120" width="280" height="30" uuid="9c4b24a0-a31a-408c-b0bf-e20e5bc61030"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[检查情况：（体表是否有伤痕、是否饮酒以及全身检查情况）]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="150" width="280" height="60" uuid="634ce313-da3e-4995-afaf-788100cbc9cc">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inspection}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="30" width="275" height="180" uuid="b8c4f4b2-44d9-4f0c-a42f-641cab61db1c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="310" y="31" width="200" height="178" uuid="99725d5e-654a-4ec4-9e7e-eed302d96d30">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{ROOT_PATH} + "img/inspect.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="210" width="120" height="30" uuid="686e8a95-59fb-4879-9efb-e976c84e5ca0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[检查民警签字]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="120" y="210" width="80" height="30" uuid="c29b0505-5a58-43ae-b174-88999d767812"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="210" width="80" height="30" uuid="7fee98b6-7d8c-477f-bb55-ab32d9903525"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[见证人签字]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="280" y="210" width="100" height="30" uuid="e4e30266-481a-43e5-9c63-09a3cf0d48a3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="210" width="85" height="30" uuid="4f587aea-3362-4e0c-8908-47d7d4f6b084"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+				<text><![CDATA[被检查人签字捺印]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="465" y="210" width="90" height="30" uuid="c87de478-c960-42a5-a648-1178a668cda2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑"/>
+				</textElement>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

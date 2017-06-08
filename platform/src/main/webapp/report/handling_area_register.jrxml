@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-26T08:52:20 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="handling_area_register" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="76e9ef0f-1e76-43a8-ba75-6005abdb420f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="ROOT_PATH" class="java.lang.String">
+		<parameterDescription><![CDATA[路径参数]]></parameterDescription>
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="JSON">
+		<![CDATA[]]>
+	</queryString>
+	<field name="policeStationName" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="policeStationName"/>
+		<fieldDescription><![CDATA[policeStationName]]></fieldDescription>
+	</field>
+	<field name="subPeopleMap" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="subPeopleMap"/>
+		<fieldDescription><![CDATA[subPeopleMap]]></fieldDescription>
+	</field>
+	<field name="subBelongsList" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="subBelongsList"/>
+		<fieldDescription><![CDATA[subBelongsList]]></fieldDescription>
+	</field>
+	<field name="subInspectMap" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="subInspectMap"/>
+		<fieldDescription><![CDATA[subInspectMap]]></fieldDescription>
+	</field>
+	<field name="subTraceList" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="subTraceList"/>
+		<fieldDescription><![CDATA[subTraceList]]></fieldDescription>
+	</field>
+	<field name="subReturnMap" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="subReturnMap"/>
+		<fieldDescription><![CDATA[subReturnMap]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="40" uuid="c39e646d-25cd-4ee3-91cb-7a317b85c12b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[办案区使用登记表]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="0" width="200" height="20" uuid="ae19befd-a9ff-4b16-a1fc-3ee670a467ba">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{policeStationName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="280" y="0" width="235" height="20" uuid="9f2aed49-8a05-45ef-8f61-467ec340f91d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["页码："+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement stretchType="RelativeToBandHeight" x="515" y="0" width="40" height="20" uuid="00a3cf52-3964-499b-9b99-3a9fb0d6e622">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20" uuid="29423e7e-4d84-46b7-9edf-df0b82ee461e">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="12"/>
+				</textElement>
+				<text><![CDATA[填表单位]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="60">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="60" uuid="7ab17af5-9379-40a0-ab08-32f1ddb0e2d3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="ROOT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("subPeopleMap")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{ROOT_PATH} + "sub_people.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="60" uuid="d93af345-a927-40f3-b00f-4092a60af458">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="ROOT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("subBelongsList")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{ROOT_PATH} + "sub_belongs.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="60" uuid="3590172b-35c5-4380-ac4b-e683a181d976">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="ROOT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("subInspectMap")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{ROOT_PATH} + "sub_inspect.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="60" uuid="4486ca9c-25a9-4905-821f-63b9735ad07a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="ROOT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("subTraceList")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{ROOT_PATH} + "sub_trace.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="60" uuid="40902131-f94d-45e7-a5ed-36a4105c3479">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="ROOT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("subReturnMap")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{ROOT_PATH} + "sub_return.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

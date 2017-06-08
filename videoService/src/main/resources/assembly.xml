@@ -1,0 +1,45 @@
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <!-- 拷贝依赖包 -->
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>/lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <!-- 把项目自己编译出来的jar文件，打包进zip文件的根目录 -->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+
+        <!-- 把项目的配置文件，打包进zip文件的config目录 -->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>/config</outputDirectory>
+            <includes>
+                <include>*.xml</include>
+                <include>*.properties</include>
+            </includes>
+        </fileSet>
+
+        <!-- 把项目的启动文件，打包进zip文件的根目录 -->
+        <fileSet>
+            <directory>src/main/run</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>*.sh</include>
+                <include>*.cmd</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

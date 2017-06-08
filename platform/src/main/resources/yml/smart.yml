@@ -1,0 +1,6 @@
+- name: 示例
+  modules:
+    - name: student,学生
+    - name: teacher,教师
+    - name: grade,班级
+    - name: course,课程

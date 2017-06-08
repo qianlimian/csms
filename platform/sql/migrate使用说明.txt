@@ -1,0 +1,19 @@
+cmd进入mysql目录：
+执行迁移脚本：
+建库：..\migrate bootstrap
+迁移脚本： ..\migrate up
+
+
+------------------------其他命令--------------------
+..\migrate.cmd 命令
+
+命令：
+init 	创建并初始化一个迁移目录
+bootstrap           运行bootstrap sql脚本(scripts/bootstrap.sql脚本，原始脚本).
+new <description>    根据提供的描述创建一个新的迁移版本
+up [n]              前进n个版本。默认更新全部
+down [n]            后退n个版本。n不填为1
+version <version>     迁移数据库至指定版本
+pending            Force executes pending migrations out of order (not recommended).
+status             打印数据库更改日志（如果该日志存在的话）.
+script <v1> <v2>     生成一个从v1到v2的增量迁移，v1>v2时不生成该迁移

@@ -1,0 +1,144 @@
+/* 
+ * @description kendoui样式增强
+ * @author zhaochuanfeng
+ */
+ 
+/***** 自定义widget、button等 *****/
+.k-grid-smart_edit,
+.k-grid-smart_destroy {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    padding-right:0 !important;
+    padding-left: 0 !important;
+}
+
+.k-grid-smart_edit .k-icon,
+.k-grid-smart_destroy .k-icon {
+    margin:0 !important;
+    margin-right:2px !important;
+    margin-bottom: 0px !important;
+}
+
+.k-searchbox,
+.k-popupselector,
+.k-treeselector {
+    border-width: 0;
+}
+
+.dialog-content {
+    overflow:auto;
+}
+
+.dialog-buttons {
+    position:absolute;
+    bottom:10px;
+    text-align:center;
+}
+
+.dialog-buttons button {
+    margin-right:5px;
+    width:100px;
+}
+
+.k-button>span.fa,
+.k-button>i.fa {
+    padding-right: 5px;
+}
+
+/***** kendoGrid相关 *****/
+.k-grid .k-grid-toolbar {
+    padding: .2em;
+}
+
+.k-grid .k-grouping-header {
+    padding: .2em .4em;
+}
+
+.k-grid .k-grid-header .row .th {
+    padding: .4em;
+}
+
+.k-grid .k-grid-header .k-filter-row th {
+    padding: .2em .4em;
+}
+
+.k-grid td {
+    padding: .2em .6em;
+    white-space: nowrap;
+}
+
+/**** 调整input宽高 ****/
+.k-grid .k-grid-content .k-textbox,
+.k-grid .k-grid-content .k-autocomplete,
+.k-grid .k-grid-content .k-dropdown-wrap,
+.k-grid .k-grid-content .k-picker-wrap,
+.k-grid .k-grid-content .k-numeric-wrap {
+    height: 22px;
+}
+
+.k-grid .k-grid-content .k-textbox > input,
+.k-grid .k-grid-content .k-autocomplete .k-input,
+.k-grid .k-grid-content .k-picker-wrap .k-input,
+.k-grid .k-grid-content .k-numeric-wrap .k-input,
+.k-grid .k-grid-content .k-dropdown-wrap .k-input,
+.k-grid .k-grid-content .k-selectbox .k-input {
+    height: 22px;
+    line-height: 22px;
+}
+
+.k-grid .k-grid-pager .k-pager-nav {
+    padding: 0 !important;
+}
+
+/****** tabStrip相关 *****/
+.k-tabstrip-items .k-item,
+.k-panelbar .k-tabstrip-items .k-item {
+    margin-left: 3px;
+}
+
+.k-tabstrip > .k-content,
+.k-panelbar .k-tabstrip > .k-content {
+    padding: 5px;
+}
+
+/****** 修改input组件的宽高、边框、下拉按钮等 ******/
+.k-textbox > input,
+.k-autocomplete .k-input,
+.k-picker-wrap .k-input,
+.k-numeric-wrap .k-input,
+.k-dropdown-wrap .k-input,
+.k-selectbox .k-input {
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    text-indent: 6px;
+    border: 0;
+    margin: 0;
+}
+
+.k-autocomplete.k-state-focused,
+.k-dropdown-wrap.k-state-focused,
+.k-picker-wrap.k-state-focused,
+.k-numeric-wrap.k-state-focused {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.k-dropdown-wrap .k-select,
+.k-picker-wrap .k-select,
+.k-numeric-wrap .k-select {
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    border-color: inherit;
+}
+
+.k-numeric-wrap:before {
+    content: none;
+}
+
+.k-checkbox-wrapper .k-checkbox-label {
+    display: inline;
+}
