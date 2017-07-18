@@ -20,7 +20,7 @@
                 operates = moduleOperates[module];
             if (operates) {
                 for (var i = 0; i < operates.length; i++) {
-                    if (operates[i] == operate) {
+                    if (operates[i] == operate.toUpperCase()) {
                         return true;
                     }
                 }

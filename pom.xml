@@ -15,6 +15,7 @@
         <module>syncService</module>
         <module>videoService</module>
         <module>app</module>
+        <module>openingPlatform</module>
     </modules>
 
 </project>

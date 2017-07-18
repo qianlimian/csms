@@ -8,10 +8,7 @@ import org.smartframework.manager.dao.plugin.PluginDao;
 import org.smartframework.manager.dto.menu.MenuCheckBoxDto;
 import org.smartframework.manager.dto.menu.MenuCondition;
 import org.smartframework.manager.dto.menu.MenuDto;
-import org.smartframework.manager.dto.plugin.GroupMenu;
-import org.smartframework.manager.dto.plugin.LeafMenu;
-import org.smartframework.manager.dto.plugin.ModuleMenu;
-import org.smartframework.manager.dto.plugin.PluginMenu;
+import org.smartframework.manager.dto.plugin.*;
 import org.smartframework.manager.entity.Menu;
 import org.smartframework.manager.entity.Plugin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +29,8 @@ public class MenuServiceImpl implements MenuService {
      */
 	@Override
 	public Menu getCurrentLeafMenu(String url) {
-		Menu leafMenu = menuDao.findByTypeAndUrl("LEAF", url);
-		return leafMenu;
+		List<Menu> leafMenus = menuDao.findByTypeAndUrl("LEAF", url);
+		return leafMenus.isEmpty() ? null : leafMenus.get(0);
 	}
 	
 	/**
@@ -66,14 +63,33 @@ public class MenuServiceImpl implements MenuService {
 		List<ModuleMenu> list = new ArrayList<ModuleMenu>();
 		List<Menu> menus = menuDao.findByTypeAndPluginLimitIds("MODULE", plugin, menuIds);
 		for (Menu menu : menus) {
-			//Module的所有Group菜单和Leaf菜单
-			List<GroupMenu> groupMenus = this.getUserGroupMenus(menu, menuIds);
-			List<LeafMenu> leafMenus = this.getUserLeafMenus(menu, menuIds);
+			//Module的所有Group(Leaf)菜单
+			List<GroupOrLeafMenu> groupLeafMenus = this.getUserGroupLeafMenus(menu, menuIds);
 
 			ModuleMenu moduleMenu = new ModuleMenu(menu);
-			moduleMenu.setGroupMenus(groupMenus);
-			moduleMenu.setLeafMenus(leafMenus);
+			moduleMenu.setGroupLeafMenus(groupLeafMenus);
 			list.add(moduleMenu);
+		}
+		return list;
+	}
+
+	/**
+	 * Module的所有Group(Leaf)菜单
+	 */
+	public List<GroupOrLeafMenu> getUserGroupLeafMenus(Menu moduleMenu, List<Integer> menuIds) {
+		List<GroupOrLeafMenu> list = new ArrayList<GroupOrLeafMenu>();
+		List<Menu> menus = menuDao.findByParentLimitIds(moduleMenu, menuIds);
+		for (Menu menu : menus) {
+
+			GroupOrLeafMenu groupLeafMenu = new GroupOrLeafMenu(menu);
+
+			//Group的所有Leaf菜单
+			if ("GROUP".equals(menu.getType())) {
+				List<LeafMenu> leafMenus = this.getUserLeafMenus(menu, menuIds);
+				groupLeafMenu.setLeafMenus(leafMenus);
+			}
+
+			list.add(groupLeafMenu);
 		}
 		return list;
 	}

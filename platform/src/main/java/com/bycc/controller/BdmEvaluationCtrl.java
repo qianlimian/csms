@@ -1,7 +1,7 @@
 package com.bycc.controller;
 
 
-import com.bycc.dto.BdmEvaluationDto;
+import com.bycc.dto.bdmEvaluation.BdmEvaluationDto;
 import com.bycc.service.bdmEvaluation.BdmEvaluationService;
 import org.smartframework.common.kendo.QueryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,7 @@ public class BdmEvaluationCtrl {
      */
     @RequestMapping
     public String index(Model model) {
+    	model.addAttribute("evals", service.findBigItems());
         return "/pages/bdmEvaluation/index";
     }
 
@@ -35,8 +36,17 @@ public class BdmEvaluationCtrl {
      * 新增|编辑页
      */
     @RequestMapping("/edit")
-    public String edit() {
-        return "/pages/bdmEvaluation/edit";
+    public String edit(Model model,@RequestParam(value="id",required=false) Integer id,@RequestParam(value="parent",required=false) Integer parent) {    
+    	if(id==null&&parent!=null){
+    		//新增
+    		BdmEvaluationDto item=new BdmEvaluationDto();
+    		item.setParent(parent);
+    		model.addAttribute("item", item);
+    	}else if(id!=null){
+    		//编辑
+    		model.addAttribute("item", service.findById(id));
+    	}    	
+        return "/pages/bdmEvaluation/editItem";
     }
 
     /**
@@ -64,6 +74,7 @@ public class BdmEvaluationCtrl {
         return service.findById(id);
     }
 
+    
     /**
      * 保存
 	 */
@@ -78,8 +89,8 @@ public class BdmEvaluationCtrl {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public void delete(@RequestParam("ids") String ids) {
-        service.delete(ids);
+    public void delete(@RequestParam("id") Integer id) {
+        service.delete(id);
     }
     
     @RequestMapping("/findAllScoreStandards")
@@ -88,4 +99,20 @@ public class BdmEvaluationCtrl {
     	return service.findAllScoreStandards();
     }
     
+    /**
+     * 评价明细
+     */
+    @RequestMapping("/findAllById")
+    @ResponseBody
+    public List<BdmEvaluationDto> findAllById(@RequestParam(value="id",required=true) Integer parent){
+    	return service.findAllById(parent);
+    }
+    /**
+     * 评价明细
+     */
+    @RequestMapping("/findBigItems")
+    @ResponseBody
+    public List<BdmEvaluationDto> findBigItems(){
+    	return service.findBigItems();
+    }
 }

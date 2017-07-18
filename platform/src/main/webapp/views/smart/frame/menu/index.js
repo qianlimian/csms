@@ -78,7 +78,7 @@
     new IndexModule({
         name : "SmartMenuIndex", //必需，Index模块名
         containerId : "ctnMenuIndex", //必需，Index模块的容器id
-        restUrl: "/menus/", //必需，请求的rest地址
+        restUrl: "/smart/menus/", //必需，请求的rest地址
         editModule : {
             name : "SmartMenuEdit", //必需，Edit模块名
             containerId : "ctnMenuEditWrap" //必需，Edit模块的容器id

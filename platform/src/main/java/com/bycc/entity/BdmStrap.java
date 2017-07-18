@@ -35,10 +35,10 @@ public class BdmStrap implements Serializable {
 	private Integer id;
 
 	/**
-	 * 编码
+	 * 手环编号
 	 */
 	@Column(name = "code_")
-	private String code;
+	private Integer code;
 
 	/**
 	 * 手环名称
@@ -94,11 +94,11 @@ public class BdmStrap implements Serializable {
 		this.id = id;
 	}
 
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

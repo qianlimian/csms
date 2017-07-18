@@ -1,117 +1,150 @@
-html,body{
-    height:100%
+.content {
+    height: calc(100% - 40px);
 }
-*{
-    padding:0;
-    margin:0;
-    box-sizing:border-box;
+
+.content-left {
+    height: 100%;
+    border: 1px solid #ccc;
 }
-.bordered{
-    border:1px solid #ccc;
-    height:100%;
-    background: #fff;
-}
-.padding_none{
-    padding:0;
-}
-.video-bttom{
-    z-index:999;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-.content-right{
+
+.content-right {
     position: relative;
-    height:calc(100% - 50px);
-    background: #fff;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-left: none;
+    padding: 0;
 }
-/* @media(max-width: 1000px){
-	.video-bttom .col-md-6{
-		width: 50% !important;
-		margin-bottom: 5px;
-	}
-} */
-.video-bttom .col-md-6 {
-	position:relative;
-	height:256px;
-	background: #000;
-	color:#fff;
-    width: 50%;
-    padding-left:10px;
-    padding-right:0px;
-    border:1px solid #ccc;
+
+#ctnBdmRoomWrap {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 30px);
 }
-.title-center{
-	font-size:200%;
-	position:absolute;
-	top:calc(50% - 20px);
-	left:calc(50% - 20px);
-}
-#ctnCaseMediaWrap{
-    background: #fff;
+
+#ctnCaseMediaWrap {
     border-top: 1px solid #ccc;
     text-align: center;
 }
-#ctnBdmRoomWrap{
-	position:relative;
-}
-#videoTitleSpan{
-    text-align: center;
-    font-size: 14px;
-    line-height: 40px;
-}
-.video_up{
+
+.video_up {
     position: absolute;
-    bottom: -25px;
+    bottom: -10px;
     width: 100%;
-    font-size: 56px;
+    font-size: 50px;
     text-align: center;
 }
-.video_down{
-	line-height: normal;
-	font-size: 46px;
+
+.video_down {
+    line-height: normal;
+    font-size: 50px;
 }
+
+.video-bttom {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 900;
+}
+
+.video-bttom .col-md-6 {
+    position: relative;
+    height: 256px;
+    background: #000;
+    color: #fff;
+    width: 50%;
+    padding: 0;
+    border: 1px solid #ccc;
+}
+
+.title-center {
+    font-size: 200%;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+}
+
 /* 定义keyframe动画，命名为blink */
 
-@keyframes blink{
-    0%{opacity: 1;}
-    50%{opacity: 1;}
-    50.01%{opacity: 0;} /* 注意这里定义50.01%立刻透明度为０，可以设置闪烁效果 */
-    100%{opacity: 0;}
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    50.01% {
+        opacity: 0;
+    }
+    /* 注意这里定义50.01%立刻透明度为０，可以设置闪烁效果 */
+    100% {
+        opacity: 0;
+    }
 }
 
 /* 添加兼容性前缀 */
 
 @-webkit-keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 1; }
-    50.01% { opacity: 0; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    50.01% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @-moz-keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 1; }
-    50.01% { opacity: 0; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    50.01% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @-ms-keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 1; }
-    50.01% { opacity: 0; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    50.01% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @-o-keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 1; }
-    50.01% { opacity: 0; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    50.01% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /* 定义blink类*/
-.blink{
+.blink {
     animation: blink .75s linear infinite;
     /* 其它浏览器兼容性前缀 */
     -webkit-animation: blink .75s linear infinite;
@@ -120,6 +153,41 @@ html,body{
     -o-animation: blink .75s linear infinite;
     color: #5bc0de;
 }
-.content_room{
-	width: 100%;overflow:scroll;
+
+.person_position {
+    width: 26px !important;
+    height: 30px !important;
+    position: absolute;
+    bottom: 35px;
+    left: calc(50% - 13px);
+}
+
+.person_content {
+    background: #fff;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    width: 250px;
+    height: 120px;
+    left: calc(50% + 20px);
+    z-index: 9999;
+    word-wrap: break-word;
+}
+
+.person_content p {
+    padding: 5px 0;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+
+.person_content p:last-child {
+    border: 0;
+}
+
+.room_warning {
+    width: 20px !important;
+    height: 20px !important;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }

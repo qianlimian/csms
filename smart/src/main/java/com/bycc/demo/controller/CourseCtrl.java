@@ -20,7 +20,7 @@ import java.util.Map;
  * 主子表示例（课程）
  */
 @Controller
-@RequestMapping("/courses")
+@RequestMapping("/smart/courses")
 public class CourseCtrl {
 
     @Autowired
@@ -39,7 +39,7 @@ public class CourseCtrl {
     public String index(Model model) {
         model.addAttribute("teachers", teacherService.findAll()); //combo列表项
         model.addAttribute("students", studentService.findAll()); //combo列表项
-        return "/pages/demo/course/index";
+        return "/smart/demo/course/index";
     }
 
     /**
@@ -47,7 +47,7 @@ public class CourseCtrl {
      */
     @RequestMapping("/edit")
     public String edit() {
-        return "/pages/demo/course/edit";
+        return "/smart/demo/course/edit";
     }
 
     /**

@@ -23,5 +23,15 @@ public interface OverviewService {
 	 *
 	 */
 	Map<Integer, String> findCamerasByRoom(Integer roomId);
+	
+	/**
+	 * 
+	 * @description 获取房间布局
+	 * @author liuxunhua
+	 * @throws Exception 
+	 * @date 2017年6月27日 上午9:31:32
+	 *
+	 */
+	Map<String, Object> findRoomLayout(Integer areaId, Integer peopleId) throws Exception;
 
 }

@@ -17,10 +17,10 @@
                 animation: { open: { effects: "fadeIn"} }
             });
 
-            smart.kendoui.comboBox(this.$("#edit_roomType"), {
+            smart.kendoui.dropDownList(this.$("#edit_roomType"), {
                 dataSource: smart.Enums["com.bycc.enumitem.RoomType"].getData()
             });
-            smart.kendoui.comboBox(this.$("#edit_status"), {
+            smart.kendoui.dropDownList(this.$("#edit_status"), {
                 dataSource: smart.Enums["com.bycc.enumitem.UsageStatus"].getData()
             });
 
@@ -28,7 +28,7 @@
             smart.kendoui.grid("#stationSubGridEdit",
                 $.extend(true, this.subGridOptions(), {
                     dataSource : {
-                        url: this.restUrl + "findSubStationsById.do"
+                        url: this.restUrl + "findSubStationById.do"
                     },
                     toolbar: kendo.template(this.$("#station_template").html()),
                     command: {
@@ -40,10 +40,18 @@
                     },
                     columns : [
                         { field: "id",  width: 100, hidden: true },
+                        { field: "code", title: "编号", width: 100 },
                         { field: "ip", title: "基站ip地址", width: 100 },
                         { field: "name", title: "基站名称", width: 100 },
                         { field: "status", title: "设备状态", width: 100,
-                            values: smart.Enums["com.bycc.enumitem.DeviceStatus"].getData()
+                            values: smart.Enums["com.bycc.enumitem.DeviceStatus"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.DeviceStatus"].getData()
+                                });
+                            }
                         }
                     ]
                 })
@@ -70,7 +78,14 @@
                         { field: "username", title: "用户名", width: 100 },
                         { field: "password", title: "密码", width: 100 },
                         { field: "status", title: "设备状态", width: 100,
-                            values: smart.Enums["com.bycc.enumitem.DeviceStatus"].getData()
+                            values: smart.Enums["com.bycc.enumitem.DeviceStatus"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.DeviceStatus"].getData()
+                                });
+                            }
                         }
                     ]
                 })
@@ -141,14 +156,25 @@
         bindEvents: function () {
             smart.EditModule.fn.bindEvents.call(this);
 
-            smart.bind('#stationBtnDoNewSub', [this.doNewSub, this["stationSubGridEdit"]]);
+            smart.bind('#stationBtnDoNewSub', [this.doNewStationSub, this["stationSubGridEdit"]]);
             smart.bind('#stationBtnDoDeleteSub', [this.doDeleteSub, this["stationSubGridEdit"]]);
             smart.bind('#cameraBtnDoNewSub', [this.doNewSub, this["cameraSubGridEdit"]]);
             smart.bind('#cameraBtnDoDeleteSub', [this.doDeleteSub, this["cameraSubGridEdit"]]);
         },
 
+        //新增基站
+        doNewStationSub: function () {
+        	if(this.items().length == 0) {
+        		//注意：传过来的this变量为grid！！！
+                this.smartAddRow({
+                    status: 'NORMAL'
+                });
+        	}
+        },
+        
         //@overwrite
         doNewSub: function () {
+        	console.log(this.items());
             //注意：传过来的this变量为grid！！！
             this.smartAddRow({
                 status: 'NORMAL'

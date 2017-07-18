@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.smartframework.manager.dto.plugin.GroupMenu;
-import org.smartframework.manager.dto.plugin.LeafMenu;
-import org.smartframework.manager.dto.plugin.ModuleMenu;
-import org.smartframework.manager.dto.plugin.PluginMenu;
+import org.smartframework.manager.dto.plugin.*;
 import org.smartframework.manager.entity.*;
 import org.smartframework.manager.service.menu.MenuService;
 import org.smartframework.manager.service.user.UserService;
@@ -81,18 +78,13 @@ public class GlobalHtmInterceptor extends HandlerInterceptorAdapter {
                         List<ModuleMenu> menus = menuService.getUserModuleMenus(plugin, user.getMenuIds());
                         session.setAttribute("userModuleMenus_" + plugin.getCode(), menus);
                     }
-                    if (session.getAttribute("userGroupMenus_" + moduleMenu) == null) {
-                        List<GroupMenu> menus = menuService.getUserGroupMenus(moduleMenu, user.getMenuIds());
-                        session.setAttribute("userGroupMenus_" + moduleMenu, menus);
-                    }
-                    if (session.getAttribute("userLeafMenus_" + moduleMenu) == null) {
-                        List<LeafMenu> menus = menuService.getUserLeafMenus(moduleMenu, user.getMenuIds());
-                        session.setAttribute("userLeafMenus_" + moduleMenu, menus);
+                    if (session.getAttribute("userGroupLeafMenus_" + moduleMenu) == null) {
+                        List<GroupOrLeafMenu> menus = menuService.getUserGroupLeafMenus(moduleMenu, user.getMenuIds());
+                        session.setAttribute("userGroupLeafMenus_" + moduleMenu, menus);
                     }
 
                     modelAndView.addObject("userModuleMenus", session.getAttribute("userModuleMenus_" + plugin.getCode()));
-                    modelAndView.addObject("userGroupMenus", session.getAttribute("userGroupMenus_" + moduleMenu));
-                    modelAndView.addObject("userLeafMenus", session.getAttribute("userLeafMenus_" + moduleMenu));
+                    modelAndView.addObject("userGroupLeafMenus", session.getAttribute("userGroupLeafMenus_" + moduleMenu));
                 }
 
                 modelAndView.addObject("currentLeafMenu", leafMenu);

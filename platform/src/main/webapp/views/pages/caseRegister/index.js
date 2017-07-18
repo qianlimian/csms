@@ -6,30 +6,34 @@
             smart.SingleIndexModule.fn.init.call(this, options);
         },
 
+        //供【案件】和【案件记录】模块调用的接口
+        loadItems: function (caseRecordId, caseId) {
+            var me = this,
+                grid = me.mainGrid,
+                url = me.restUrl + "query.do";
+
+            if (caseRecordId) {
+                url = url + "?caseRecordId=" + caseRecordId;
+            }
+            if (caseId) {
+                url = url + "?caseId=" + caseId;
+            }
+
+            grid.dataSource.transport.options.read.url = url;
+            grid.dataSource.read();
+        },
+
         //初始化组件
         initComponents: function () {
             //调用父类方法初始化查询窗口、编辑页面、导航条等
             smart.SingleIndexModule.fn.initComponents.call(this);
 
-            var me = this,
-                caseRecordModule = smart.Module.getModule("SmartCaseRecordIndex"),
-                caseModule = smart.Module.getModule("SmartCaseIndex");
-
-            //【案件】和【办案记录】页面点击"开始办案"时传不同参数
-            var url = this.restUrl + "query.do";
-            if (caseRecordModule) {
-                url = url + "?caseRecordId=" + caseRecordModule.getSelectItem().id;
-            }
-            if (caseModule) {
-                url = url + "?caseId=" + caseModule.getSelectItem().id;
-            }
+            var me = this;
 
             // 涉案人员列表
             this.mainGrid = smart.kendoui.grid(this.$("#peopleGrid"),
                 $.extend(true, this.gridOptions(), {
-                        dataSource : {
-                            url: url
-                        },
+                        autoBind: false,
                         columns: [
                             {field: "id", width: 50, hidden: true},
                             {field: "name", type: "string", title: "姓名", width: 100},
@@ -63,20 +67,48 @@
                         {field: "unit", title: "单位", width: 150},
                         {
                             field: "storeType", title: "保管措施", width: 150,
-                            values: smart.Enums["com.bycc.enumitem.StoreType"].getData()
+                            values: smart.Enums["com.bycc.enumitem.StoreType"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.StoreType"].getData()
+                                });
+                            }
                         },
                         {
                             field: "backOrNot", title: "是否归还", width: 150,
-                            values: smart.Enums["com.bycc.enumitem.Boolean"].getData()
+                            values: smart.Enums["com.bycc.enumitem.Boolean"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.Boolean"].getData()
+                                });
+                            }
                         },
                         {
                             field: "involvedOrNot", title: "是否涉案", width: 150,
-                            values: smart.Enums["com.bycc.enumitem.Boolean"].getData()
+                            values: smart.Enums["com.bycc.enumitem.Boolean"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.Boolean"].getData()
+                                });
+                            }
                         },
                         {
                             field: "cabinetId", title: "保管柜号", width: 150,
                             mapping: "cabinet.id", // mapping用于foreignkey column的映射，以转换过滤和排序参数
-                            values: smart.Data.get('#cabinet_select')
+                            values: smart.Data.get('#cabinet_select'),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.comboBox($input, {
+                                    dataSource: smart.Data.get("#cabinet_select")
+                                });
+                            }
                         }
                     ],
                     command: {
@@ -134,6 +166,9 @@
             return item;
         },
 
+        parse: function (json){
+        console.log(json);
+    },
         //********************************绑定、解绑手环*********************************
         // 显示绑定手环页面
         showBindStrapPage: function () {
@@ -214,8 +249,7 @@
                     title: "打印办案区使用登记表",
                     width: "80%",
                     height: "80%",
-                    iframe: true,
-                    actions: ["Refresh"]
+                    iframe: true
                 }).maximize().open();
             }
         },
@@ -301,7 +335,7 @@
                 selectedItem = this.getSelectItem();
             if (selectedItem) {
                 var data = $.extend({casePeopleId: selectedItem.id}, this.subGrid.getCudData());
-               smart.ajax({
+                smart.ajax({
                     type: "POST",
                     url: me.restUrl + "savePeopleBelongs.do",
                     contentType: 'application/json',

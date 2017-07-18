@@ -18,7 +18,7 @@ import java.util.Map;
  * 单表示例（班级）
  */
 @Controller
-@RequestMapping("/grades")
+@RequestMapping("/smart/grades")
 public class GradeCtrl {
 
     @Autowired
@@ -33,7 +33,7 @@ public class GradeCtrl {
     @RequestMapping
     public String index(Model model) {
         model.addAttribute("teachers", teacherService.findAll()); //combo列表项
-        return "/pages/demo/grade/index";
+        return "/smart/demo/grade/index";
     }
 
     /**
@@ -41,7 +41,7 @@ public class GradeCtrl {
      */
     @RequestMapping("/edit")
     public String edit() {
-        return "/pages/demo/grade/edit";
+        return "/smart/demo/grade/edit";
     }
 
     /**

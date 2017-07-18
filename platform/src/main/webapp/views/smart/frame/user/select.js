@@ -30,7 +30,7 @@
     new SelectModule({
         name : "SmartUserSelect", //必需，模块名
         containerId : "ctnUserSelect", //必需，模块的容器id
-        restUrl: "/users/" //必需，请求的rest地址
+        restUrl: "/smart/users/" //必需，请求的rest地址
     });
 
 })();

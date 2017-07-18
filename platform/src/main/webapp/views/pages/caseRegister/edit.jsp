@@ -104,6 +104,9 @@
             </div>
         </div>
     </div>
+    <div class="s-row-fluid">
+        <img id="photo" data-bind="attr:{src: casePeople.photo}">
+    </div>
 </form>
 <script src="${ctx}/views/pages/caseRegister/edit.js"></script>
 </body>

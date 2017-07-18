@@ -1,5 +1,12 @@
 package com.bycc.dto.caseWarning;
 
+/**
+ * 
+ * @description 受立案监督DTO
+ * @author liuxunhua
+ * @date 2017年7月13日 上午8:04:35
+ *
+ */
 public class CaseWarningDto {
 	/**
 	 * id

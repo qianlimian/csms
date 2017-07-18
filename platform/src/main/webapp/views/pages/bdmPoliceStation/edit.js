@@ -16,7 +16,7 @@
             });
             
             //警局级别的下拉列表框
-            smart.kendoui.comboBox("#edit_policeStationType", {
+            smart.kendoui.dropDownList("#edit_policeStationType", {
                 dataSource: smart.Enums["com.bycc.enumitem.PoliceStationType"].getData()
             });
 
@@ -29,8 +29,22 @@
                     columns : [
                         { field: "id",  width: 100, hidden: true },
                         { field: "userId", width: 100, hidden: true },
-                        { field: "userName", title: "民警", width: 100, editor: smart.kendoui.nonEditor },
-                        { field: "dutyType", title: "职务", width: 100, values: smart.Enums["com.bycc.enumitem.DutyType"].getData() }
+                        { field: "userName", title: "民警", width: 100,
+                            editor: smart.kendoui.nonEditor },
+                        { field: "dutyType", title: "职务", width: 100,
+                            values: smart.Enums["com.bycc.enumitem.DutyType"].getData(),
+                            editor: function (container, options) {
+                                // $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>').appendTo(container).kendoDropDownList ({
+                                //     dataSource: smart.Enums["com.bycc.enumitem.DutyType"].getData(),
+                                //     valuePrimitive: true
+                                // });
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.DutyType"].getData()
+                                });
+                            }
+                        }
                     ]
                 })
             );
@@ -43,7 +57,7 @@
                 this.userSelectWin = smart.kendoui.window('#ctnUserSelectWrap', {
                     width : '800px',
                     height : '500px',
-                    content: basePath + "/users/load.do"
+                    content: basePath + "/smart/users/load.do"
                 });
             }
             this.userSelectWin.center().open();

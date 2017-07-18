@@ -98,9 +98,10 @@
 			return false;
    		}   
 		data.index=index;
-		var category=$("#edit_mediaCategory").data("kendoComboBox").text();	
-		if(category){			 
-			var content="<div id='"+index+"' style='clear:both'>";
+
+        var category = $("input[name='edit_mediaCategory']:checked").val();
+		if (category) {
+			var content="<div id='"+index+"' class='s-row-fluid'>";
 			content=content+"<div class='s-pct5'><input type='checkbox' name='uploadCheckbox' value='"+index+"'/></div>";
 			content=content+"<div id='selectedCategory' class='s-pct5'>"+category+"</div>";
 			content=content+"<div id='fileName' class='s-pct20' ></div>";
@@ -110,7 +111,7 @@
 			content=content+"</div>";		
 			$("#fileContainer").append(content);
 			index++;
-		}else{
+		} else {
 			smart.alert("请选择视频类别！");
 		}		
 	}

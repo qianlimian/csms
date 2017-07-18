@@ -15,10 +15,8 @@ public class ModuleMenu implements Serializable {
 
 	private String url;
 
-    private List<GroupMenu> groupMenus;
+	private List<GroupOrLeafMenu> groupLeafMenus;
 
-    private List<LeafMenu> leafMenus;
-	
 	//构造函数
 	public ModuleMenu() {
 	}
@@ -53,19 +51,11 @@ public class ModuleMenu implements Serializable {
 		this.url = url;
 	}
 
-    public List<GroupMenu> getGroupMenus() {
-        return groupMenus;
-    }
+	public List<GroupOrLeafMenu> getGroupLeafMenus() {
+		return groupLeafMenus;
+	}
 
-    public void setGroupMenus(List<GroupMenu> groupMenus) {
-        this.groupMenus = groupMenus;
-    }
-
-    public List<LeafMenu> getLeafMenus() {
-        return leafMenus;
-    }
-
-    public void setLeafMenus(List<LeafMenu> leafMenus) {
-        this.leafMenus = leafMenus;
-    }
+	public void setGroupLeafMenus(List<GroupOrLeafMenu> groupLeafMenus) {
+		this.groupLeafMenus = groupLeafMenus;
+	}
 }

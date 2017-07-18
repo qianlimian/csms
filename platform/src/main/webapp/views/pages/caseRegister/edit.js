@@ -35,6 +35,10 @@
                 data.caseId = caseModule.getSelectItem().id;
             }
 
+            if(this.viewModel.casePeople.photo) {
+                data.photo = this.viewModel.casePeople.photo;
+            }
+
             return data;
         },
 
@@ -43,6 +47,29 @@
             //调用父类方法绑定增删改查
             smart.SingleEditModule.fn.bindEvents.call(this);
 
+            smart.bind('#' + this.containerId + ' #btnDoRead', [this.readIdCard, this]);
+        },
+
+        readIdCard: function(){
+            var me = this;
+            $.ajax({
+                url: "http://localhost:8088",
+                dataType: "jsonp",
+                jsonpCallback:'parse',
+                method :'GET',
+                success: function (json) {
+                    var idcard = JSON.parse(json);
+                    me.viewModel.set("casePeople",{
+                        name: idcard.name,
+                        birthday: idcard.birthday,
+                        gender: idcard.gender,
+                        address: idcard.address,
+                        certificateType: "ID",
+                        certificateNum: idcard.id,
+                        photo: 'data:image/bmp;base64,'+ idcard.photo
+                    });
+                }
+            });
         }
     });
 
@@ -62,7 +89,8 @@
                 certificateNum: "",
                 address: "",
                 enterReason: "",
-                otherEnterReason: ""
+                otherEnterReason: "",
+                photo:""
             }
         },
         eventPrefix: "REGISTER"

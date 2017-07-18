@@ -1,29 +1,27 @@
 #业务系统模块
 - name: 办案区管控
   modules:
-    - name: overview,案件监控
-- name: 案件管理
-  modules:
     - name: case,案件办理
-      operate: 查看,办理
+      operate: 查看,办理 #默认operate为编辑,删除
     - name: caseRecord,办案记录
-      operate: 查看,编辑,删除,办理,评价
+      operate: 查看,编辑,删除,办理 #默认operate为编辑,删除
 - name: 案件监督
   modules:
     - name: 积分管理
       modules:
+        - name: caseScoreMark,评价打分
         - name: caseScoreRank,积分排名
         - name: caseScoreDetail,我的积分
         - name: bdmEvaluation,评价标准
-    - name: 案件分级
-      modules:
-        - name: caseRisk,案件分险
-        - name: bdmClassification,分级标准
-        - name: caseWarning,受立案监督
-- name: 录音录像管理
+    - name: bdmClassification,风险等级
+    - name: caseWarning,受立案监督
+- name: 录音录像
   modules:
-    - name: caseMedia,音视频列表
-    - name: bdmVideoCategory,音视频类别
+    - name: bdmVideoCategory,视频类别
+- name: 案件公开
+  modules:
+    - name: caseExport,案件导出
+      operate: 导出 #默认operate为编辑,删除
 #基础数据模块
 - name: 基础数据
   modules:

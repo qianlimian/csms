@@ -1,16 +1,11 @@
 package com.bycc.controller;
 
-import com.bycc.dto.bdmRoom.BdmCameraDto;
 import com.bycc.dto.bdmRoom.BdmRoomDto;
-import com.bycc.dto.bdmRoom.BdmStationDto;
-import com.bycc.dto.bdmRoom.RoomCondition;
 import com.bycc.service.bdRoomLayout.BdmRoomLayoutService;
-import org.smartframework.common.kendo.QueryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,12 +61,12 @@ public class BdmRoomLayoutCtrl {
     /**
      * 保存房间信息
      *
-     * @param params
+     * @param list
      * @return
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public void saveLayout(@RequestBody Map<String, Object> params) throws Exception{
-        service.saveLayout(params);
+    public void saveLayout(@RequestBody List<Map<String, Object>> list) throws Exception{
+        service.saveLayout(list);
     }
 }

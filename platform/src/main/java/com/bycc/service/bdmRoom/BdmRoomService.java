@@ -21,7 +21,7 @@ public interface BdmRoomService {
 
     void delete(String ids);
 
-    List<BdmStationDto> findStationByRoomId(Integer id);
+    BdmStationDto findStationByRoomId(Integer id);
 
     List<BdmCameraDto> findCameraByRoomId(Integer id);
 }

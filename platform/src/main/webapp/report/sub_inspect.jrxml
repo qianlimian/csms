@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-26T09:44:49 -->
+<!-- 2017-07-03T13:07:15 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_inspect" pageWidth="555" pageHeight="330" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="71651974-8b46-496a-901b-fdfb3f43d9b5">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -297,7 +297,7 @@ $F{verifyOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpr
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{ROOT_PATH} + 
-("ZW".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+($F{collectItem}.contains("ZW")? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="355" y="270" width="30" height="30" uuid="3209577a-a98c-43c0-876f-570bd066bfb6">
@@ -317,7 +317,7 @@ $F{verifyOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpr
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{ROOT_PATH} + 
-("XY".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+($F{collectItem}.contains("XY")? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="410" y="270" width="30" height="30" uuid="b3df3a83-1257-4d3d-8537-c52456729aec">
@@ -336,7 +336,7 @@ $F{verifyOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpr
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{ROOT_PATH} + 
-("NY".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+($F{collectItem}.contains("NY")? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="465" y="270" width="30" height="30" uuid="c236b995-09b7-4493-a6e7-e0b6944e8724">
@@ -356,7 +356,7 @@ $F{verifyOrNot} == false? "img/checked.png" : "img/unchecked.png")]]></imageExpr
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{ROOT_PATH} + 
-("QT".equals($F{collectItem})? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
+($F{collectItem}.contains("QT")? "img/checked.png" : "img/unchecked.png")]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="520" y="270" width="30" height="30" uuid="5bce8912-9116-4ea3-83a8-8146462309d1">

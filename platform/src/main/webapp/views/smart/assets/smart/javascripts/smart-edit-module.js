@@ -94,7 +94,7 @@
 
                         var $field = this.$("input[data-bind='value:" + modelName + "." + field + "']");
                         if ($field.attr('data-role')) {
-                            $field = $field.closest('.k-widget').find("input");
+                            $field = $field.closest('.k-widget').find("input,.k-input");
                         }
                         $field.addClass("s-field-invalid");
                         $field.attr("error_notice", msg.join(";"));

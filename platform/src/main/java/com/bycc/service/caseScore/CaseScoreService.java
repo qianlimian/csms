@@ -7,9 +7,11 @@ import java.util.List;
 
 import org.smartframework.common.kendo.QueryBean;
 
-import com.bycc.dto.CaseScoreDto;
-import com.bycc.dto.CaseScoreItemDto;
-import com.bycc.dto.ScoreRankDto;
+import com.bycc.dto.caseScore.CaseScoreDto;
+import com.bycc.dto.caseScore.CaseScoreItemDto;
+import com.bycc.dto.scoreRank.CaseScoreRankDto;
+import com.bycc.dto.scoreRank.PoliceScoreRankDto;
+import com.bycc.dto.scoreRank.PoliceStationScoreRankDto;
 
 /**
  * @description
@@ -23,11 +25,17 @@ public interface CaseScoreService {
 	
 	CaseScoreDto findById(Integer id);
 
-	CaseScoreDto findByCaseRecordId(Integer id);
+	CaseScoreDto findByCaseId(Integer id);
 	
 	List<CaseScoreItemDto> findSubsById(Integer id);
 	
-	List<CaseScoreDto> query(QueryBean qb, Integer policeId);
+	List<CaseScoreRankDto> query(QueryBean qb, Integer policeId);
 	
-	List<ScoreRankDto> queryRank(QueryBean qb);
+	List<PoliceScoreRankDto> bdmPoliceQueryRank(QueryBean qb);
+
+	List<PoliceStationScoreRankDto> bdmPoliceStationQueryRank(QueryBean qb);
+
+	List<CaseScoreRankDto> bdmPoliceStationQuery(QueryBean qb, Integer policeStationId);
+
+	List<CaseScoreRankDto> caseQueryRank(QueryBean qb);
 }

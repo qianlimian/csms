@@ -3,9 +3,9 @@ package com.bycc.enumitem;
 import org.smartframework.platform.dictionary.bean.entry.EnumEntry;
 
 public enum CaseType implements EnumEntry {
-	CIVIL("行政"),
-	CRIMINAL("刑事"),
-	DISPUTE("纠纷");
+	CIVIL("行政案件"),
+	CRIMINAL("刑事案件"),
+	DISPUTE("现场调解");
 	
 	private String value;
 	private CaseType(String value) {

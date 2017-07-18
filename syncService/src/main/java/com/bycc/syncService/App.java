@@ -39,7 +39,7 @@ public class App {
         myCase.setInsertDate(new Date());
         myCase.setNote("note");
         myCase.setAcceptDate(new Date());
-        myCase.setAcceptPoliceId(1);
+//        myCase.setAcceptPoliceId(1);
         myCase.setCaseName("murderCase");
         caseService.save(myCase);
 
@@ -68,9 +68,9 @@ public class App {
         myCase.setCaseName(randomIntSix()+"号案件");
         myCase.setCaseSummary("案情简介...");//案情简介
         myCase.setSuspect(new ChineseName().getName());
-        myCase.setAcceptPoliceId((int)(Math.random()*10));//受理人
-        myCase.setMasterPoliceId((int)(Math.random()*10));//主办人
-        myCase.setSlavePoliceId((int)(Math.random()*10));//协办人
+//        myCase.setAcceptPoliceId((int)(Math.random()*10));//受理人
+//        myCase.setMasterPoliceId((int)(Math.random()*10));//主办人
+//        myCase.setSlavePoliceId((int)(Math.random()*10));//协办人
         myCase.setOccurDate(new Date());
         myCase.setAcceptDate(new Date());
         myCase.setRegisterDate(new Date());

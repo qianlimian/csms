@@ -45,11 +45,11 @@ INSERT INTO smart_plugins (id_, code_, name_, display_or_not_) VALUES (2, 'PLATF
 INSERT INTO smart_plugins (id_, code_, name_, display_or_not_) VALUES (3, 'TUTORIAL', '参考文档', TRUE);
 
 --//--------------------菜单------------------------
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (1, '权限管理', 'MODULE', 'PLATFORM', '/users.htm', NULL, 999);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (11, '用户管理', 'LEAF', 'PLATFORM', '/users.htm', 1, 1);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (12, '菜单管理', 'LEAF', 'PLATFORM', '/menus.htm', 1, 2);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (13, '角色管理', 'LEAF', 'PLATFORM', '/roles.htm', 1, 3);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (14, '用户组管理', 'LEAF', 'PLATFORM', '/groups.htm', 1, 4);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (1, '权限管理', 'MODULE', 'PLATFORM', '/smart/users.htm', NULL, 999);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (11, '用户管理', 'LEAF', 'PLATFORM', '/smart/users.htm', 1, 1);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (12, '菜单管理', 'LEAF', 'PLATFORM', '/smart/menus.htm', 1, 2);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (13, '角色管理', 'LEAF', 'PLATFORM', '/smart/roles.htm', 1, 3);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (14, '用户组管理', 'LEAF', 'PLATFORM', '/smart/groups.htm', 1, 4);
 
 INSERT INTO smart_group_menu (group_id_,menu_id_) VALUES (1,1);
 INSERT INTO smart_group_menu (group_id_,menu_id_) VALUES (1,11);
@@ -70,11 +70,11 @@ INSERT INTO ID_Sequence (KEY_ID_, GEN_VALUE_) VALUES ('com.bycc.demo.entity.Grad
 INSERT INTO ID_Sequence (KEY_ID_, GEN_VALUE_) VALUES ('com.bycc.demo.entity.Course', '1000');
 INSERT INTO ID_Sequence (KEY_ID_, GEN_VALUE_) VALUES ('com.bycc.demo.entity.Score', '1000');
 
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (2, '示例', 'MODULE', 'TUTORIAL', '/students.htm', NULL, 1000);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (21, '学生', 'LEAF', 'TUTORIAL', '/students.htm', 2, 1);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (22, '教师', 'LEAF', 'TUTORIAL', '/teachers.htm', 2, 2);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (23, '班级', 'LEAF', 'TUTORIAL', '/grades.htm', 2, 3);
-INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (24, '课程', 'LEAF', 'TUTORIAL', '/courses.htm', 2, 4);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (2, '示例', 'MODULE', 'TUTORIAL', '/smart/students.htm', NULL, 1000);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (21, '学生', 'LEAF', 'TUTORIAL', '/smart/students.htm', 2, 1);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (22, '教师', 'LEAF', 'TUTORIAL', '/smart/teachers.htm', 2, 2);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (23, '班级', 'LEAF', 'TUTORIAL', '/smart/grades.htm', 2, 3);
+INSERT INTO smart_menus (id_, name_, type_, plugin_, url_, parent_id_, display_order_) VALUES (24, '课程', 'LEAF', 'TUTORIAL', '/smart/courses.htm', 2, 4);
 
 INSERT INTO smart_group_menu (group_id_, menu_id_) VALUES (1, 2);
 INSERT INTO smart_group_menu (group_id_, menu_id_) VALUES (1, 21);

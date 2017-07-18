@@ -99,9 +99,9 @@ public class BdmRoomCtrl {
      * @param id
      * @return
      */
-    @RequestMapping("findSubStationsById")
+    @RequestMapping("findSubStationById")
     @ResponseBody
-    public List<BdmStationDto> findStationByRoomId(@RequestParam("id") Integer id) {
+    public BdmStationDto findStationByRoomId(@RequestParam("id") Integer id) {
         return service.findStationByRoomId(id);
     }
 

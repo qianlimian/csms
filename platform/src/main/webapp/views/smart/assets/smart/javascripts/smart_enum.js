@@ -82,9 +82,9 @@
     ]);
 
     new smart.Enum("com.bycc.enumitem.CaseType", [
-        {value: "CIVIL", text: "行政"},
-        {value: "CRIMINAL", text: "刑事"},
-        {value: "DISPUTE", text: "纠纷"}
+        {value: "CIVIL", text: "行政案件"},
+        {value: "CRIMINAL", text: "刑事案件"},
+        {value: "DISPUTE", text: "现场调解"}
     ]);
 
     new smart.Enum("com.bycc.enumitem.CertificateType", [

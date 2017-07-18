@@ -2,7 +2,6 @@ package org.smartframework.manager.service.module;
 
 import org.smartframework.manager.dao.module.ModuleDao;
 import org.smartframework.manager.dao.operate.OperateDao;
-import org.smartframework.manager.dto.menu.MenuCheckBoxDto;
 import org.smartframework.manager.dto.module.ModuleCheckBoxDto;
 import org.smartframework.manager.entity.Module;
 import org.smartframework.manager.entity.Operate;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static java.awt.SystemColor.menu;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {

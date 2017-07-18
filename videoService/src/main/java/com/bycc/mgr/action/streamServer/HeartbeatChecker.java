@@ -12,7 +12,7 @@ public class HeartbeatChecker implements Runnable{
     @Override
     public void run() {
         while (true){
-            logger.debug("流状态检查...");
+            logger.debug("直播流状态检查...");
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {

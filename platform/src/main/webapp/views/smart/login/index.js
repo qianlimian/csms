@@ -8,8 +8,11 @@ window.onload = function(){
 	if(pathParam.hasOwnProperty("logout")){
 		$("#logoutMsg").fadeIn("slow");
 	}
-	
-	
+    //粒子背景特效
+    $('body').particleground({
+        dotColor: '#5cbdaa',
+        lineColor: '#5cbdaa'
+    });
 }
 //将当前页面的页面参数放到js对象中
 function generatePathParam(){

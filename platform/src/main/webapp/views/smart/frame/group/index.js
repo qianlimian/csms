@@ -53,7 +53,7 @@
                 ],
                 autoBind: false,
                 dataSource : {
-                    url: basePath + '/users/queryByGroupId.do'
+                    url: basePath + '/smart/users/queryByGroupId.do'
                 },
                 toolbar: kendo.template($("#tbUserGrid").html()),
                 command: {
@@ -198,7 +198,7 @@
             //初始化选择window
             if (!self.userSelectWin) {
                 self.userSelectWin = smart.kendoui.window('#ctnUserSelectWrap', {
-                    content: basePath + "/users/load.do"
+                    content: basePath + "/smart/users/load.do"
                 });
             }
             self.userSelectWin.center().open();
@@ -468,7 +468,7 @@
     new IndexModule({
         name : "SmartGroupIndex", //必需，Index模块名
         containerId : "ctnGroupIndex", //必需，Index模块的容器id
-        restUrl: "/groups/", //必需，请求的rest地址
+        restUrl: "/smart/groups/", //必需，请求的rest地址
         editModule : {
             name : "SmartGroupEdit", //必需，Edit模块名
             containerId : "ctnGroupEditWrap" //必需，Edit模块的容器id

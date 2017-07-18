@@ -5,24 +5,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.smartframework.utils.helper.JsonHelper;
+import org.smartframework.utils.helper.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bycc.dao.BdmHandlingAreaDao;
 import com.bycc.dao.BdmRoomDao;
+import com.bycc.dao.BdmStationDao;
+import com.bycc.dao.BdmStrapDao;
 import com.bycc.dao.CasePeopleDao;
 import com.bycc.dao.CaseRecordDao;
+import com.bycc.dto.bdmRoom.BdmRoomDto;
 import com.bycc.dto.caseRegister.CasePeopleDto;
+import com.bycc.dto.locate.RFParams;
 import com.bycc.dto.overview.CaseRecordDto4Overview;
 import com.bycc.dto.overview.PoliceStationDto4Overview;
 import com.bycc.entity.BdmCamera;
 import com.bycc.entity.BdmHandlingArea;
 import com.bycc.entity.BdmPoliceStation;
 import com.bycc.entity.BdmRoom;
+import com.bycc.entity.BdmStation;
+import com.bycc.entity.BdmStrap;
 import com.bycc.entity.CasePeople;
 import com.bycc.entity.CaseRecord;
 import com.bycc.enumitem.CaseHandle;
 import com.bycc.service.permission.PermissionService;
 import com.bycc.tools.HttpUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @Service
 public class OverviewServiceImpl implements OverviewService {
@@ -41,6 +49,12 @@ public class OverviewServiceImpl implements OverviewService {
 	
 	@Autowired
 	private CasePeopleDao peopleDao;
+	
+	@Autowired
+	private BdmStationDao stationDao;
+	
+	@Autowired
+	private BdmStrapDao strapDao;
 	
 	/**
 	 * 
@@ -109,11 +123,84 @@ public class OverviewServiceImpl implements OverviewService {
 		if (room != null) {
 			List<BdmCamera> cameras = room.getCameras();
 			for (BdmCamera bdmCamera : cameras) {
-				String url = "http://" + room.getHandlingArea().getPoliceStation().getIp() + ":8888/video/startLive?cIp=" + 
-	                    bdmCamera.getIp() + "&cUsername=" + bdmCamera.getUserName() + "&cPassword="+ bdmCamera.getPassword();
-				resultMap.put(bdmCamera.getId(), HttpUtil.sendGet(url, "UTF-8"));
+				if (room.getHandlingArea().getPoliceStation().getIp() != null && bdmCamera.getIp() != null) {
+					String url = "http://" + room.getHandlingArea().getPoliceStation().getIp() + ":8888/video/startLive?cIp=" + 
+		                    bdmCamera.getIp() + "&cUsername=" + bdmCamera.getUserName() + "&cPassword="+ bdmCamera.getPassword();
+					resultMap.put(bdmCamera.getId(), HttpUtil.sendGet(url, "UTF-8"));
+				}
 			}
 		}
+		return resultMap;
+	}
+
+	/**
+	 * 
+	 * @description 获取房间布局
+	 * @author liuxunhua
+	 * @date 2017年6月27日 上午9:32:05
+	 *
+	 * @param roomId
+	 * @return
+	 * @throws Exception 
+	 */
+	@Override
+	public Map<String, Object> findRoomLayout(Integer areaId, Integer peopleId) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		BdmHandlingArea bdmHandlingArea = handlingAreaDao.findOne(areaId);
+		BdmPoliceStation bdmPoliceStation = bdmHandlingArea.getPoliceStation();
+		boolean locateState = true;
+		
+		//获取定位信息
+		Map<Integer, Object> locateInfo = new HashMap<Integer,Object>();
+		CasePeople casePeople = null;
+		if (peopleId != null) {
+			casePeople = peopleDao.findOne(peopleId);
+		}
+		if (!StringHelper.isAllEmpty(bdmPoliceStation.getIp())) {
+			String locateResult = HttpUtil.sendGet("http://" + bdmPoliceStation.getIp() + ":8088/locate/get", "utf-8");
+	        if (!"Failure".equals(locateResult)) {
+	        	Map<Integer, RFParams> locateMap = JsonHelper.getBean(locateResult, new TypeReference<HashMap<Integer, RFParams>>(){}); 
+	    		if (casePeople != null) {
+	    			for (Map.Entry<Integer, RFParams> entry : locateMap.entrySet()) {  
+	    				BdmStrap strap = strapDao.findByCode(entry.getValue().getTagId());
+	    				if (strap != null) {
+	    					CasePeople people = peopleDao.findByStrap(strap);
+	        				if (casePeople.equals(people) && entry.getValue().isActivate()) {
+	        					BdmStation station = stationDao.findByCode(entry.getKey());
+	        					BdmRoom room = station.getRoom();
+	        		        	locateInfo.put(room.getId(), CasePeopleDto.toDto(people));
+	        				}
+						}
+	    	        }
+	    		} else {
+	    			for (Map.Entry<Integer, RFParams> entry : locateMap.entrySet()) { 
+	    				if (entry.getValue().isActivate()) {
+	    					BdmStrap strap = strapDao.findByCode(entry.getValue().getTagId());
+	    					if (strap != null) {
+	    						CasePeople people = peopleDao.findByStrap(strap);
+	        					BdmStation station = stationDao.findByCode(entry.getKey());
+	        					BdmRoom room = station.getRoom();
+	        		        	locateInfo.put(room.getId(), CasePeopleDto.toDto(people));
+							}
+	    				}
+	    	        }
+	    		}
+			} else {
+				locateState = false;
+			}
+		}
+		
+		//获取办案区布局
+		List<BdmRoom> rooms =  roomDao.findByHandlingArea(bdmHandlingArea);
+        List<BdmRoomDto> dtos = new ArrayList<>();
+        for (BdmRoom room : rooms) {
+            BdmRoomDto dto = BdmRoomDto.toDto(room);
+            dtos.add(dto);
+        }
+        resultMap.put("roomDtos", dtos);
+        resultMap.put("locateInfo", locateInfo);
+        resultMap.put("locateState", locateState);
+        
 		return resultMap;
 	}
 

@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="${ctx}/views/smart/assets/bootstrap-switch/css/bootstrap-switch.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="${ctx}/views/smart/assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${ctx}/views/smart/assets/font-awesome/css/font-awesome-animation.min.css">
   <!-- flowplayer -->
   <link rel="stylesheet" href="${ctx}/views/smart/assets/flowplayer/css/skin/skin.css">
   <!-- kendoUI -->
@@ -40,14 +41,10 @@
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_kendoui_enhances.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_base.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_layout.css">
+  <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_frame.css">
 
   <!-- jQuery 2.2.3 -->
   <script src="${ctx}/views/smart/assets/jquery/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-  <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-  <%--标尺--%>
-  <link rel="stylesheet" href="${ctx}/views/smart/assets/jqueryui-ruler/css/jquery.ui.ruler.css">
-  <script src="${ctx}/views/smart/assets/jqueryui-ruler/js/jquery.ui.ruler.js"></script>
   <!-- bootstrap-switch -->
   <script src="${ctx}/views/smart/assets/bootstrap-switch/js/bootstrap-switch.min.js"></script>
   <!-- flowplayer -->

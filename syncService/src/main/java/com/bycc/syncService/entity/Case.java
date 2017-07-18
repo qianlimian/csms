@@ -1,5 +1,9 @@
 package com.bycc.syncService.entity;
 
+import com.bycc.syncService.enumitem.CaseStatus;
+import com.bycc.syncService.enumitem.CaseType;
+import com.bycc.syncService.enumitem.RiskLevel;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,12 +16,12 @@ import java.util.Date;
 @Entity
 @Table(name = "case_table")
 @TableGenerator(name = "com.bycc.syncService.entity.Case",
-table = "ID_Sequence",
-pkColumnName = "KEY_ID_",
-valueColumnName = "GEN_VALUE_",
-pkColumnValue = "com.bycc.syncService.entity.Case",
-initialValue = 1,
-allocationSize = 1)
+		table = "ID_Sequence",
+		pkColumnName = "KEY_ID_",
+		valueColumnName = "GEN_VALUE_",
+		pkColumnValue = "com.bycc.syncService.entity.Case",
+		initialValue = 1,
+		allocationSize = 1)
 public class Case implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -54,34 +58,37 @@ public class Case implements Serializable {
 	private String caseSummary;
 
 	/**
+	 * 案件类型
+	 */
+	@Enumerated(EnumType.STRING)
+	@Column(name = "case_type_")
+	private CaseType caseType;
+
+	/**
+	 * 风险等级
+	 */
+	@Enumerated(EnumType.STRING)
+	@Column(name = "risk_level_")
+	private RiskLevel riskLevel;
+
+	/**
+	 * 案件状态
+	 */
+	@Enumerated(EnumType.STRING)
+	@Column(name = "case_status_")
+	private CaseStatus caseStatus;
+
+	/**
 	 * 嫌疑人
 	 */
 	@Column(name = "suspect_")
 	private String suspect;
 
 	/**
-	 * 受理人
-	 */
-	@Column(name = "accept_police_id_")
-	private Integer acceptPoliceId;
-
-	/**
-	 * 主办人
-	 */
-	@Column(name="master_police_id_")
-	private Integer masterPoliceId;
-
-	/**
-	 * 协办人
-	 */
-	@Column(name = "slave_police_id_")
-	private Integer slavePoliceId;
-
-	/**
 	 * 案发时间
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="occur_date_")
+	@Column(name = "occur_date_")
 	private Date occurDate;
 
 	/**
@@ -112,9 +119,15 @@ public class Case implements Serializable {
 	private String note;
 
 	/**
+	 * 操作人
+	 */
+	@Column(name = "operator_id_")
+	private Integer operatorId;
+
+	/**
 	 * 插入日期
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "insert_date_")
 	private Date insertDate;
 
@@ -125,20 +138,54 @@ public class Case implements Serializable {
 	@Column(name = "update_date_")
 	private Date updateDate;
 
+	@PrePersist
+	public void prePersist() {
+		this.insertDate = new Date();
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		this.updateDate = new Date();
+	}
+
+	public CaseStatus getCaseStatus() {
+		return caseStatus;
+	}
+
+	public void setCaseStatus(CaseStatus caseStatus) {
+		this.caseStatus = caseStatus;
+	}
+
+	public CaseType getCaseType() {
+		return caseType;
+	}
+
+	public void setCaseType(CaseType caseType) {
+		this.caseType = caseType;
+	}
+
+	public Integer getOperatorId() {
+		return operatorId;
+	}
+
+	public void setOperatorId(Integer operatorId) {
+		this.operatorId = operatorId;
+	}
+
+	public RiskLevel getRiskLevel() {
+		return riskLevel;
+	}
+
+	public void setRiskLevel(RiskLevel riskLevel) {
+		this.riskLevel = riskLevel;
+	}
+
 	public Date getAcceptDate() {
 		return acceptDate;
 	}
 
 	public void setAcceptDate(Date acceptDate) {
 		this.acceptDate = acceptDate;
-	}
-
-	public Integer getAcceptPoliceId() {
-		return acceptPoliceId;
-	}
-
-	public void setAcceptPoliceId(Integer acceptPoliceId) {
-		this.acceptPoliceId = acceptPoliceId;
 	}
 
 	public String getAlarmCode() {
@@ -197,14 +244,6 @@ public class Case implements Serializable {
 		this.insertDate = insertDate;
 	}
 
-	public Integer getMasterPoliceId() {
-		return masterPoliceId;
-	}
-
-	public void setMasterPoliceId(Integer masterPoliceId) {
-		this.masterPoliceId = masterPoliceId;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -231,14 +270,6 @@ public class Case implements Serializable {
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
-	}
-
-	public Integer getSlavePoliceId() {
-		return slavePoliceId;
-	}
-
-	public void setSlavePoliceId(Integer slavePoliceId) {
-		this.slavePoliceId = slavePoliceId;
 	}
 
 	public String getSuspect() {

@@ -11,12 +11,6 @@
     <div class="display-none">
         <input type="text" id="edit_caseId" data-bind="value:caseRecord.caseId"/>
         <input type="text" id="edit_id" data-bind="value:caseRecord.id"/>
-        <!-- <input type="text" id="edit_acceptUnitId" data-bind="value:caseRecord.acceptUnitId"/>
-        <input type="text" id="edit_acceptPoliceId" data-bind="value:caseRecord.acceptPoliceId"/>
-        <input type="text" id="edit_masterUnitId" data-bind="value:caseRecord.masterUnitId"/>
-        <input type="text" id="edit_masterPoliceId" data-bind="value:caseRecord.masterPoliceId"/>
-        <input type="text" id="edit_slaveUnitId" data-bind="value:caseRecord.slaveUnitId"/>
-        <input type="text" id="edit_slavePoliceId" data-bind="value:caseRecord.slavePoliceId"/> -->
     </div>
 
     <div class="s-row-fluid">

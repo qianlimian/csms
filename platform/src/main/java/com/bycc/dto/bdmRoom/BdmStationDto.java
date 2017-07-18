@@ -24,14 +24,19 @@ public class BdmStationDto {
     @NotNull(message = "不能为空")
     private String name;
     /**
-     * 基站ip
+     * 基站编号
      */
     @NotNull(message = "不能为空")
-    private String ip;
+    private Integer code;
     /**
      * 基站状态
      */
     private String status;
+    /**
+     * 基站IP
+     */
+    @NotNull(message = "不能为空")
+    private String ip;
     /**
      * 备注
      */
@@ -44,13 +49,17 @@ public class BdmStationDto {
      * @return
      */
     public static BdmStationDto toDto(BdmStation entity) {
-        BdmStationDto dto = new BdmStationDto();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        dto.setIp(entity.getIp());
-        dto.setStatus(entity.getStatus().key());
-        dto.setNote(entity.getNote());
-        return dto;
+        if (entity != null) {
+        	BdmStationDto dto = new BdmStationDto();
+        	dto.setId(entity.getId());
+            dto.setName(entity.getName());
+            dto.setCode(entity.getCode());
+            dto.setStatus(entity.getStatus() != null ? entity.getStatus().key() : null);
+            dto.setNote(entity.getNote());
+            dto.setIp(entity.getIp());
+            return dto;
+		}
+		return new BdmStationDto();
     }
 
     /**
@@ -64,9 +73,10 @@ public class BdmStationDto {
         BdmStation entity = new BdmStation();
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setIp(dto.getIp());
+        entity.setCode(dto.getCode());
         entity.setStatus(DeviceStatus.getMatchByKey(dto.getStatus()));
         entity.setNote(dto.getNote());
+        entity.setIp(dto.getIp());
 //        entity.setOperatorId();
 //        entity.setInsertDate();
 //        entity.setUpdateDate();
@@ -89,15 +99,15 @@ public class BdmStationDto {
         this.name = name;
     }
 
-    public String getIp() {
-        return ip;
-    }
+    public Integer getCode() {
+		return code;
+	}
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 
-    public String getStatus() {
+	public String getStatus() {
         return status;
     }
 
@@ -112,4 +122,12 @@ public class BdmStationDto {
     public void setNote(String note) {
         this.note = note;
     }
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
 }

@@ -16,7 +16,7 @@ import java.util.Map;
  * @author zhaochuanfeng
  */
 @Controller
-@RequestMapping("/roles")
+@RequestMapping("/smart/roles")
 public class RoleCtrl {
 
 	@Autowired

@@ -39,7 +39,7 @@ public class PermissionServiceImple implements PermissionService {
 	@Override
 	public List<BdmPoliceStation> findSubPoliceStations() {
 		BdmPolice police = policeDao.findByUserId(User.getCurrentUser().getUserId());
-		BdmPoliceStation policeStation = police.getPoliceStation();
+		 BdmPoliceStation policeStation = police.getPoliceStation();
 		List<BdmPoliceStation> stations = new ArrayList<>();
 		// 如果policeStation为空或类型是'派出所'则终止查找
 		if (policeStation == null || policeStation.getPoliceStationType() == PoliceStationType.PCS) {

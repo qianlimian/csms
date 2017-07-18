@@ -11,7 +11,7 @@ import org.smartframework.platform.dto.annotation.DtoClass;
 public class BdmStrapDto {
     private Integer id;
     private String name;
-    private String code;
+    private Integer code;
     private String status;
     private String note;
 
@@ -25,7 +25,7 @@ public class BdmStrapDto {
         dto.setId(entity.getId());
         dto.setCode(entity.getCode());
         dto.setName(entity.getName());
-        dto.setStatus(entity.getStatus().key());
+        dto.setStatus(entity.getStatus() != null ? entity.getStatus().key() : null);
         dto.setNote(entity.getNote());
         return dto;
 
@@ -60,11 +60,11 @@ public class BdmStrapDto {
         this.name = name;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

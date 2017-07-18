@@ -28,7 +28,7 @@
     new IndexModule({
         name : "SmartRoleIndex", //必需，Index模块名
         containerId : "ctnRoleIndex", //必需，Index模块的容器id
-        restUrl: "/roles/", //必需，请求的rest地址
+        restUrl: "/smart/roles/", //必需，请求的rest地址
         editModule : {
             name : "SmartRoleEdit", //必需，Edit模块名
             containerId : "ctnRoleEditWrap" //必需，Edit模块的容器id

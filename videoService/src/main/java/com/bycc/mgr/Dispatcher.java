@@ -3,13 +3,17 @@ package com.bycc.mgr;
 import com.bycc.core.net.http.HttpInHandler;
 import com.bycc.core.router.RouteResult;
 import com.bycc.core.router.Router;
+import com.bycc.dto.CameraDto;
+import com.bycc.dto.LocateDto;
 import com.bycc.mgr.action.live.LiveServiceImpl;
 import com.bycc.mgr.action.section.SectionServiceImpl;
+import com.bycc.utils.JsonHelper;
 import com.bycc.utils.RequestParser;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.NOT_FOUND;
@@ -43,6 +47,21 @@ public class Dispatcher {
         String caseName = parmMap.get("caseName");
         String pName = parmMap.get("pName");
         String roomType = parmMap.get("roomType");
+        String params = parmMap.get("params");
+        LocateDto locateDto = new LocateDto();
+        List<CameraDto> cameraDtoList = null;
+        String caseNameSection = null;
+        String pNameSection = null;
+        String roomTypeSection = null;
+        if (params!=null){
+            locateDto = JsonHelper.getBean(params, LocateDto.class);
+            cameraDtoList = locateDto.getCameraDtos();
+            caseNameSection = locateDto.getCaseRecoredId().toString();
+            pNameSection = locateDto.getCasePeopleId().toString();
+            roomTypeSection = locateDto.getRoomType();
+        }
+
+
 
         if (req.uri().equals("/favicon.ico")) {
             return;
@@ -68,23 +87,29 @@ public class Dispatcher {
         if (action == LiveServiceImpl.class) {
             if ("/video/startLive".equals(base)) {
 
-                HttpInHandler.writeJSON(ctx, LiveServiceImpl.startLive(ip,username,password));
+                HttpInHandler.writeJSON(ctx, LiveServiceImpl.startLive(ip, username, password));
             }
             if ("/video/endLive".equals(base)) {
                 HttpInHandler.writeJSON(ctx, LiveServiceImpl.endLive(ip));
             }
-            if ("/video/heartbeat".equals(base)){
+            if ("/video/heartbeat".equals(base)) {
                 HttpInHandler.writeJSON(ctx, LiveServiceImpl.processHeartbeat(ip));
             }
         }
 //        处理截取请求
         if (action == SectionServiceImpl.class) {
             if ("/video/startSection".equals(base)) {
-                HttpInHandler.writeJSON(ctx, SectionServiceImpl.startSection(ip,username,password,caseName,pName,roomType));
+                for (CameraDto cameraDto : cameraDtoList) {
+                    HttpInHandler.writeJSON(ctx, SectionServiceImpl.startSection(cameraDto.getCameraIp(), cameraDto.getCameraUserName(), cameraDto.getCameraUserPassword(), caseNameSection, pNameSection, roomTypeSection));
+                }
+
             }
             if ("/video/endSection".equals(base)) {
+                for (CameraDto cameraDto : cameraDtoList) {
+                    HttpInHandler.writeJSON(ctx, SectionServiceImpl.endSection(cameraDto.getCameraIp()));
+                }
 
-                HttpInHandler.writeJSON(ctx, SectionServiceImpl.endSection(ip));
+
             }
         }
     }

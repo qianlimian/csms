@@ -23,6 +23,10 @@ public interface CaseMediaService {
 
 	//获取音视频
 	List<CaseMediaDto> query(QueryBean qb);
+	//获取音视频
+	List<CaseMediaDto> findByQueryBeanCondition(QueryBean qb,String filter,String category,String unit);
+	//预览音视频
+	CaseMediaDto previewMedia(Integer id);
 	//获取派出所视频列表
 	List<MediaTreeListDto> getLocalMediaList(Integer caseRecordId,String path);
 	//获取市局视频列表

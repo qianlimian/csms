@@ -4,5 +4,5 @@
 
 <div class="s-pct30" id="indexGrid"></div>
 <div class="s-pct70">
-    <iframe id="preview" height="540px" width="100%"></iframe>
+    <iframe id="preview" height="500px" width="100%"></iframe>
 </div>

@@ -21,6 +21,8 @@ public class MediaTreeListDto {
 	private Boolean hasChildren;
 	/*** 映射路径 */
 	private String mappingPath;
+	/*** 嫌疑人ID**/
+	private Integer casePeopleId;
 	/** 流媒体服务器路径 **/
 	private String serverPath;
 	/** 视频分类 */
@@ -36,8 +38,8 @@ public class MediaTreeListDto {
 	
 	public static MediaTreeListDto toDto(File file) {
 		MediaTreeListDto dto = new MediaTreeListDto();
-		dto.setHasChildren(true);
-		dto.setLabel(file.getName());
+		//dto.setHasChildren(true);
+		//dto.setLabel(file.getName());
 		dto.setMappingPath(file.getAbsolutePath());
 		if (file.isDirectory()) {
 			dto.setHasChildren(true);
@@ -126,4 +128,13 @@ public class MediaTreeListDto {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+	public Integer getCasePeopleId() {
+		return casePeopleId;
+	}
+
+	public void setCasePeopleId(Integer casePeopleId) {
+		this.casePeopleId = casePeopleId;
+	}
+
 }

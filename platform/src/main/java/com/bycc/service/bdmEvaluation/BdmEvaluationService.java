@@ -1,7 +1,8 @@
 package com.bycc.service.bdmEvaluation;
 
-import com.bycc.dto.BdmEvaluationDto;
 import org.smartframework.common.kendo.QueryBean;
+
+import com.bycc.dto.bdmEvaluation.BdmEvaluationDto;
 
 import java.util.List;
 
@@ -19,9 +20,13 @@ public interface BdmEvaluationService {
      */
     BdmEvaluationDto findById(Integer id);
     /**
-     * 查询所有
+     * 查询所有评分细则
      */
-    List<BdmEvaluationDto> findAll();
+    List<BdmEvaluationDto> findAllById(Integer parent);
+    /**
+     * 查询所有大项    
+     */
+    List<BdmEvaluationDto> findBigItems();
     /**
      * 保存
      */
@@ -29,7 +34,7 @@ public interface BdmEvaluationService {
     /**
      * 删除
      */
-    void delete(String ids);
+    void delete(Integer id);
     /**
      * 查询所有评价标准   
      */

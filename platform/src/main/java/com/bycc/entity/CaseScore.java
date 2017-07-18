@@ -41,8 +41,8 @@ public class CaseScore implements Serializable {
      * 办案记录
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "case_record_id_")
-    private CaseRecord caseRecord;
+    @JoinColumn(name = "case_id_")
+    private Case caze;
 
     /**
      * 积分项
@@ -92,12 +92,12 @@ public class CaseScore implements Serializable {
         this.totalScore = totalScore;
     }
 
-    public CaseRecord getCaseRecord() {
-        return caseRecord;
+    public Case getCaze() {
+        return caze;
     }
 
-    public void setCaseRecord(CaseRecord caseRecord) {
-        this.caseRecord = caseRecord;
+    public void setCaze(Case caze) {
+        this.caze = caze;
     }
 
     public List<CaseScoreItem> getCaseScoreItems() {

@@ -99,13 +99,11 @@ public class BdmRoom implements Serializable {
 	@Column(name = "update_date_")
 	private Date updateDate;
 
-
-
 	/**
-	 * 基站列表
+	 * 基站
 	 */
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
-	private List<BdmStation> stations = new ArrayList<BdmStation>();
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
+	private BdmStation station;
 
 	/**
 	 * 摄像头列表
@@ -193,12 +191,12 @@ public class BdmRoom implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-    public List<BdmStation> getStations() {
-        return stations;
+    public BdmStation getStation() {
+        return station;
     }
 
-    public void setStations(List<BdmStation> stations) {
-        this.stations = stations;
+    public void setStation(BdmStation station) {
+        this.station = station;
     }
 
     public List<BdmCamera> getCameras() {

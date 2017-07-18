@@ -19,4 +19,6 @@ public class ProcessHolder {
     public static Map<String,Long> IP_TIME = new ConcurrentHashMap<>();
     //ip与切片开始时间的对应关系
     public static Map<String,String> IP_START = new ConcurrentHashMap<>();
+    //ip与最近一次切片请求时间戳
+    public static Map<String,Long> IP_SectionTime = new ConcurrentHashMap<>();
 }

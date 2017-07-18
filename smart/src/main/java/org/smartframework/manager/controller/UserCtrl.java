@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author zhaochuanfeng
  */
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/smart/users")
 public class UserCtrl {
 
 	@Autowired

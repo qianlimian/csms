@@ -9,6 +9,8 @@ import java.util.Map;
 public interface BdmRoomLayoutService {
 
     BdmRoomDto findById(Integer id);
-    void saveLayout(Map<String, Object> params);
+
+    void saveLayout(List<Map<String, Object>> list);
+
     List<BdmRoomDto> queryRooms(Integer areaId);
 }

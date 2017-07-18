@@ -60,8 +60,18 @@ public class BdmRoomServiceImpl implements BdmRoomService {
 
     @Override
     public BdmRoomDto save(BdmRoomDto roomDto) {
+
         //保存主表
-        BdmRoom entity = roomDto.toEntity();
+        BdmRoom entity;
+        if (roomDto.getId() == null) {
+            entity = roomDto.toEntity();
+        } else {
+            entity = roomDao.findOne(roomDto.getId());
+            if (entity != null) {
+                roomDto.toEntity(entity);
+            }
+        }
+
         BdmHandlingArea handlingArea = handlingAreaDao.findOne(roomDto.getHandlingAreaId());
         entity.setHandlingArea(handlingArea);
         BdmRoom room = roomDao.save(entity);
@@ -117,14 +127,10 @@ public class BdmRoomServiceImpl implements BdmRoomService {
     }
 
     @Override
-    public List<BdmStationDto> findStationByRoomId(Integer id) {
+    public BdmStationDto findStationByRoomId(Integer id) {
         BdmRoom room = roomDao.findOne(Integer.valueOf(id));
-        List<BdmStation> stations = room.getStations();
-        List<BdmStationDto> list = new ArrayList<BdmStationDto>();
-        for (BdmStation station : stations) {
-            list.add(BdmStationDto.toDto(station));
-        }
-        return list;
+        BdmStation station = room.getStation();
+        return BdmStationDto.toDto(station);
     }
 
     @Override

@@ -119,7 +119,6 @@
             $("#video_mediaName").html("");
             $("#video_category").html("");
             $("#video_date").html("");
-			$("#video_roomName").html("");
             if (item && item.id) {
                 var video_videoLists = new kendo.data.HierarchicalDataSource({
                     transport : {
@@ -143,7 +142,6 @@
                         if(!data.hasChildren){
                             $("#video_mediaName").html(data.label);
                             $("#video_category").html(data.mediaCategory);
-                            $("#video_roomName").html(data.roomCategory);
                             $("#video_date").html(data.startDate);
                             $("#video_mediaPreview").attr("src",data.serverPath);
                             

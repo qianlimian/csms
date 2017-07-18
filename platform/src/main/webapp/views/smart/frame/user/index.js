@@ -53,7 +53,7 @@
     new IndexModule({
         name : "SmartUserIndex", //必需，Index模块名
         containerId : "ctnUserIndex", //必需，Index模块的容器id
-        restUrl: "/users/", //必需，请求的rest地址
+        restUrl: "/smart/users/", //必需，请求的rest地址
         editModule : {
             name : "SmartUserEdit", //必需，Edit模块名
             containerId : "ctnUserEditWrap" //必需，Edit模块的容器id

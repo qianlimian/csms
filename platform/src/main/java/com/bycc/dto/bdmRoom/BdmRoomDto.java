@@ -70,27 +70,25 @@ public class BdmRoomDto {
         dto.setPosition(entity.getPosition());
         dto.setNote(entity.getNote());
         dto.setHandlingAreaId(entity.getHandlingArea().getId());
-//        dto.setOperatorId();
-//        dto.setInsertDate();
-//        dto.setUpdateDate();
         return dto;
+    }
+
+    public BdmRoom toEntity() {
+        BdmRoom entity = new BdmRoom();
+        return toEntity(entity);
     }
 
     /**
      * toEntity
      * @return
      */
-    public BdmRoom toEntity() {
-        BdmRoom entity = new BdmRoom();
+    public BdmRoom toEntity(BdmRoom entity) {
         entity.setId(this.getId());
         entity.setName(this.getName());
         entity.setCode(this.getCode());
         entity.setRoomType(RoomType.getMatchByKey(this.getRoomType()));
         entity.setStatus(StringHelper.isAllEmpty(this.getStatus()) ? UsageStatus.UNUSED : UsageStatus.getMatchByKey(this.getStatus()));
         entity.setNote(this.getNote());
-//        entity.setOperatorId();
-//        entity.setInsertDate();
-//        entity.setUpdateDate();
         return entity;
     }
 

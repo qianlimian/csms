@@ -8,4 +8,6 @@ public interface Service {
 
 	void stop();
 
+	String getServiceName();
+
 }

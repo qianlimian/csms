@@ -18,7 +18,7 @@ import com.bycc.demo.service.student.StudentService;
  * @date 2017年3月14日 下午2:56:57
  */
 @Controller
-@RequestMapping("/students")
+@RequestMapping("/smart/students")
 public class StudentCtrl {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class StudentCtrl {
 	 */
 	@RequestMapping
 	public String index() {
-		return "/pages/demo/student/index";
+		return "/smart/demo/student/index";
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class StudentCtrl {
 	 */
 	@RequestMapping("/edit")
 	public String edit() {
-		return "/pages/demo/student/edit";
+		return "/smart/demo/student/edit";
 	}
 
 	/**

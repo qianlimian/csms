@@ -3,9 +3,14 @@
  */
 package com.bycc.dao;
 
+import com.bycc.entity.BdmPolice;
+import com.bycc.entity.BdmPoliceStation;
+
 import org.smartframework.platform.repository.jpa.BaseJpaRepository;
 
 import com.bycc.entity.Case;
+
+import java.util.List;
 
 
 /**
@@ -15,5 +20,9 @@ import com.bycc.entity.Case;
  * 
  */
 public interface CaseDao extends BaseJpaRepository<Case, Integer>{
+
+    List<Case> findByMasterPolice(BdmPolice police);
+    List<Case> findBySlavePolice(BdmPolice police);
+    List<Case> findByMasterUnitOrSlaveUnit(BdmPoliceStation masterUnit, BdmPoliceStation slaveUnit);
 
 }

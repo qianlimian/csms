@@ -10,13 +10,12 @@
 		<a id="btnDoDelete" class="k-button" smart-ability="delete"><span class="fa fa-remove"></span>删除</a>
 		<a id="btnDoHandle" class="k-button" smart-ability="handle"><span class="fa fa-user"></span>开始办案</a>
 		<a id="btnDoFinish" class="k-button" smart-ability="handle"><span class="fa fa-check-circle"></span>结束办案</a>
-        <a id="btnDoMark" class="k-button" smart-ability="mark"><span class="fa fa-commenting-o"></span>评价打分</a>
         <a id="btnDoUpload" class="k-button" smart-ability="edit"><span class="fa fa-upload"></span>视频上传</a>
+		<%--<a id="btnDoExcel" class="k-button" smart-ability="edit"><span class="fa fa-upload"></span>导出excel</a>--%>
 	</script>	
 	<div id="mainGrid"></div>
 </div>
 <div id="ctnCaseRecordEditWrap"></div>
-<div id="ctnCaseScoreEditWrap"></div>
 <div id="ctnCaseMediaUploadWrap"></div>
 <div id="ctnCaseRegisterWrap"></div>
 <script src="${ctx}/views/pages/caseRecord/index.js"></script>

@@ -16,6 +16,6 @@ import com.bycc.entity.CaseScore;
  */
 public interface CaseScoreDao extends BaseJpaRepository<CaseScore, Integer>{
 	
-	CaseScore findByCaseRecordId(Integer id);	
+	CaseScore findByCazeId(Integer id);
 	
 }

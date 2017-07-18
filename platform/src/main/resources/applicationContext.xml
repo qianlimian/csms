@@ -34,7 +34,7 @@
 		<!-- This is the query that will be executed just before a connection is given to you from the pool to validate that the connection to the database is still alive -->  
 		<property name="connectionTestQuery" value="select 1" />  
 		<!-- 连接池中允许的最大连接数。缺省值：10 -->  
-		<property name="maximumPoolSize" value="100" />  
+		<property name="maximumPoolSize" value="10" />
 		<property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
 		<property name="dataSourceProperties">
 			<props>

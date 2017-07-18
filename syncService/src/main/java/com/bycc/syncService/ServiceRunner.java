@@ -1,6 +1,7 @@
 package com.bycc.syncService;
 
 import com.bycc.syncService.service.Service;
+import com.bycc.syncService.service.StatusDetectionService;
 import com.bycc.syncService.service.SyncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +15,15 @@ public class ServiceRunner {
 	private static Logger logger = LoggerFactory.getLogger(ServiceRunner.class);
 
 	public static void main(String[] args) throws InterruptedException {
+		// 启动同步服务
 		Service service = new SyncService();
 		service.start();
 		registerShutdownHook(service);
+
+		// 启动案件状态检测服务
+		Service statusDetectionService = new StatusDetectionService();
+		service.start();
+		registerShutdownHook(statusDetectionService);
 	}
 
 	/**
@@ -30,7 +37,7 @@ public class ServiceRunner {
 			public void run() {
 				// 应用停止时要停止服务并释放资源
 				service.stop();
-				logger.info("服务已停止");
+				logger.info("{}已停止", service.getServiceName());
 			}
 		});
 	}

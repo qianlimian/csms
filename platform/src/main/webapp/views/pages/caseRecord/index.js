@@ -25,6 +25,14 @@
                     ]
                 })
             );
+
+            //办案区登记窗口
+            smart.kendoui.window('#ctnCaseRegisterWrap', {
+                content: basePath + "/caseRegister.do",
+                title: "办案区登记",
+                width: "80%",
+                height: "80%"
+            });
         },
 
         //绑定事件
@@ -33,9 +41,11 @@
             smart.SingleIndexModule.fn.bindEvents.call(this);
             smart.bind('#' + this.containerId + ' #btnDoHandle', [this.doHandle, this]);
             smart.bind('#' + this.containerId + ' #btnDoFinish', [this.doFinish, this]);
-            smart.bind('#' + this.containerId + ' #btnDoMark', [this.doMark, this]); 
             smart.bind('#' + this.containerId + ' #btnDoUpload', [this.doMediaUpload, this]);
+            smart.bind('#' + this.containerId + ' #btnDoExcel', [this.doExcel, this]);
         },
+        
+        
 
         //取选择的办案记录
         getSelectItem: function () {
@@ -43,6 +53,10 @@
                 item = this.mainGrid.dataItem($row);
             if (!item) smart.alert("请选择案件记录");
             return item;
+        },
+        
+        doExcel:function() {
+            location.href=this.restUrl+"excel.do";
         },
 
         //开始办案
@@ -53,14 +67,19 @@
                     type: 'get',
                     url: this.restUrl + "startCase.do?caseRecordId=" + selectedItem.id,
                     success: function (res) {
-                        //办案区登记窗口
-                        smart.kendoui.window('#ctnCaseRegisterWrap', {
-                            content: basePath + "/caseRegister.do",
-                            title: "办案区登记",
-                            width: "80%",
-                            height: "80%",
-                            actions: ["Refresh"]
-                        }).maximize().open();
+
+                        smart.confirm({
+                            message: "即将开始办案区登记流程，是否继续?",
+                            buttons: [{
+                                click: function () {
+                                    var regWin = $("#ctnCaseRegisterWrap").data("kendoWindow"),
+                                        regModule = smart.Module.getModule("SmartCaseRegisterIndex");
+
+                                    regWin.maximize().open();
+                                    regModule.loadItems(selectedItem.id);
+                                }
+                            }]
+                        });
                     }
                 });
             }
@@ -72,7 +91,7 @@
                 selectedItem = this.getSelectItem();
             if (selectedItem) {
                 smart.confirm({
-                    message: "您确定要结束办理该案件吗?",
+                    message: "即将结束办案区登记流程，是否继续?",
                     buttons: [{
                         click: function () {
                             $.ajax({
@@ -99,25 +118,12 @@
                 smart.kendoui.window('#ctnCaseMediaUploadWrap', {
                     content: basePath + "/caseMedias/load.do?caseRecordId=" + selectedItem.id,
                     title: "视频上传",
-                    width: "65%",
-                    height: "55%"
-                }).center().open();
-            }
-        },
-
-        //打分
-        doMark:function(){
-            var selectedItem = this.getSelectItem();
-            if (selectedItem) {
-                //打分窗口
-                smart.kendoui.window('#ctnCaseScoreEditWrap', {
-                    content: basePath + "/caseScores/load.do?caseRecordId=" + selectedItem.id,
-                    title: "评价",
-                    width: 600,
-                    height: 400
+                    width: "80%",
+                    height: "80%"
                 }).center().open();
             }
         }
+
     });
 
     new IndexModule({

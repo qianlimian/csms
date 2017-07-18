@@ -88,10 +88,11 @@
             smart.kendoui.grid("#stationSubGrid",
                 $.extend(true, this.subGridOptions(), {
                     dataSource : {
-                        url: this.restUrl + "findSubStationsById.do"
+                        url: this.restUrl + "findSubStationById.do"
                     },
                     columns : [
                         { field: "id",  width: 100, hidden: true},
+                        { field: "code", title: "编号", width: 100 },
                         { field: "ip", type: "string", title: "基站ip地址", width: 100 },
                         { field: "name", type: "string", title: "基站名称", width: 100 },
                         { field: "status", type: "string", title: "基站状态", width: 100,

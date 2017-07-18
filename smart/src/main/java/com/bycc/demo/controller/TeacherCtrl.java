@@ -22,7 +22,7 @@ import com.bycc.demo.service.teacher.TeacherService;
  * @date 2017年3月15日 上午9:34:03
  */
 @Controller
-@RequestMapping("/teachers")
+@RequestMapping("/smart/teachers")
 public class TeacherCtrl {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class TeacherCtrl {
 	 */
 	@RequestMapping
 	public String index() {
-		return "/pages/demo/teacher/index";
+		return "/smart/demo/teacher/index";
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class TeacherCtrl {
 	 */
 	@RequestMapping("/edit")
 	public String edit() {
-		return "/pages/demo/teacher/edit";
+		return "/smart/demo/teacher/edit";
 	}
 
 	/**

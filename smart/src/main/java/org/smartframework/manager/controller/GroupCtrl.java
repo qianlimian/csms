@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * @author zhaochuanfeng
  */
 @Controller
-@RequestMapping("/groups")
+@RequestMapping("/smart/groups")
 public class GroupCtrl {
 
     @Autowired

@@ -281,6 +281,7 @@
             filter: "contains",
             dataTextField: 'text',
             dataValueField: 'value',
+            valuePrimitive: true,
             change : function (e) {
                 var item = this.dataItem();
                 if (!item) this.value(null);
@@ -334,10 +335,14 @@
             autoBind: false,
             optionLabel: '--请选择--',
             dataTextField: 'text',
-            dataValueField: 'value'
+            dataValueField: 'value',
+            valuePrimitive: true
         }, options);
 
         var dropDownList = $(selector).kendoDropDownList(config).data('kendoDropDownList');
+
+        dropDownList.wrapper
+            .on("focusin.kendoDropdownList", function () { dropDownList.open() })
 
         smart.kendoui._removeSpanClass(selector);
 
@@ -483,6 +488,26 @@
     };
 
     //----------------------------扩展kendoui方法--------------------------------------
+    kendo.ui.Grid.prototype.selectById = function (rowId) {
+        if (rowId && rowId != -1) {
+            var rowData = this.dataSource.get(rowId);
+            if (rowData && rowData.uid) {
+                var tr = this.table.find('tr[data-uid="' + rowData.uid + '"]');
+                this.select(tr);
+            }
+        }
+    };
+
+    kendo.ui.Grid.prototype.setColorById = function (rowId, color) {
+        if (rowId && rowId != -1) {
+            var rowData = this.dataSource.get(rowId);
+            if (rowData && rowData.uid) {
+                var tr = this.table.find('tr[data-uid="' + rowData.uid + '"]');
+                tr.css('color', color);
+            }
+        }
+    };
+
     kendo.ui.Grid.prototype.setDeleteIds = function (delIds) {
         this._deleteIds = delIds||[];
     };

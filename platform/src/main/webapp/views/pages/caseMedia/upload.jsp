@@ -14,11 +14,11 @@
 <div id="ctnCaseMediaUpload">
     <div class="s-row-fluid" id="tabstrip">
         <ul>
-            <li class="k-state-active">办案区视频</li>
-            <li>本地视频</li>
+            <li class="k-state-active">自动截取</li>
+            <li>手动上传</li>
         </ul>
         <div>
-            <div id="caseRecordId" class="display-none">${caseRecord.id }</div>
+            <div id="caseRecordId" class="display-none">${caseRecord.id}</div>
             <div class="s-span15 subArea">
                 <div class="subAreaTitle">视频列表</div>
                 <a id="btnDoTreeViewFresh"><span class="fa fa-refresh"></span></a>
@@ -35,30 +35,26 @@
                     <label>房间名称：<span id="upload_roomName"></span></label>
                     <label>开始时间：<span id="upload_startDate"></span></label>
                     <label>结束时间：<span id="upload_endDate"></span></label>
-                    <label>视频类型：<input id="upload_categories"></label>
+                    <%--<label>视频类型：<input id="upload_categories"></label>--%>
                 </div>
-                
             </div>
-            <div style="text-align: center;float:right">
-                    <a id="btnDoMediaUpload" class="k-button" disabled><span class="fa fa-upload"></span>上传</a>
-                </div>
+            <div class="s-span15"></div>
+            <div class="s-span30">
+                <c:forEach items="${videoCategories}" var="category">
+                    <label class="s-span6">${category.name}</label>
+                    <input class="s-span3" type="radio" name="upload_category" value="${category.code}">
+                </c:forEach>
+            </div>
+            <div style="float:right">
+                <button class="btn btn-primary" id="btnDoMediaUpload">上  传</button>
+            </div>
         </div>
-        <div style="height:300px">
-            <div>
-                <input id="edit_mediaCategory">
-                <span class="btn btn-success fileinput-button k-state-disabled" id="uploadButton">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>选取视频</span>
-                    <input type="file" id="MediaFile" name="myFile" disabled="disabled">
-                </span>
-            </div>
-            
-            <div class="fileContainer" id="fileContainer" align='center'>
-            	<div class="fileListtitle">
+        <div>
+            <div class="fileContainer" id="fileContainer">
+            	<div class="fileContainerTitle">
             		<span>视频上传列表</span>
-            		<div style="float:right"><button onclick="batchUpload()">批量上传</button></div>
             	</div>
-            	<div style='clear:both;margin-bottom:30px;margin-top: 6px;'>
+            	<div class='fileContainerHeader s-row-fluid'>
             		<div class='s-pct5'>
             			<input type="checkbox" name="all_checkbox" onClick="allChecked()">
             		</div>
@@ -69,6 +65,22 @@
             		<div class='s-pct10'>操作</div>
             	</div>
             </div>
+
+            <div class="s-span15"></div>
+            <div class="s-span30">
+                <c:forEach items="${videoCategories}" var="category">
+                    <label class="s-span6">${category.name}</label>
+                    <input class="s-span3" type="radio" name="edit_mediaCategory" value="${category.code}">
+                </c:forEach>
+            </div>
+
+            <div style="float:right">
+                <span class="btn btn-primary fileinput-button" id="uploadButton">
+                    <span>选取视频</span>
+                    <input type="file" id="MediaFile" name="myFile">
+                </span>
+                <button class="btn btn-primary" onclick="batchUpload()">批量上传</button>
+            </div>
         </div>
     </div>
 </div>
@@ -78,28 +90,6 @@
 <script src="${ctx}/views/pages/caseMedia/fileUpload.js"></script>
 </body>
 <style>
-	.k-treeview span.k-in{
-		overflow: hidden; 
-		text-overflow:ellipsis; 
-		white-space: nowrap;
-		cursor:default;
-		width:92%;
-	}
-	#fileName{
-	word-wrap: break-word;
-	}
-	.fileListtitle{
-		border-bottom: 1px solid silver;
-		height: 21px;
-    	padding: 4px;
-	}
-    .fileContainer {
-        width: 100%;
-        min-height: 80%;
-        margin-top: 5px;
-        border: 1px solid silver;
-    }
-
     #btnDoTreeViewFresh {
         float: right;
         margin: 0 10px;
@@ -107,7 +97,7 @@
 	
     .subArea {
         border: 1px solid silver;
-        min-height: 300px !important;
+        min-height: 400px !important;
     }
 
     .subAreaTitle {
@@ -126,10 +116,26 @@
         width: 100%;
         text-align: left;
     }
+
+    .fileContainer {
+        width: 100%;
+        height: 400px;
+        margin-bottom: 5px;
+        border: 1px solid silver;
+        text-align: center;
+    }
+
+    .fileContainerTitle {
+        border-bottom: 1px solid silver;
+        padding: 5px 0;
+        text-align: center;
+    }
+
+    .fileContainerHeader {
+        margin: 10px 0;
+    }
+
     .s-row-fluid .s-pct5{
     	width:5%
-    }
-    .s-row-fluid .s-pct8{
-    	width:8%
     }
 </style>

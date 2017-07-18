@@ -31,7 +31,7 @@
         <input class="s-span18" type="text" id="edit_caseType" data-bind="value:case.caseType"/>
 
         <label class="s-span9">案件状态</label>
-        <input class="s-span18" type="text" id="edit_caseStatus" data-bind="value:case.caseStatus"/>
+        <input class="s-span18" type="text" id="edit_caseStatus" data-bind="value:case.caseStatusName"/>
     </div>
 
     <div class="s-row-fluid">

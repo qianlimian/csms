@@ -20,4 +20,6 @@ public interface BdmPoliceStationDao extends BaseJpaRepository<BdmPoliceStation,
 
 	List<BdmPoliceStation> findByAreaTypeAndPoliceStationType(AreaType areaType, PoliceStationType stationType);
 
+	BdmPoliceStation findByName(String name);
+
 }

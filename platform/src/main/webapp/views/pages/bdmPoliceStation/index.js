@@ -17,7 +17,7 @@
                         url: this.restUrl + "query.do"
                     },
                     columns : [
-                        { field: "id",  width: 100, hidden: true},
+                        { field: "id",  width: 100},
                         { field: "code", type: "string", title: "编码", width: 100 },
                         { field: "name", type: "string", title: "名称", width: 100 },
                         { field: "areaType", type: "enum", title: "地区", width: 100,
@@ -26,7 +26,7 @@
                         { field: "policeStationType", type: "enum", title: "级别", width: 100,
                             values: smart.Enums["com.bycc.enumitem.PoliceStationType"].getData()
                         },
-                        { field: "ip", type: "string", title: "MSIP", width: 100 }
+                        { field: "ip", type: "string", title: "服务器IP", width: 100 }
                     ]
                 })
             );

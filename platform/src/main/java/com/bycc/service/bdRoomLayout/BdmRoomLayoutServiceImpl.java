@@ -1,14 +1,15 @@
 package com.bycc.service.bdRoomLayout;
+
 import com.bycc.dao.BdmHandlingAreaDao;
 import com.bycc.dao.BdmRoomDao;
 import com.bycc.dto.bdmRoom.*;
 import com.bycc.entity.BdmRoom;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.smartframework.utils.helper.JsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,21 +43,19 @@ public class BdmRoomLayoutServiceImpl implements BdmRoomLayoutService {
     }
 
     @Override
-    public void saveLayout(Map<String, Object> params) {
-        try{
-            BdmRoom bdmRoom = roomDao.findOne((Integer) params.get("id"));
-            String position = (String)params.get("position");
-            ObjectMapper objectMapper = new ObjectMapper();
-            Map<String, Object> positionMap =  objectMapper.readValue(position, Map.class);
-            System.out.println(positionMap.get("x"));
-            if (positionMap.get("x") == null || "".equals(positionMap.get("x"))) {
+    public void saveLayout(List<Map<String, Object>> list) {
+        for (Map<String, Object> map : list) {
+            System.out.println(map);
+            //{id=room1, h=, w=, x=, y=}
+            String id = map.get("id").toString().substring(4);
+            BdmRoom bdmRoom = roomDao.findOne(Integer.valueOf(id));
+
+            if (map.get("x") == null || "".equals(map.get("x"))) {
                 bdmRoom.setPosition(null);
             } else {
-                bdmRoom.setPosition((String) params.get("position"));
+                bdmRoom.setPosition(JsonHelper.getJson(map));
             }
             roomDao.save(bdmRoom);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

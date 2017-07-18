@@ -36,7 +36,14 @@
                         { field: "code", title: "编号", width: 100 },
                         { field: "name", title: "名称", width: 100 },
                         { field: "status", title: "使用状态", width: 100,
-                            values: smart.Enums["com.bycc.enumitem.UsageStatus"].getData()
+                            values: smart.Enums["com.bycc.enumitem.UsageStatus"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.UsageStatus"].getData()
+                                });
+                            }
                         }
                     ]
                 })
@@ -61,7 +68,14 @@
                         { field: "code", title: "编号", width: 100 },
                         { field: "name", title: "名称", width: 100 },
                         { field: "status", title: "使用状态", width: 100,
-                            values: smart.Enums["com.bycc.enumitem.UsageStatus"].getData()
+                            values: smart.Enums["com.bycc.enumitem.UsageStatus"].getData(),
+                            editor: function (container, options) {
+                                var $input = $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>');
+                                $input.appendTo(container);
+                                smart.kendoui.dropDownList($input, {
+                                    dataSource: smart.Enums["com.bycc.enumitem.UsageStatus"].getData()
+                                });
+                            }
                         }
                     ]
                 })

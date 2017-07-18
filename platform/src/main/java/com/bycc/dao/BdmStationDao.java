@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface BdmStationDao extends BaseJpaRepository<BdmStation,Integer>{
     List<BdmStation> findByRoom(BdmRoom bdmRoom);
+    BdmStation findByCode(Integer code);
 }

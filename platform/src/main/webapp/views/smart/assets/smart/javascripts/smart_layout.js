@@ -113,7 +113,7 @@ $(function () {
 
         $.ajax({
             type: 'POST',
-            url: basePath + "/users/saveSetting.do",
+            url: basePath + "/smart/users/saveSetting.do",
             data: data,
             success:function(result){
             }

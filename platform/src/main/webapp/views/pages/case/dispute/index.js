@@ -58,6 +58,14 @@
                     ]
                 })
             );
+
+            //办案区登记窗口
+            smart.kendoui.window('#ctnCaseRegisterWrap', {
+                content: basePath + "/caseRegister.do",
+                title: "办案区登记",
+                width: "80%",
+                height: "80%"
+            });
         },
 
         //@overwrite
@@ -79,20 +87,26 @@
 
         //开始办案
         doHandle: function () {
-            var selectedItem = this.getSelectItem();
+            var me = this,
+                selectedItem = this.getSelectItem();
             if (selectedItem) {
                 smart.ajax({
                     type: 'get',
                     url: basePath + "/caseRecords/startCase.do?caseId=" + selectedItem.id,
                     success: function (res) {
-                        //办案区登记窗口
-                        smart.kendoui.window('#ctnCaseRegisterWrap', {
-                            content: basePath + "/caseRegister.do",
-                            title: "办案区登记",
-                            width: "80%",
-                            height: "80%",
-                            actions: ["Refresh"]
-                        }).maximize().open();
+
+                        smart.confirm({
+                            message: "即将开始办案区登记流程，是否继续?",
+                            buttons: [{
+                                click: function () {
+                                    var regWin = $("#ctnCaseRegisterWrap").data("kendoWindow"),
+                                        regModule = smart.Module.getModule("SmartCaseRegisterIndex");
+
+                                    regWin.maximize().open();
+                                    regModule.loadItems(null, selectedItem.id);
+                                }
+                            }]
+                        });
                     },
                     error: function (jqXHR) {
                         smart.alert(jqXHR.responseText);
@@ -107,7 +121,7 @@
                 selectedItem = this.getSelectItem();
             if (selectedItem) {
                 smart.confirm({
-                    message: "您确定要结束办理该案件吗?",
+                    message: "即将结束办案区登记流程，是否继续?",
                     buttons: [{
                         click: function () {
                             smart.ajax({

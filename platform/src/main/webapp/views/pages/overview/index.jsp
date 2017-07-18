@@ -3,31 +3,28 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <body>
+<link rel="stylesheet" href="${ctx}/views/pages/bdmRoomLayout/index.css">
 <link rel="stylesheet" href="${ctx}/views/pages/overview/index.css">
-	<div class="bordered">
-		<div class="col-md-2 bordered">
-			<div id="ctnBdmPoliceStationListWrap"></div>
-		</div>
-		<div class="col-md-10 padding_none content-right">
-			<div class="k-grid-header title-room">办案区房间布局</div>
-			<div class='content_room'>
-				<div id="ctnBdmRoomWrap"></div>
-			</div>
-			<div class="video_up"><i class="fa fa-caret-up"></i></div>
-			<div id="ctnCaseMediaWrap" class="video-bttom" style="display: none;">
-			    <div class="k-grid-header title-room" style="text-align: left;">办案区视频监控</div>
-				<div class="video_down">
-					<i class="fa fa-caret-down"></i>
-				</div>
-				<div style="width: 90%;margin:0 auto;overflow-y:scroll;height: 80%;">
-					<div class="col-md-6"><div id="videoDiv1"><div class="title-center">VIDEO</div></div></div>
-					<div class="col-md-6"><div id="videoDiv2"><div class="title-center">VIDEO</div></div></div>
-					<div class="col-md-6"><div id="videoDiv3"><div class="title-center">VIDEO</div></div></div>
-					<div class="col-md-6"><div id="videoDiv4"><div class="title-center">VIDEO</div></div></div>
-				</div>
-			</div>
-		</div>
-	</div>
+<script src="${ctx}/views/smart/assets/bootstrap/js/bootstrap.min.js"></script>
+<div class="content">
+    <div class="col-md-2 content-left">
+        <div id="ctnBdmPoliceStationListWrap"></div>
+    </div>
+    <div class="col-md-10 content-right">
+        <div id="ctnBdmRoomWrap"></div>
+        <div class="video_up"><i class="fa fa-caret-up"></i></div>
+        <div id="ctnCaseMediaWrap" class="video-bttom" style="display: none;">
+            <div class="video_down"><i class="fa fa-caret-down"></i></div>
+            <div style="width: 90%;margin:0 auto;overflow-y:auto;height:80%;">
+                <div class="col-md-6"><div id="videoDiv1" style="height: 100%;"><div class="title-center">VIDEO</div></div></div>
+                <div class="col-md-6"><div id="videoDiv2" style="height: 100%;"><div class="title-center">VIDEO</div></div></div>
+                <div class="col-md-6"><div id="videoDiv3" style="height: 100%;"><div class="title-center">VIDEO</div></div></div>
+                <div class="col-md-6"><div id="videoDiv4" style="height: 100%;"><div class="title-center">VIDEO</div></div></div>
+            </div>
+        </div>
+    </div>
+
+</div>
 <script type="text/javascript">
 //正在播放的视频实体数组
 var playingVideos = [];
@@ -41,8 +38,6 @@ Array.prototype.contains = function ( needle ) {
 	return false;
 }
 $(function(){
-	$('.content_room').height($(".content-right").height() - 50);
-    $('#ctnBdmRoomWrap').height($(".content-right").height());
     //获取树数据
     function getTreeData() {
         var policeStationsStr = '${policeStations }';
@@ -97,28 +92,66 @@ $(function(){
         var treeView =  $("#ctnBdmPoliceStationListWrap").data("kendoTreeView");
         var selectedNode = treeView.dataItem(e.node);
         if (selectedNode.type == 'people') {
-        	dragRoomLayout(selectedNode.parent().parent().parent().parent().id);
+        	dragRoomLayout(selectedNode.parent().parent().parent().parent().id, selectedNode.id);
         }
         if (selectedNode.type == 'station') {
-        	dragRoomLayout(selectedNode.id);
+        	dragRoomLayout(selectedNode.id, null);
         }
         if (selectedNode.type == 'case') {
-        	dragRoomLayout(selectedNode.parent().parent().id);
+        	dragRoomLayout(selectedNode.parent().parent().id, null);
         }
 
     }
 
     //获取房间布局
-    function dragRoomLayout(handingAreaId) {
+    function dragRoomLayout(handingAreaId, peopleId) {
+    	var url = basePath +'/overviews/findRoomLayout/'+ handingAreaId + '.do';
+    	if(peopleId) {
+    		url = basePath +'/overviews/findRoomLayout/'+ handingAreaId + '.do?peopleId=' + peopleId
+    	}
+    	
         $.ajax({
             type: 'GET',
-            url: basePath +'/bdmRoomLayout/query.do?areaId='+handingAreaId,
+            url: url,
             success:function(result){
-                var html='',arr=new Array();
-                $('#ctnBdmRoomWrap').empty();
-                for(var i=0;i<result.length;i++){
-                    load_room(result[i]);
-                }
+            	
+            	var roomDtos = result.roomDtos;
+            	var locateInfo = result.locateInfo;
+            	var locateState = result.locateState;
+            	if(locateState) {
+            		var roomIds = [];
+                	var peoples = [];
+                	for(var key in locateInfo) {
+                	    roomIds.push(key);
+                        peoples.push(locateInfo[key]);  
+                	} 
+                	//显示办案区布局
+                    $('#ctnBdmRoomWrap').empty();
+                    for (var i = 0; i < roomDtos.length; i++) {
+                        load_room(roomDtos[i]);
+                    }
+                    //显示定位信息
+                    $.each(roomIds, function(i){
+                   		var div = '<div class="popover right person_content" id="personContent'+peoples[i].id+'">' +
+                           '        <div class="arrow"></div>' +
+                           '        <h3 class="popover-title">人员信息</h3>' +
+                           '        <div class="popover-content">' +
+                           '          <p>姓名：' + peoples[i].name + '</p><p>证件号码：' +peoples[i].certificateNum+ '</p>' +
+                           '        </div>' +
+                           '      </div>';
+                        $('#room' + roomIds[i]).append("<img src='views/smart/assets/smart/images/timg.gif' class='room_warning' /><img class='person_position' id='peopleId"+peoples[i].id+"' src='views/smart/assets/smart/images/person.png' />"+div);
+                        $('#peopleId' + peoples[i].id).hover(function () {
+                            $("#personContent" + peoples[i].id).toggle();
+                        }); 
+                    });
+            	} else {
+            		smart.alert("获取定位信息失败！");
+            		//显示办案区布局
+                    $('#ctnBdmRoomWrap').empty();
+                    for (var i = 0; i < roomDtos.length; i++) {
+                        load_room(roomDtos[i]);
+                    }
+            	}
             }
         });
     }
@@ -128,42 +161,31 @@ $(function(){
         if(room.position) {
             if(room.position.length !== 0 ){
                 var text=room.name,
-                    room_position= $.parseJSON(room.position),
                     id=room.id,
                     type=room.roomType,
+                    room_position= $.parseJSON(room.position),
                     w=room_position.w,
                     h=room_position.h,
                     x=room_position.x,
-                    y=room_position.y,
-                    max=0;
-                $("#ctnBdmRoomWrap").append('<div class="draggable ui-widget-content ui-draggable ui-resizable ui-resizable-autohide" id="room'+ id +'" style="position: absolute; left: '+ x +'px; top: '+ y +'px; width: '+ w +'px; height: '+ h +'px;" onclick="videoPlay('+id+', \'' + text + '\')"><p>'+ text+'</p><img src="views/smart/assets/smart/images/'+ type +'.png"></div>');
-                if (room_position.x > max) {
-                     max = room_position.x;
-                }
-                var w = 0;
-                $(".ui-resizable-autohide").each(function(){
-                    w += parseInt($(this).width());//获取宽度。并累加
-                });
-                $('#ctnBdmRoomWrap').css('min-width', w + max);
+                    y=room_position.y;
+                $("#ctnBdmRoomWrap").append('<div class="ui-widget-content" id="room'+ id +'" style="position: absolute; left: '+ x +'px; top: '+ y +'px; width: '+ w +'px; height: '+ h +'px;" onclick="videoPlay('+id+', \'' + text + '\')"><p>'+ text+'</p><img src="views/smart/assets/smart/images/'+ type +'.png"></div>');
             }
         }
     }
     $(".video_down").click(function(){
-        $("#ctnCaseMediaWrap").slideUp("normal", function(){
-        	$('.video_up').show();
-        });
+        $("#ctnCaseMediaWrap").slideUp();
+        $("#ctnBdmRoomWrap").show();
+        $('.video_up').show();
     });
     $('.video_up').click(function(){
     	$("#ctnCaseMediaWrap").height($(".content-right").height());
         $("#ctnCaseMediaWrap").slideDown();
+        $("#ctnBdmRoomWrap").hide();
         $('.video_up').hide();
     });
 });
 //点击房间播放视频
 function videoPlay(roomId, text) {
-    $("#ctnCaseMediaWrap").height($(".content-right").height());
-    $("#ctnCaseMediaWrap").slideDown();
-    $('.video_up').hide();
     var existVideo = false;
     $.each(playingVideos, function(i,callback){
         if(playingVideos[i].roomId == roomId) {
@@ -171,6 +193,7 @@ function videoPlay(roomId, text) {
         }
     });
     if(existVideo) {
+        $('.video_up').trigger("click");
         return;
     }
 
@@ -191,12 +214,14 @@ function videoPlay(roomId, text) {
             }
         },
         error: function(){
-            alert("请求超时！");
+        	smart.alert("请求超时！");
         }
-    })
+    });
+
     if(urls.length > 0) {
+        $('.video_up').trigger("click");
         //新建一个正在播放的视频实体
-        var playingVideo = new Object();
+        var playingVideo = {};
         playingVideo.roomId = roomId;
         playingVideo.divs = [];
         playingVideo.timerIds = [];
@@ -322,10 +347,12 @@ function videoPlay(roomId, text) {
         });
         //去掉水印
         $('#ctnCaseMediaWrap .flowplayer a').each(function() {
-            $(this).remove();
+        	if($(this).attr("href") == "https://flowplayer.org/hello"){
+        		$(this).remove();
+        	}
         });
     } else {
-        alert('未找到摄像头或摄像头连接失败！');
+    	smart.alert('未找到摄像头或摄像头连接失败！');
     }
 }
 </script>

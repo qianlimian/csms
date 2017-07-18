@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="app" />
         <module name="locateService" />
+        <module name="openingPlatform" />
         <module name="platform" />
         <module name="smart" />
         <module name="syncService" />
@@ -34,6 +35,7 @@
       <module name="app" target="1.8" />
       <module name="csms" target="1.5" />
       <module name="locateService" target="1.8" />
+      <module name="openingPlatform" target="1.8" />
       <module name="platform" target="1.8" />
       <module name="smart" target="1.8" />
       <module name="syncService" target="1.8" />

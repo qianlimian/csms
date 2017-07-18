@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="${ctx}/views/smart/assets/bootstrap-switch/css/bootstrap-switch.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="${ctx}/views/smart/assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${ctx}/views/smart/assets/font-awesome/css/font-awesome-animation.min.css">
   <!-- kendoUI -->
   <link rel="stylesheet" href="${ctx}/views/smart/assets/kendoui/styles/kendo.common.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/kendoui/styles/kendo.black.css">
@@ -38,6 +39,7 @@
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_kendoui_enhances.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_base.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_layout.css">
+  <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_frame.css">
 
   <!-- jQuery 2.2.3 -->
   <script src="${ctx}/views/smart/assets/jquery/jquery.min.js"></script>

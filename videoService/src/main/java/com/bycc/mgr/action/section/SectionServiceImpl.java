@@ -1,6 +1,7 @@
 package com.bycc.mgr.action.section;
 
 import com.bycc.mgr.action.live.ProcessHolder;
+import com.bycc.utils.PropertiesReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,8 @@ public class SectionServiceImpl {
         String username = cUsername;
         String password = cPassword;
         //截取的mp4文件存放的位置
-        String desDirectory = "/data/tmpVideo"+"/"+caseName+"/"+pName;
+        String sectionDirectory = PropertiesReader.readProperty("sectionDirectory");
+        String desDirectory = sectionDirectory+"/"+caseName+"/"+pName;
         //摄像头rtsp流端口
         String port = "554";
 
@@ -28,10 +30,16 @@ public class SectionServiceImpl {
             file.mkdirs();
         }
 
+        //如果该摄像头的切片进程已经启动
+        //先更新请求时间，然后返回
+        if (ProcessHolder.sectionProcesses.get(ip)!=null){
+            ProcessHolder.IP_SectionTime.put(ip,System.currentTimeMillis());
+            return true;
+        }
+
         //启动切片进程
         String ipAddress = "rtsp://"+username+":"+password+"@"+ip+":"+port;
         String startTime = System.currentTimeMillis()+"";
-        //String command = "ffmpeg -y -i "+ipAddress+" -vcodec copy -acodec copy -f mp4 "+desDirectory+"/"+getSec()+".mp4";
         String command = "ffmpeg -loglevel quiet -y -i "+ipAddress+" -vcodec copy -acodec copy -f mp4 "+desDirectory+"/"+roomType+"_"+startTime+".mp4";
         ProcessHolder.IP_START.put(cIp,desDirectory+"/"+roomType+"_"+startTime);
         Process process=Runtime.getRuntime().exec(command);
@@ -40,6 +48,7 @@ public class SectionServiceImpl {
         if (isRunning(process)) {
             //ClearServerBuffer.clearBuffer(process);
             ProcessHolder.sectionProcesses.put(ip,process);
+            ProcessHolder.IP_SectionTime.put(ip,System.currentTimeMillis());
             return true;
         } else {
             return false;
@@ -53,6 +62,7 @@ public class SectionServiceImpl {
         if (process!=null){
             process.destroy();
             ProcessHolder.sectionProcesses.remove(ip);
+            ProcessHolder.IP_SectionTime.remove(ip);
             String endTime = System.currentTimeMillis()+"";
             String oldfile = ProcessHolder.IP_START.get(cIp);
             String newfile = oldfile+"_"+endTime+".mp4";

@@ -36,12 +36,18 @@ public class BdmStation implements Serializable {
 	 */
 	@Column(name = "name_")
 	private String name;
-
+	
 	/**
 	 * 基站IP
 	 */
 	@Column(name = "ip_")
 	private String ip;
+
+	/**
+	 * 基站编号
+	 */
+	@Column(name = "code_")
+	private Integer code;
 
 	/**
 	 * 设备状态
@@ -53,7 +59,7 @@ public class BdmStation implements Serializable {
 	/**
 	 * 房间号
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "room_id_")
 	private BdmRoom room;
 
@@ -99,12 +105,12 @@ public class BdmStation implements Serializable {
 		this.name = name;
 	}
 
-	public String getIp() {
-		return ip;
+	public Integer getCode() {
+		return code;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
 	public DeviceStatus getStatus() {
@@ -153,5 +159,13 @@ public class BdmStation implements Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 }

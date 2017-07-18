@@ -66,7 +66,7 @@ public class BdmPoliceStation implements Serializable {
 	private String address;
 
 	/**
-	 * 流媒体IP
+	 * 服务器IP
 	 */
 	@Column(name = "ip_")
 	private String ip;

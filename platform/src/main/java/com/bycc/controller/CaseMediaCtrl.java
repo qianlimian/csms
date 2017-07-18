@@ -2,7 +2,6 @@ package com.bycc.controller;
 
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.dialect.HANAColumnStoreDialect;
 import org.smartframework.common.kendo.Filter;
 import org.smartframework.common.kendo.LogicFilter;
 import org.smartframework.common.kendo.QueryBean;
@@ -27,8 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.bycc.dto.caseMedia.CaseMediaDto;
 import com.bycc.dto.caseMedia.MediaTreeListDto;
+import com.bycc.service.bdmPoliceStation.BdmPoliceStationService;
 import com.bycc.service.bdmVideoCg.BdmVideoCgService;
 import com.bycc.service.caseMedia.CaseMediaService;
 
@@ -45,6 +43,8 @@ public class CaseMediaCtrl {
 	CaseRecordCtrl caseRecordSer;
 	@Autowired
 	BdmVideoCgService videoCgSer;
+	@Autowired
+	BdmPoliceStationService stationSer;
 	/**
 	 * 首页
 	 * @throws UnsupportedEncodingException 
@@ -53,6 +53,8 @@ public class CaseMediaCtrl {
 	public String index(Model model,@RequestParam(value = "currentPage", defaultValue = "1", required = false) Integer currentPage,
 			@RequestParam(value = "pageSize", defaultValue = "6", required = false) Integer pageSize, 
 			@RequestParam(value = "category", defaultValue = "", required = false) String categoryContent,
+			@RequestParam(value = "unitSelected", defaultValue = "", required = false) String unitSelected,
+			@RequestParam(value = "sort", defaultValue = "", required = false) String sortValue,
 			@RequestParam(value = "filter", defaultValue = "", required = false) String filterContent) throws UnsupportedEncodingException {			
 		
 		QueryBean qb=new QueryBean(currentPage, pageSize);
@@ -64,30 +66,54 @@ public class CaseMediaCtrl {
 		filter.setOperator("contains");
 		filter.setType("string");
 		filter.setValue(filterContent);
-		filters.add(filter);			
-		Filter category=new Filter();
-		category.setField("category.name");
-		category.setOperator("contains");
-		category.setType("string");
-		category.setValue(categoryContent);
-		filters.add(category);
+		filters.add(filter);		
+		//视频分类
+		if(categoryContent!=null){
+			Filter category=new Filter();
+			category.setField("category.name");
+			category.setOperator("contains");
+			category.setType("string");
+			category.setValue(categoryContent);
+			filters.add(category);
+		}
+		if(unitSelected!=null){
+			//主办单位
+			Filter unit=new Filter();
+			unit.setField("caseRecord.masterUnit.name");
+			unit.setOperator("contains");
+			unit.setType("string");
+			unit.setValue(unitSelected);			
+			filters.add(unit);
+		}
+		
 		logicFilter.setFilters(filters);
 		qb.setFilter(logicFilter);
 		//排序
 		List<Sort> sorts=new ArrayList<>();
-		Sort sort=new Sort();
-		sort.setDir("desc");
-		sort.setField("updateDate");
-		sorts.add(sort);
+		if(sortValue.equals("DATE")){
+			Sort sort=new Sort();
+			sort.setDir("desc");
+			sort.setField("updateDate");
+			sorts.add(sort);
+		}		
 		qb.setSort(sorts);		
 		//返回
 		model.addAttribute("medias", service.query(qb));
 		model.addAttribute("cgMenu", videoCgSer.findAll());
+		model.addAttribute("unitMenu", stationSer.findAll());
 		model.addAttribute("filter", filterContent);
 		model.addAttribute("category", categoryContent);
+		model.addAttribute("unitSelected", unitSelected);
+		model.addAttribute("sort", sortValue);
 		model.addAttribute("queryBean", qb);
 		return "/pages/caseMedia/index";
 	}	
+	
+	@RequestMapping("/previewMedia")
+	public String previewMedia(Model model,@RequestParam("id") Integer id){
+		model.addAttribute("media", service.previewMedia(id));
+		return "/pages/caseMedia/previewMedia";
+	}
 	
 	/**
      *  上传视频页面
@@ -95,6 +121,7 @@ public class CaseMediaCtrl {
     @RequestMapping("/load")
     public String score(@RequestParam("caseRecordId") Integer caseRecordId, Model model) {
         model.addAttribute("caseRecord", caseRecordSer.findById(caseRecordId));
+		model.addAttribute("videoCategories", videoCgSer.findAll());
         return "/pages/caseMedia/upload";
     }
 
@@ -154,5 +181,8 @@ public class CaseMediaCtrl {
 		response.setHeader("Range", range);
 		writer.write(JsonHelper.getJson(map));
 	}
-			
+	
+	private QueryBean createQueryBean(){
+		return null;
+	}
 }

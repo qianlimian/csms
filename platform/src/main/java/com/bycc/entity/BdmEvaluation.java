@@ -37,31 +37,28 @@ public class BdmEvaluation implements Serializable {
     private String standard;
 
     /**
-     * 加减分项:加分，减分
-     */
-   //@Enumerated(EnumType.STRING)
-    @Column(name = "score_type_")
-    private String scoreType;
-
-    /**
      * 基础分值
      */
     @Column(name = "score_")
-    private BigDecimal score;
-
-    /**
-     * 类别：主观，客观
-     */
-    //@Enumerated(EnumType.STRING)
-    @Column(name = "eval_type_")
-    private String evalType;
+    private BigDecimal score;    
 
     /**
      * 备注
      */
     @Column(name = "note_")
     private String note;
-
+    
+    /**
+     * 父ID
+     */
+    @Column(name = "parent_")
+    private Integer parent;
+  
+    /**
+     * 排序
+     */
+    @Column(name = "displayOrder_")
+    private Integer displayOrder;
     /**
      * 操作人
      */
@@ -82,6 +79,7 @@ public class BdmEvaluation implements Serializable {
     @Column(name = "update_date_")
     private Date updateDate;
 
+    
     public Integer getId() {
         return id;
     }
@@ -106,21 +104,6 @@ public class BdmEvaluation implements Serializable {
         this.score = score;
     }
    
-    public String getScoreType() {
-		return scoreType;
-	}
-
-	public void setScoreType(String scoreType) {
-		this.scoreType = scoreType;
-	}
-
-	public String getEvalType() {
-		return evalType;
-	}
-
-	public void setEvalType(String evalType) {
-		this.evalType = evalType;
-	}
 
 	public String getNote() {
         return note;
@@ -153,4 +136,21 @@ public class BdmEvaluation implements Serializable {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
+
+	public Integer getParent() {
+		return parent;
+	}
+
+	public void setParent(Integer parent) {
+		this.parent = parent;
+	}
+
+	public Integer getDisplayOrder() {
+		return displayOrder;
+	}
+
+	public void setDisplayOrder(Integer displayOrder) {
+		this.displayOrder = displayOrder;
+	}
+    
 }

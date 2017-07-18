@@ -58,6 +58,14 @@
                     ]
                 })
             );
+
+            //办案区登记窗口
+            smart.kendoui.window('#ctnCaseRegisterWrap', {
+                content: basePath + "/caseRegister.do",
+                title: "办案区登记",
+                width: "80%",
+                height: "80%"
+            });
         },
 
         //@overwrite
@@ -67,6 +75,15 @@
             smart.bind('#' + this.containerId + ' #btnDoView', [this.doEdit, this]);
             smart.bind('#' + this.containerId + ' #btnDoHandle', [this.doHandle, this]);
             smart.bind('#' + this.containerId + ' #btnDoFinish', [this.doFinish, this]);
+
+            var self = this;
+            this.mainGrid.bind("dataBound", function() {
+                $.each(this.dataSource.data(), function(i, data) {
+                    if (data["riskLevel"] === "高") {
+                        self.mainGrid.setColorById(data["id"], "red");
+                    }
+                })
+            });
         },
 
         //取选择的案件
@@ -85,17 +102,19 @@
                     type: 'get',
                     url: basePath + "/caseRecords/startCase.do?caseId=" + selectedItem.id,
                     success: function (res) {
-                        //办案区登记窗口
-                        smart.kendoui.window('#ctnCaseRegisterWrap', {
-                            content: basePath + "/caseRegister.do",
-                            title: "办案区登记",
-                            width: "80%",
-                            height: "80%",
-                            actions: ["Refresh"]
-                        }).maximize().open();
-                    },
-                    error: function (jqXHR) {
-                        smart.alert(jqXHR.responseText);
+
+                        smart.confirm({
+                            message: "即将开始办案区登记流程，是否继续?",
+                            buttons: [{
+                                click: function () {
+                                    var regWin = $("#ctnCaseRegisterWrap").data("kendoWindow"),
+                                        regModule = smart.Module.getModule("SmartCaseRegisterIndex");
+
+                                    regWin.maximize().open();
+                                    regModule.loadItems(null, selectedItem.id);
+                                }
+                            }]
+                        });
                     }
                 });
             }
@@ -107,7 +126,7 @@
                 selectedItem = this.getSelectItem();
             if (selectedItem) {
                 smart.confirm({
-                    message: "您确定要结束办理该案件吗?",
+                    message: "即将结束办案区登记流程，是否继续??",
                     buttons: [{
                         click: function () {
                             smart.ajax({

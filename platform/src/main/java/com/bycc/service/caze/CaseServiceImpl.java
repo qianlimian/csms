@@ -35,18 +35,24 @@ public class CaseServiceImpl implements CaseService {
 
 	@Override
 	public List<CaseDto> query(String type, QueryBean qb) {
-		String[] arr = new String[1];
-		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<Case> cases;
 
 		if (null != type && !"".equals(type)) {
-			arr[0] = "caseType = :caseType";
-			map.put("caseType", CaseType.getMatchByKey(type));
+			String[] arr = new String[] { "caseType = :caseType" };
+			Map<String, Object> map = new HashMap<String, Object>() {
+				{
+					put("caseType", CaseType.getMatchByKey(type));
+				}
+			};
+			//根据类型查询
+			cases = dao.findByQueryBeanCondition(arr, map, qb);
 		} else {
-            arr[0] = "caseRecord is null";
+			//查询所有
+			cases = dao.findByQueryBean(qb);
         }
 
 		List<CaseDto> dtos = new ArrayList<CaseDto>();
-		List<Case> cases = dao.findByQueryBeanCondition(arr, map, qb);
 		for (Case c : cases) {
 			dtos.add(CaseDto.toDto(c));
 		}

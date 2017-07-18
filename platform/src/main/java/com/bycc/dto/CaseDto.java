@@ -57,6 +57,7 @@ public class CaseDto {
 	 * 案件状态
 	 */
 	private String caseStatus;
+    private String caseStatusName;
 
 	/**
 	 * 嫌疑人
@@ -139,9 +140,10 @@ public class CaseDto {
 		dto.setCaseCode(c.getCaseCode());
 		dto.setCaseName(c.getCaseName());
 		dto.setCaseSummary(c.getCaseSummary());
-		dto.setCaseType(c.getCaseType() != null ? c.getCaseType().value() : null);
-		dto.setRiskLevel(c.getRiskLevel() != null ? c.getRiskLevel().value() : null);
-		dto.setCaseStatus(c.getCaseStatus() != null ? c.getCaseStatus().value() : null);
+		dto.setCaseType(c.getCaseType() != null ? c.getCaseType().value() : "");
+		dto.setRiskLevel(c.getRiskLevel() != null ? c.getRiskLevel().value() : "");
+		dto.setCaseStatus(c.getCaseStatus() != null ? c.getCaseStatus().key() : null);
+        dto.setCaseStatusName(c.getCaseStatus() != null ? c.getCaseStatus().value() : "");
 		dto.setSuspect(c.getSuspect());
         if (c.getAcceptUnit() != null) {
             dto.setAcceptUnitId(c.getAcceptUnit().getId());
@@ -246,6 +248,14 @@ public class CaseDto {
 
     public void setCaseStatus(String caseStatus) {
         this.caseStatus = caseStatus;
+    }
+
+    public String getCaseStatusName() {
+        return caseStatusName;
+    }
+
+    public void setCaseStatusName(String caseStatusName) {
+        this.caseStatusName = caseStatusName;
     }
 
     public String getSuspect() {
@@ -407,4 +417,5 @@ public class CaseDto {
     public void setNote(String note) {
         this.note = note;
     }
+
 }

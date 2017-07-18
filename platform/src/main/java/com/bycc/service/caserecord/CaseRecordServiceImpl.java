@@ -3,20 +3,27 @@
  */
 package com.bycc.service.caserecord;
 
-import com.bycc.dao.BdmPoliceDao;
-import com.bycc.dao.BdmPoliceStationDao;
-import com.bycc.dao.CaseDao;
-import com.bycc.dao.CaseRecordDao;
+import com.bycc.dao.*;
 import com.bycc.dto.CaseRecordDto;
 import com.bycc.entity.Case;
 import com.bycc.entity.CaseRecord;
 import com.bycc.enumitem.CaseHandle;
+import com.bycc.enumitem.CaseType;
 import org.smartframework.common.kendo.QueryBean;
 import org.smartframework.manager.entity.User;
 import org.smartframework.platform.exception.BusinessException;
+import org.smartframework.utils.helper.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +44,8 @@ public class CaseRecordServiceImpl implements CaseRecordService {
 	private BdmPoliceDao policeDao;
 	@Autowired
 	private CaseDao caseDao;
+	@Autowired
+	private CaseRecordRepository caseRecordRepository;
 
 	public CaseRecordDto saveCaseRecord(CaseRecordDto dto) throws Exception {
 		CaseRecord caseRecord = null;
@@ -143,6 +152,45 @@ public class CaseRecordServiceImpl implements CaseRecordService {
             return CaseRecordDto.toDto(caseRecord);
         }
         return null;
+	}
+
+	@Override
+	public List<CaseRecord> findSearch(String handleStatus,String caseStatus,String masterUnit,String acceptStart,String acceptEnd,String closeStart,String closeEnd) throws ParseException {
+		Date acceptStartDate = DateHelper.formatStringToDate(acceptStart,"yyyy-MM-dd");
+		Date acceptEndDate = DateHelper.formatStringToDate(acceptEnd,"yyyy-MM-dd");
+		Date closeStartDate = DateHelper.formatStringToDate(closeStart,"yyyy-MM-dd");
+		Date closeEndDate = DateHelper.formatStringToDate(closeEnd,"yyyy-MM-dd");
+		List<CaseRecord> resultList = null;
+		Specification querySpecifi = new Specification<CaseRecord>() {
+			@Override
+			public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+				List<Predicate> predicates = new ArrayList<>();
+				if (null!=acceptStartDate){
+					predicates.add(criteriaBuilder.greaterThan(root.get("acceptDate"),acceptStartDate));
+				}
+				if (null!=acceptEndDate){
+					predicates.add(criteriaBuilder.lessThan(root.get("acceptDate"),acceptEndDate));
+				}
+				if (null!=closeStartDate){
+					predicates.add(criteriaBuilder.greaterThan(root.get("closeDate"),closeStartDate));
+				}
+				if (null!=closeEndDate){
+					predicates.add(criteriaBuilder.lessThan(root.get("closeDate"),closeEndDate));
+				}
+				if (null!=handleStatus){
+					predicates.add(criteriaBuilder.equal(root.get("caseHandle"),CaseHandle.getMatchByValue(handleStatus)));
+				}
+				if (null!=caseStatus){
+					predicates.add(criteriaBuilder.equal(root.get("caseType"), CaseType.getMatchByValue(caseStatus)));
+				}
+				if(null!=masterUnit){
+					predicates.add(criteriaBuilder.equal(root.get("masterUnit"),bpsDao.findByName(masterUnit)));
+				}
+				return  criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+			}
+		};
+		resultList =  caseRecordRepository.findAll(querySpecifi);
+		return resultList;
 	}
 
 }

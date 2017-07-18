@@ -134,12 +134,18 @@ public class LiveServiceImpl  {
      * @return
      */
     public static Boolean processHeartbeat(String ip){
-        ProcessHolder.IP_TIME.put(ip,System.currentTimeMillis());
-        if (ProcessHolder.IP_TIME.get(ip)!=null){
+        if (ip!=null){
+            ProcessHolder.IP_TIME.put(ip,System.currentTimeMillis());
             return true;
         }else {
             return false;
         }
+//        ProcessHolder.IP_TIME.put(ip,System.currentTimeMillis());
+//        if (ProcessHolder.IP_TIME.get(ip)!=null){
+//            return true;
+//        }else {
+//            return false;
+//        }
     }
 
 

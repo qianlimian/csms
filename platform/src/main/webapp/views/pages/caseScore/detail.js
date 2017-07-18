@@ -12,13 +12,14 @@
             smart.kendoui.grid($("#mainGrid"),
                 $.extend(true, this.mainGridOptions(), {
                     command: false,
+                    filterable: false,
+                    sortable: false,
                     height: 300,
                     columns: [
-                        {field: "id", width: 100, hidden: true},
-                        {field: "caseRecordId", width: 100, hidden: true},
-                        {field: "caseName", type: "string", title: "案件名称", width: 100, mapping: "caseRecord.caseName"},
-                        {field: "totalScore", type: "number", title: "案件分数", width: 100},
-                        {field: "note", type: "string", title: "案件备注", width: 100}
+                        {field: "caseName", type: "string", title: "案件名称", width: 100},
+                        {field: "masterPoliceName", title: "主办人", width: 100},
+                        {field: "slavePoliceName", title: "协办人", width: 100},
+                        {field: "totalScore", type: "number", title: "案件分数", width: 100}
                     ]
                 })
             );
@@ -30,7 +31,6 @@
                         {field: "id", width: 100, hidden: true},
                         {field: "evalId", width: 100, hidden: true},
                         {field: "standard", title: "标准", width: 100},
-                        {field: "evalType", title: "类别", width: 100, values: smart.Enums["com.bycc.enumitem.EvaluateType"].getData()},
                         {field: "score", title: "分数", width: 100}
                     ]
                 })

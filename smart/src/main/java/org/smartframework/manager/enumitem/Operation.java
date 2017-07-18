@@ -3,12 +3,14 @@ package org.smartframework.manager.enumitem;
 import org.smartframework.platform.dictionary.bean.entry.EnumEntry;
 
 public enum Operation implements EnumEntry {
-    view("查看"),
-    edit("编辑"),
-    delete("删除"),
-    audit("审核"),
-    handle("办理"),
-    mark("评价");
+    VIEW("查看"),
+    EDIT("编辑"),
+    DELETE("删除"),
+    AUDIT("审核"),
+    HANDLE("办理"),
+    MARK("评价"),
+    IMPORT("导入"),
+    EXPORT("导出");
 
     private String value;
     private Operation(String value) {

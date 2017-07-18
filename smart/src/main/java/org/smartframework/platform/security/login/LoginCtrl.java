@@ -11,26 +11,13 @@ public class LoginCtrl {
 	 */
 	@RequestMapping(value = "/login")
 	public String login() {
-		return "/smart/login/index";
+        return "/smart/login/index";
 	}
-	
-	/**
-	 * @description 退出到登陆页
-	 * @description 未配置logout-success-url时需要此方法
-	 */
-//	@RequestMapping(value="/logout")
-//   public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-//       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//       if (auth != null){    
-//           new SecurityContextLogoutHandler().logout(request, response, auth);
-//       }
-//       return "redirect:/login?logout";
-//   }
 	
 	/**
 	 * @description 后台首页
 	 */
-	@RequestMapping(value = {"/", "/home"})
+	@RequestMapping(value = {"/", "/home", "/admin"})
 	public String home() {
 		return "/smart/frame/home";
 	}

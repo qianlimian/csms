@@ -220,6 +220,7 @@ public class CaseRegisterServiceImpl implements CaseRegisterService {
 		strapDao.save(strap);
 		casePeople.setStrap(strap);
 		casePeople.setUpdateDate(new Date());
+		casePeople.setEnterDate(new Date());
 		casePeople.setOperatorId(User.getCurrentUser().getId());
 		casePeopleDao.save(casePeople);
 	}
@@ -296,7 +297,7 @@ public class CaseRegisterServiceImpl implements CaseRegisterService {
         	sp.setCaseNo(caseRecord.getCaseCode());
             sp.setCaseSummary(caseRecord.getCaseSummary());
 		}
-        sp.setEnterDate(DateHelper.formatDateToString(casePeople.getEnterDate(), "yyyy-MM-dd hh:mm:ss"));
+        sp.setEnterDate(DateHelper.formatDateToString(casePeople.getEnterDate(), "yyyy-MM-dd HH:mm:ss"));
         sp.setEnterReason(casePeople.getEnterReason() != null ? casePeople.getEnterReason().key() : null);
         register.setSubPeopleMap(sp);
         
@@ -328,25 +329,27 @@ public class CaseRegisterServiceImpl implements CaseRegisterService {
             register.setSubInspectMap(si);
 		}
         
-        //人员轨迹（测试数据）
+        
+        //人员轨迹
         List<SubTrace> stList = new ArrayList<SubTrace>();
-        SubTrace st1 = new SubTrace();
-        st1.setDateRange("12:00:00 至 12:15:00");
-        st1.setRoomName("人身检查室");
-        stList.add(st1);
-        SubTrace st2 = new SubTrace();
-        st2.setDateRange("12:15:00 至 12:20:00");
-        st2.setRoomName("信息采集");
-        stList.add(st2);
-        SubTrace st3 = new SubTrace();
-        st3.setDateRange("12:20:00 至 12:30:00");
-        st3.setRoomName("讯询问室");
-        stList.add(st3);
+        List<CasePeopleTrace> peopleTraces = casePeople.getCasePeopleTraces();
+        
+        for (CasePeopleTrace casePeopleTrace : peopleTraces) {
+        	SubTrace st = new SubTrace();
+            st.setDateRange(DateHelper.formatDateToString(casePeopleTrace.getEnterTime(), "yyyy-MM-dd HH:mm:ss") 
+            		        + "至" + 
+            		        DateHelper.formatDateToString(casePeopleTrace.getLeaveTime(), "yyyy-MM-dd HH:mm:ss"));
+            st.setRoomName(casePeopleTrace.getRoomName());
+            stList.add(st);
+		}
+        if (stList.size() == 0) {
+			stList.add(new SubTrace());
+		}
         register.setSubTraceList(stList);
         
         //离开情况
         SubReturn sr = new SubReturn();
-        sr.setLeaveDate(DateHelper.formatDateToString(casePeople.getLeaveDate(), "yyyy-MM-dd hh:mm:ss"));
+        sr.setLeaveDate(DateHelper.formatDateToString(casePeople.getLeaveDate(), "yyyy-MM-dd HH:mm:ss"));
         sr.setLeaveReason(casePeople.getLeaveReason());
         sr.setAllReturnOrNot(casePeople.getAllBelongsReturn());
         sr.setNote(casePeople.getNote());

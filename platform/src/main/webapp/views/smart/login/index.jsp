@@ -7,25 +7,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>执法办案监管系统</title>
-    <!-- jQuery 2.2.3 -->
+
   	<script src="${ctx}/views/smart/assets/jquery/jquery-2.2.3.min.js"></script>
     <script src="${ctx}/views/smart/login/index.js"></script>
-	<link rel="stylesheet" type="text/css" href="${ctx}/views/smart/login/css/style.css" tppabs="css/style.css" />
-	<style>
-		body{height:100%;background:#1e94af;overflow:hidden;}
-		canvas{z-index:-1;position:absolute;}
-	</style>
-	<script src="${ctx}/views/smart/login/js/verificationNumbers.js" tppabs="${ctx}/views/smart/login/js/verificationNumbers.js"></script>
-	<script src="${ctx}/views/smart/login/js/Particleground.js" tppabs="${ctx}/views/smart/login/js/Particleground.js"></script>
-	<script>
-        $(document).ready(function() {
-            //粒子背景特效
-            $('body').particleground({
-                dotColor: '#5cbdaa',
-                lineColor: '#5cbdaa'
-            });
-        });
-	</script>
+    <script src="${ctx}/views/smart/login/js/verificationNumbers.js"></script>
+    <script src="${ctx}/views/smart/login/js/particleground.js"></script>
+	<link href="${ctx}/views/smart/login/css/index.css" rel="stylesheet"/>
 </head>
 <body>
 	<dl class="admin_login">

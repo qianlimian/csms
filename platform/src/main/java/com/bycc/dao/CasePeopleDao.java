@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.smartframework.platform.repository.jpa.BaseJpaRepository;
 
+import com.bycc.entity.BdmStrap;
 import com.bycc.entity.CasePeople;
 
 
@@ -19,4 +20,6 @@ import com.bycc.entity.CasePeople;
 public interface CasePeopleDao extends BaseJpaRepository<CasePeople, Integer>{
 
 	List<CasePeople> findByCaseRecordId(Integer id);
+	CasePeople findByStrap(BdmStrap bdmStrap);
+	CasePeople findByStrapCode(Integer code);
 }

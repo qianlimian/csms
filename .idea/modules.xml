@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/csms.iml" filepath="$PROJECT_DIR$/csms.iml" />
       <module fileurl="file://$PROJECT_DIR$/locateService/locateService.iml" filepath="$PROJECT_DIR$/locateService/locateService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openingPlatform/openingPlatform.iml" filepath="$PROJECT_DIR$/openingPlatform/openingPlatform.iml" />
       <module fileurl="file://$PROJECT_DIR$/platform/platform.iml" filepath="$PROJECT_DIR$/platform/platform.iml" />
       <module fileurl="file://$PROJECT_DIR$/smart/smart.iml" filepath="$PROJECT_DIR$/smart/smart.iml" />
       <module fileurl="file://$PROJECT_DIR$/syncService/syncService.iml" filepath="$PROJECT_DIR$/syncService/syncService.iml" />

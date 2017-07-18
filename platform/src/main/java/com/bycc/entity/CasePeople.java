@@ -83,6 +83,13 @@ public class CasePeople implements Serializable {
 	private String address;
 
 	/**
+	 * 照片
+	 */
+	@Column(name = "photo_")
+	@Lob
+	private String photo;
+
+	/**
 	 * 手环
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -147,6 +154,12 @@ public class CasePeople implements Serializable {
 	 */
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "casePeople", fetch = FetchType.LAZY)
 	private List<CasePeopleBelongs> casePeopleBelongs = new ArrayList<CasePeopleBelongs>();
+	
+	/**
+	 * （涉案人员）轨迹
+	 */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "casePeople", fetch = FetchType.LAZY)
+	private List<CasePeopleTrace> casePeopleTraces = new ArrayList<CasePeopleTrace>();
 
 	/**
 	 * 随身物品是否全部返还(全部返还：true，部分返还：false)
@@ -362,5 +375,21 @@ public class CasePeople implements Serializable {
 
 	public void setAllBelongsReturn(Boolean allBelongsReturn) {
 		this.allBelongsReturn = allBelongsReturn;
+	}
+
+	public List<CasePeopleTrace> getCasePeopleTraces() {
+		return casePeopleTraces;
+	}
+
+	public void setCasePeopleTraces(List<CasePeopleTrace> casePeopleTraces) {
+		this.casePeopleTraces = casePeopleTraces;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }

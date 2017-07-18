@@ -11,26 +11,31 @@
                 </a>
                 <!--二级菜单-->
                 <ul class="s-menu s-group-menu" style="${moduleMenu.id == currentModuleMenu.id ?'display:block':'display:none'}">
-                    <c:forEach items="${moduleMenu.groupMenus}" var="groupMenu">
-                        <li>
-                            <a>
-                                <span class="fa fa-th-list"></span>${groupMenu.name}
-                                <span class="s-icon-right fa ${groupMenu.id == currentGroupMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
-                            </a>
-                            <!--三级菜单-->
-                            <ul class="s-menu s-leaf-menu" style="${groupMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
-                                <c:forEach items="${groupMenu.leafMenus}" var="leafMenu">
-                                    <li>
-                                        <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </li>
-                    </c:forEach>
-                    <c:forEach items="${moduleMenu.leafMenus}" var="leafMenu">
-                        <li>
-                            <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
-                        </li>
+
+                    <c:forEach items="${moduleMenu.groupLeafMenus}" var="groupLeafMenu">
+                        <!--二级group菜单-->
+                        <c:if test="${fn:length(groupLeafMenu.leafMenus) > 0}">
+                            <li>
+                                <a>
+                                    <span class="fa fa-th-list"></span>${groupLeafMenu.name}
+                                    <span class="s-icon-right fa ${groupLeafMenu.id == currentGroupMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
+                                </a>
+                                <!--三级leaf菜单-->
+                                <ul class="s-menu s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
+                                    <c:forEach items="${groupLeafMenu.leafMenus}" var="leafMenu">
+                                        <li>
+                                            <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+                        </c:if>
+                        <!--二级leaf菜单-->
+                        <c:if test="${fn:length(groupLeafMenu.leafMenus) == 0}">
+                            <li>
+                                <a href="${ctx}${groupLeafMenu.url}" class="<c:if test='${groupLeafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${groupLeafMenu.name}</a>
+                            </li>
+                        </c:if>
                     </c:forEach>
                 </ul>
             </li>
@@ -39,26 +44,31 @@
 
     <!--expend 二级菜单-->
     <ul class="s-nav s-group-menu top-nav">
-        <c:forEach items="${userGroupMenus}" var="groupMenu">
-            <li>
-                <a>
-                    <span class="fa fa-th-list"></span>${groupMenu.name}
-                    <span class="s-icon-right fa ${groupMenu.id == currentGroupMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
-                </a>
-                <!--三级菜单-->
-                <ul class="s-nav s-leaf-menu" style="${groupMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
-                    <c:forEach items="${groupMenu.leafMenus}" var="leafMenu">
-                        <li>
-                            <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </li>
-        </c:forEach>
-        <c:forEach items="${userLeafMenus}" var="leafMenu">
-            <li>
-                <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
-            </li>
+
+        <c:forEach items="${userGroupLeafMenus}" var="groupLeafMenu">
+            <!--二级group菜单-->
+            <c:if test="${fn:length(groupLeafMenu.leafMenus) > 0}">
+                <li>
+                    <a>
+                        <span class="fa fa-th-list"></span>${groupLeafMenu.name}
+                        <span class="s-icon-right fa ${groupLeafMenu.id == currentGroupMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
+                    </a>
+                    <!--三级菜单-->
+                    <ul class="s-nav s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
+                        <c:forEach items="${groupLeafMenu.leafMenus}" var="leafMenu">
+                            <li>
+                                <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </li>
+            </c:if>
+            <!--二级leaf菜单-->
+            <c:if test="${fn:length(groupLeafMenu.leafMenus) == 0}">
+                <li>
+                    <a href="${ctx}${groupLeafMenu.url}" class="<c:if test='${groupLeafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${groupLeafMenu.name}</a>
+                </li>
+            </c:if>
         </c:forEach>
     </ul>
 

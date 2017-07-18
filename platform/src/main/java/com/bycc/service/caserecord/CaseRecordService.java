@@ -3,8 +3,10 @@
  */
 package com.bycc.service.caserecord;
 
+import java.text.ParseException;
 import java.util.List;
 
+import com.bycc.entity.CaseRecord;
 import com.bycc.enumitem.CaseHandle;
 import org.smartframework.common.kendo.QueryBean;
 
@@ -43,4 +45,10 @@ public interface CaseRecordService {
      * 结束办案
      */
 	CaseRecordDto finishCase(Integer caseId, Integer caseRecordId) throws Exception;
+
+	/**
+	 * 多条件复合查询
+	 * @return
+     */
+	List<CaseRecord> findSearch(String handleStatus,String caseStatus,String masterUnit,String acceptStart,String acceptEnd,String closeStart,String closeEnd) throws ParseException;
 }

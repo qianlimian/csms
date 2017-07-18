@@ -15,4 +15,6 @@ public interface BdmStrapDao extends BaseJpaRepository<BdmStrap, Integer> {
 
 	@Query("select strap from BdmStrap strap where strap.status = com.bycc.enumitem.UsageStatus.UNUSED")
 	List<BdmStrap> findUnusedStrap();
+	
+	BdmStrap findByCode(Integer code);
 }

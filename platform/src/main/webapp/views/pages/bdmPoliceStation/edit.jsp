@@ -25,7 +25,7 @@
 		<div class="s-row-fluid">
 			<label class="s-span6 s-required">级别</label>
 			<input class="s-span12" type="text" id="edit_policeStationType" data-bind="value:bdmPoliceStation.policeStationType" />
-			<label class="s-span6">MSIP</label>
+			<label class="s-span6">服务器IP</label>
 			<input class="s-span12" type="text" id="edit_ip" data-bind="value:bdmPoliceStation.ip" />
 		</div>
 		<div class="s-row-fluid">
