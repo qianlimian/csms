@@ -30,13 +30,13 @@
         </dependency>
 
         <!-- 本地依赖: 扩展jasper报表的中文字体（黑体、微软雅黑）-->
-        <dependency>
-            <groupId>com.bycc</groupId>
-            <artifactId>jasperreports-fonts</artifactId>
-            <version>6.4.0</version>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jasperreports-fonts-6.4.0.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.bycc</groupId>-->
+            <!--<artifactId>jasperreports-fonts</artifactId>-->
+            <!--<version>6.4.0</version>-->
+            <!--<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jasperreports-fonts-6.4.0.jar</systemPath>-->
+            <!--<scope>system</scope>-->
+        <!--</dependency>-->
 
         <!-- servlet -->
         <dependency>

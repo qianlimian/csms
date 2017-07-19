@@ -101,15 +101,13 @@ public class CaseCtrl {
      * 生成Excel文件
      */
     @RequestMapping(value = "excel", method = RequestMethod.GET)
-    public void generateExcel(HttpServletRequest request, HttpServletResponse response,
-                              @RequestParam String handleStatus,
-                              @RequestParam String caseStatus,
+    public void generateExcel(@RequestParam String handleStatus,
                               @RequestParam String masterUnit,
                               @RequestParam String acceptStart,
                               @RequestParam String acceptEnd,
                               @RequestParam String closeStart,
-                              @RequestParam String closeEnd) throws Exception {
-        HSSFWorkbook wb = caseRecordExcelService.getExcel(handleStatus,caseStatus,masterUnit,acceptStart,acceptEnd,closeStart,closeEnd);
+                              @RequestParam String closeEnd,HttpServletRequest request, HttpServletResponse response ) throws Exception {
+        HSSFWorkbook wb = caseRecordExcelService.getExcel(handleStatus,masterUnit,acceptStart,acceptEnd,closeStart,closeEnd);
         String fileName = "案件信息";
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         wb.write(os);

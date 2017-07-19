@@ -10,14 +10,11 @@ import com.bycc.entity.CaseRecord;
 import com.bycc.enumitem.CaseHandle;
 import com.bycc.enumitem.CaseType;
 import org.smartframework.common.kendo.QueryBean;
-import org.smartframework.manager.entity.User;
 import org.smartframework.platform.exception.BusinessException;
 import org.smartframework.utils.helper.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -45,7 +42,7 @@ public class CaseRecordServiceImpl implements CaseRecordService {
 	@Autowired
 	private CaseDao caseDao;
 	@Autowired
-	private CaseRecordRepository caseRecordRepository;
+	private CaseRecordOpenDao caseRecordRepository;
 
 	public CaseRecordDto saveCaseRecord(CaseRecordDto dto) throws Exception {
 		CaseRecord caseRecord = null;
@@ -154,13 +151,26 @@ public class CaseRecordServiceImpl implements CaseRecordService {
         return null;
 	}
 
+
+	/**
+	 * 多条件符合查询
+	 * @param handleStatus
+	 * @param caseStatus
+	 * @param masterUnit
+	 * @param acceptStart
+	 * @param acceptEnd
+	 * @param closeStart
+	 * @param closeEnd
+	 * @return
+     * @throws ParseException
+     */
 	@Override
 	public List<CaseRecord> findSearch(String handleStatus,String caseStatus,String masterUnit,String acceptStart,String acceptEnd,String closeStart,String closeEnd) throws ParseException {
 		Date acceptStartDate = DateHelper.formatStringToDate(acceptStart,"yyyy-MM-dd");
 		Date acceptEndDate = DateHelper.formatStringToDate(acceptEnd,"yyyy-MM-dd");
 		Date closeStartDate = DateHelper.formatStringToDate(closeStart,"yyyy-MM-dd");
 		Date closeEndDate = DateHelper.formatStringToDate(closeEnd,"yyyy-MM-dd");
-		List<CaseRecord> resultList = null;
+		List resultList = null;
 		Specification querySpecifi = new Specification<CaseRecord>() {
 			@Override
 			public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -189,7 +199,7 @@ public class CaseRecordServiceImpl implements CaseRecordService {
 				return  criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}
 		};
-		resultList =  caseRecordRepository.findAll(querySpecifi);
+//		resultList =  caseRecordRepository.findAll(querySpecifi);
 		return resultList;
 	}
 
