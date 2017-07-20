@@ -80,7 +80,8 @@
                                 self.doQuery();
 
                                 //提示
-                                self.notification.hide().success('删除成功！');
+                                self.notification.hide()
+                                self.notification.success({ message: '删除成功！' });
                             }
                         });
                     }
@@ -121,7 +122,8 @@
             this.doQuery();
 
             //提示
-            this.notification.hide().success('保存成功！');
+            this.notification.hide();
+            this.notification.success({ message: '保存成功！' });
         },
 
         //编辑页面--删除回调函数
@@ -132,7 +134,8 @@
             this.doQuery();
 
             //提示
-            this.notification.hide().success('删除成功！');
+            this.notification.hide();
+            this.notification.success({ message: '删除成功！' });
         },
 
 		//初始化组件

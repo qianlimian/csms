@@ -34,4 +34,15 @@ public interface OverviewService {
 	 */
 	Map<String, Object> findRoomLayout(Integer areaId, Integer peopleId) throws Exception;
 
+
+    /**
+     * @description 判读是否启用告警
+     */
+    Boolean enableWarning();
+
+	/**
+	 * @description 获取定位告警
+	 */
+    Map<String,Object> findLocateWarning();
+
 }

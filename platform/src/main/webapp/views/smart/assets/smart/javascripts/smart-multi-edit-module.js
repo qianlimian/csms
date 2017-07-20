@@ -86,7 +86,8 @@
                     }
 
                     //提示
-                    self.notification.hide().error('保存失败！');
+                    self.notification.hide();
+                    self.notification.error({ message: '保存失败！' });
                 }
             });
         },

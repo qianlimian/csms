@@ -149,47 +149,6 @@ public class OverviewServiceImpl implements OverviewService {
 		BdmHandlingArea bdmHandlingArea = handlingAreaDao.findOne(areaId);
 		BdmPoliceStation bdmPoliceStation = bdmHandlingArea.getPoliceStation();
 		boolean locateState = true;
-		
-		//获取定位信息
-		Map<Integer, Object> locateInfo = new HashMap<Integer,Object>();
-		CasePeople casePeople = null;
-		if (peopleId != null) {
-			casePeople = peopleDao.findOne(peopleId);
-		}
-		if (!StringHelper.isAllEmpty(bdmPoliceStation.getIp())) {
-			String locateResult = HttpUtil.sendGet("http://" + bdmPoliceStation.getIp() + ":8088/locate/get", "utf-8");
-	        if (!"Failure".equals(locateResult)) {
-	        	Map<Integer, RFParams> locateMap = JsonHelper.getBean(locateResult, new TypeReference<HashMap<Integer, RFParams>>(){}); 
-	    		if (casePeople != null) {
-	    			for (Map.Entry<Integer, RFParams> entry : locateMap.entrySet()) {  
-	    				BdmStrap strap = strapDao.findByCode(entry.getValue().getTagId());
-	    				if (strap != null) {
-	    					CasePeople people = peopleDao.findByStrap(strap);
-	        				if (casePeople.equals(people) && entry.getValue().isActivate()) {
-	        					BdmStation station = stationDao.findByCode(entry.getKey());
-	        					BdmRoom room = station.getRoom();
-	        		        	locateInfo.put(room.getId(), CasePeopleDto.toDto(people));
-	        				}
-						}
-	    	        }
-	    		} else {
-	    			for (Map.Entry<Integer, RFParams> entry : locateMap.entrySet()) { 
-	    				if (entry.getValue().isActivate()) {
-	    					BdmStrap strap = strapDao.findByCode(entry.getValue().getTagId());
-	    					if (strap != null) {
-	    						CasePeople people = peopleDao.findByStrap(strap);
-	        					BdmStation station = stationDao.findByCode(entry.getKey());
-	        					BdmRoom room = station.getRoom();
-	        		        	locateInfo.put(room.getId(), CasePeopleDto.toDto(people));
-							}
-	    				}
-	    	        }
-	    		}
-			} else {
-				locateState = false;
-			}
-		}
-		
 		//获取办案区布局
 		List<BdmRoom> rooms =  roomDao.findByHandlingArea(bdmHandlingArea);
         List<BdmRoomDto> dtos = new ArrayList<>();
@@ -197,11 +156,75 @@ public class OverviewServiceImpl implements OverviewService {
             BdmRoomDto dto = BdmRoomDto.toDto(room);
             dtos.add(dto);
         }
+		
+		//获取定位信息
+		Map<Integer, Object> locateInfo = new HashMap<Integer,Object>();
+		CasePeople casePeople = null;
+		if (peopleId != null) {
+			casePeople = peopleDao.findOne(peopleId);
+		}
+		if (dtos.size() > 0) {
+			if (!StringHelper.isAllEmpty(bdmPoliceStation.getIp())) {
+				String locateResult = HttpUtil.sendGet("http://" + bdmPoliceStation.getIp() + ":8088/locate/get", "utf-8");
+		        if (!"Failure".equals(locateResult)) {
+		        	Map<Integer, RFParams> locateMap = JsonHelper.getBean(locateResult, new TypeReference<HashMap<Integer, RFParams>>(){}); 
+		    		if (casePeople != null) {
+		    			for (Map.Entry<Integer, RFParams> entry : locateMap.entrySet()) {  
+		    				BdmStrap strap = strapDao.findByCode(entry.getValue().getTagId());
+		    				if (strap != null) {
+		    					CasePeople people = peopleDao.findByStrap(strap);
+		        				if (casePeople.equals(people) && entry.getValue().isActivate()) {
+		        					BdmStation station = stationDao.findByCode(entry.getKey());
+		        					BdmRoom room = station.getRoom();
+		        		        	locateInfo.put(room.getId(), CasePeopleDto.toDto(people));
+		        				}
+							}
+		    	        }
+		    		} else {
+		    			for (Map.Entry<Integer, RFParams> entry : locateMap.entrySet()) { 
+		    				if (entry.getValue().isActivate()) {
+		    					BdmStrap strap = strapDao.findByCode(entry.getValue().getTagId());
+		    					if (strap != null) {
+		    						CasePeople people = peopleDao.findByStrap(strap);
+		        					BdmStation station = stationDao.findByCode(entry.getKey());
+		        					BdmRoom room = station.getRoom();
+		        		        	locateInfo.put(room.getId(), CasePeopleDto.toDto(people));
+								}
+		    				}
+		    	        }
+		    		}
+				} else {
+					locateState = false;
+				}
+			} else {
+				locateState = false;
+			}
+		}
+		
         resultMap.put("roomDtos", dtos);
         resultMap.put("locateInfo", locateInfo);
         resultMap.put("locateState", locateState);
         
 		return resultMap;
 	}
+
+    /**
+     * @description 判读是否启用告警
+     */
+    @Override
+    public Boolean enableWarning() {
+        return true;
+    }
+
+    /**
+	 * @description 获取定位告警
+	 */
+    @Override
+    public Map<String, Object> findLocateWarning() {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("case", null);
+        resultMap.put("warning", "单人讯问！！！");
+        return resultMap;
+    }
 
 }

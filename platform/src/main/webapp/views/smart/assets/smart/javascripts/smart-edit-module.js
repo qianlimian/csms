@@ -92,9 +92,9 @@
                             field = error["propIndex"],
                             msg = error["errorMsg"];
 
-                        var $field = this.$("input[data-bind='value:" + modelName + "." + field + "']");
+                        var $field = this.$("[data-bind='value:" + modelName + "." + field + "']");
                         if ($field.attr('data-role')) {
-                            $field = $field.closest('.k-widget').find("input,.k-input");
+                            $field = $field.closest('.k-widget').find("input,.k-input,textarea");
                         }
                         $field.addClass("s-field-invalid");
                         $field.attr("error_notice", msg.join(";"));

@@ -58,7 +58,7 @@
                 contentType: 'application/json',
                 data: JSON.stringify(room_position),
                 success: function (result) {
-                    me.notification.hide().success("操作成功！");
+                    me.notification.hide().success({ message: "操作成功！" });
                 }
             });
         },

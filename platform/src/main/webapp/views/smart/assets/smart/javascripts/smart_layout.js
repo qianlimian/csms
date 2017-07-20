@@ -14,12 +14,17 @@ $(function () {
         }
     });
 
-    $(".s-menu.s-module-menu>li>a").hover(function () {
+    $(".s-menu.s-module-menu>li>a").mouseenter(function () {
         if ($(document.body).hasClass("minified")) {
             $(".s-menu.s-module-menu>li>a").next().hide();
             $(this).next().show();
         }
+    }).click(function () {
+        if ($(document.body).hasClass("minified")) {
+            $(".s-menu.s-module-menu>li>a").next().hide();
+        }
     });
+
 
     //左侧Group菜单
     $(".s-group-menu>li>a").click(function () {
@@ -36,10 +41,14 @@ $(function () {
         }
     });
 
-    $(".s-group-menu>li>a").hover(function () {
+    $(".s-group-menu>li>a").mouseenter(function () {
         if ($(document.body).hasClass("minified")) {
             $(".s-group-menu>li>a").next().hide();
             $(this).next().show();
+        }
+    }).click(function () {
+        if ($(document.body).hasClass("minified")) {
+            $(".s-group-menu>li>a").next().hide();
         }
     });
 

@@ -20,9 +20,6 @@
             smart.kendoui.comboBox(this.$("#handle_status"), {
                 dataSource: smart.Enums["com.bycc.enumitem.CaseHandle"].getData()
             });
-            // smart.kendoui.comboBox(this.$("#case_status"), {
-            //     dataSource: smart.Enums["com.bycc.enumitem.CaseStatus"].getData()
-            // });
             smart.kendoui.datePicker(this.$("#accept_data_start"));
             smart.kendoui.datePicker(this.$("#accept_data_end"));
             smart.kendoui.datePicker(this.$("#close_data_start"));

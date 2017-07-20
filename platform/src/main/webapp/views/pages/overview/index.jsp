@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <body>
+<jsp:include page="alarm.jsp"></jsp:include>
 <link rel="stylesheet" href="${ctx}/views/pages/bdmRoomLayout/index.css">
 <link rel="stylesheet" href="${ctx}/views/pages/overview/index.css">
 <script src="${ctx}/views/smart/assets/bootstrap/js/bootstrap.min.js"></script>

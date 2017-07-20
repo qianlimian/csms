@@ -41,8 +41,6 @@ public class CaseRecordServiceImpl implements CaseRecordService {
 	private BdmPoliceDao policeDao;
 	@Autowired
 	private CaseDao caseDao;
-	@Autowired
-	private CaseRecordOpenDao caseRecordRepository;
 
 	public CaseRecordDto saveCaseRecord(CaseRecordDto dto) throws Exception {
 		CaseRecord caseRecord = null;

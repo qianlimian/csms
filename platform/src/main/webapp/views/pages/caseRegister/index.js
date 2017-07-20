@@ -208,9 +208,9 @@
                     url: "caseRegister/bindStrap.do?casePeopleId=" + selectedItem.id + "&strapId=" + item.id,
                     success: function (res) {
                         if (res.success) {
-                            me.notification.hide().success("绑定成功！");
+                            me.notification.hide().success({ message: "绑定成功！" });
                         } else {
-                            me.notification.hide().error(res.errorInfo);
+                            me.notification.hide().error({ message: res.errorInfo });
                         }
                         me.bindStrapWindow.close();
                         me.doQuery();
@@ -231,7 +231,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     success: function (res) {
-                        me.notification.hide().success("保存成功！");
+                        me.notification.hide().success({ message: "保存成功！" });
                         me.unbindStrapWindow.close();
                         me.doQuery();
                     }
@@ -289,9 +289,9 @@
                     contentType: 'application/json',
                     success: function (res) {
                         if (res.success) {
-                            me.notification.hide().success("保存成功！");
+                            me.notification.hide().success({ message: "保存成功！" });
                         } else {
-                            me.notification.hide().error(res.errorInfo);
+                            me.notification.hide().error({ messsage: res.errorInfo });
                         }
                     }
                 });
@@ -343,7 +343,7 @@
                     success: function (res) {
                         // 刷新grid
                         me.queryPeopleBelongs();
-                        me.notification.hide().success("保存成功！");
+                        me.notification.hide().success({ message: "保存成功！" });
                     },
                     error: function (jqXHR) {
                        var msg = smart.ajax.formatError(jqXHR);
@@ -355,7 +355,7 @@
                        }
 
                        //提示
-                       me.notification.hide().error('保存失败！');
+                       me.notification.hide().error({ message: '保存失败！' });
                    }
                 });
             }
@@ -379,7 +379,7 @@
                             success: function (res) {
                                 //触发自定义事件
                                 me.queryPeopleBelongs();
-                                me.notification.hide().success("保存成功！");
+                                me.notification.hide().success({ message: "保存成功！" });
                             }
                         });
                     }

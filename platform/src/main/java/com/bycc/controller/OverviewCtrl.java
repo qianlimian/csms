@@ -26,6 +26,7 @@ public class OverviewCtrl {
     public ModelAndView index() {
     	ModelAndView modelAndView = new ModelAndView("/pages/overview/index");
     	modelAndView.addObject("policeStations", overviewService.findPoliceStationList());
+        modelAndView.addObject("enableWarning", overviewService.enableWarning());
         return modelAndView;
     }
     
@@ -50,6 +51,15 @@ public class OverviewCtrl {
     public Map<String, Object> findRoomLayout(@PathVariable Integer areaId, @RequestParam(required = false) Integer peopleId) throws Exception{
     	return overviewService.findRoomLayout(areaId, peopleId);
     }
-    
-    
+
+    /**
+     *
+     * @description 获取定位告警
+     *
+     */
+    @RequestMapping("findLocateWarning")
+    @ResponseBody
+    public Map<String, Object> findLocateWarning() throws Exception{
+        return overviewService.findLocateWarning();
+    }
 }

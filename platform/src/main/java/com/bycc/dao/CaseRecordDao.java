@@ -4,10 +4,7 @@
 package com.bycc.dao;
 
 import java.util.List;
-
 import org.smartframework.platform.repository.jpa.BaseJpaRepository;
-
-import com.bycc.entity.BdmPolice;
 import com.bycc.entity.CaseRecord;
 
 /**
@@ -19,6 +16,5 @@ import com.bycc.entity.CaseRecord;
 public interface CaseRecordDao extends BaseJpaRepository<CaseRecord, Integer>{
 
 	List<CaseRecord> findByMasterUnitId(Integer id);
-	List<CaseRecord> findByMasterPoliceOrSlavePolice(BdmPolice masterPolice, BdmPolice slavePolice);
-
+	
 }

@@ -17,7 +17,6 @@
 
 	<!--1.配置数据源-->	
 	<context:property-placeholder location="classpath:properties/dataSource.properties" ignore-unresolvable="true"/>	
-	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <constructor-arg ref="hikariConfig"/>
     </bean>

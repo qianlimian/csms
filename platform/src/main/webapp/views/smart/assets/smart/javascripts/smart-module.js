@@ -37,7 +37,17 @@
 
         ready: function () {
             this.container = $("#" + this.containerId);
-            this.notification = $("#notification").kendoNotification().data('kendoNotification');
+
+            this.notification = $("#notification").kendoNotification({
+                templates: [{
+                    type: "error",
+                    template: "<div class='notification-wrap'> <i class='fa fa-warning fa-2x'></i> <span>#= message #</span></div>"
+                }, {
+                    type: "success",
+                    template: "<div class='notification-wrap'> <i class='fa fa-smile-o fa-2x'></i> <span>#= message #</span></div>"
+                }]
+            }).data('kendoNotification');
+
         },
 
         $: function (selector) {

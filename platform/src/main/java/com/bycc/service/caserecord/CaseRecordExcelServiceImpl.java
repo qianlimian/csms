@@ -3,7 +3,6 @@ package com.bycc.service.caserecord;
 
 import com.bycc.dao.BdmPoliceStationDao;
 import com.bycc.dao.CaseRecordDao;
-import com.bycc.dao.CaseRecordOpenDao;
 import com.bycc.entity.BdmPoliceStation;
 import com.bycc.entity.CaseRecord;
 import com.bycc.enumitem.CaseHandle;
@@ -38,16 +37,12 @@ public class CaseRecordExcelServiceImpl implements CaseRecordExcelService{
     CaseRecordDao caseRecordDao;
     @Autowired
     BdmPoliceStationDao bdmPoliceStationDao;
-    @Autowired
-    CaseRecordOpenDao caseRecordOpenDao;
-//    @Autowired
-//    CaseRecordOpenExportDao caseRecordOpenExportDao;
     @PersistenceContext
     private EntityManager em;
 
     @Override
     public HSSFWorkbook getExcel(String handleStatus,String masterUnit,String acceptStart,String acceptEnd,String closeStart,String closeEnd) throws ParseException {
-        String[] excelHeader = { "案件编号", "案件名称", "嫌疑人","主办单位","主办人","办理状态","警情编号","简要案情","案件类型","受理单位","受理人","协办单位","协办人","案发时间","受案时间","立案时间","办案时间","结案时间"};
+        String[] excelHeader = { "ID","案件编号", "案件名称", "嫌疑人","主办单位","主办人","办理状态","警情编号","简要案情","案件类型","受理单位","受理人","协办单位","协办人","案发时间","受案时间","立案时间","办案时间","结案时间","案件状态","备注"};
         //按条件查找相应的caseRecord
         /*CaseHandle caseHandleEnum = CaseHandle.getMatchByValue(handleStatus);
         BdmPoliceStation masterUnitEntity = bdmPoliceStationDao.findOne(Integer.valueOf(masterUnit));
@@ -63,45 +58,50 @@ public class CaseRecordExcelServiceImpl implements CaseRecordExcelService{
         List<CaseRecord> list=findCaseRecordExport(handleStatus,masterUnit,acceptStart,acceptEnd,closeStart,closeEnd);
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet("sheet");
-        HSSFRow row = sheet.createRow(0);
+        //第一行的空白
+        sheet.createRow(0);
+        //第二行的标题栏
+        HSSFRow row = sheet.createRow(1);
         HSSFCellStyle style = wb.createCellStyle();
         for (int i = 0; i < excelHeader.length; i++) {
             HSSFCell cell = row.createCell(i);
             cell.setCellValue(excelHeader[i]);
             cell.setCellStyle(style);
         }
-
         for (int i = 0; i < list.size(); i++) {
-            row = sheet.createRow(i + 1);
+            row = sheet.createRow(i + 2);
             CaseRecord caseRecord = list.get(i);
-            row.createCell(0).setCellValue(caseRecord.getCaseCode());
-            row.createCell(1).setCellValue(caseRecord.getCaseName());
-            row.createCell(2).setCellValue(caseRecord.getSuspect());
-            row.createCell(3).setCellValue(caseRecord.getMasterUnit()==null?"":caseRecord.getMasterUnit().getName());
-            row.createCell(4).setCellValue(caseRecord.getMasterPolice()==null?"":caseRecord.getMasterPolice().getUser().getName());
-            row.createCell(5).setCellValue(caseRecord.getCaseHandle().value());
-            row.createCell(6).setCellValue(caseRecord.getAlarmCode());
-            row.createCell(7).setCellValue(caseRecord.getCaseSummary());
-            row.createCell(8).setCellValue(caseRecord.getCaseType().value());
-            row.createCell(9).setCellValue(caseRecord.getAcceptUnit()==null?"":caseRecord.getAcceptUnit().getName());
-            row.createCell(10).setCellValue(caseRecord.getAcceptPolice()==null?"":caseRecord.getAcceptPolice().getUser().getName());
-            row.createCell(11).setCellValue(caseRecord.getSlaveUnit()==null?"":caseRecord.getSlaveUnit().getName());
-            row.createCell(12).setCellValue(caseRecord.getSlavePolice()==null?"":caseRecord.getSlavePolice().getUser().getName());
+            row.createCell(0).setCellValue(caseRecord.getId()==null?"":caseRecord.getId().toString());
+            row.createCell(1).setCellValue(caseRecord.getCaseCode());
+            row.createCell(2).setCellValue(caseRecord.getCaseName());
+            row.createCell(3).setCellValue(caseRecord.getSuspect());
+            row.createCell(4).setCellValue(caseRecord.getMasterUnit()==null?"":caseRecord.getMasterUnit().getName());
+            row.createCell(5).setCellValue(caseRecord.getMasterPolice()==null?"":caseRecord.getMasterPolice().getUser().getName());
+            row.createCell(6).setCellValue(caseRecord.getCaseHandle().name());
+            row.createCell(7).setCellValue(caseRecord.getAlarmCode());
+            row.createCell(8).setCellValue(caseRecord.getCaseSummary());
+            row.createCell(9).setCellValue(caseRecord.getCaseType().name());
+            row.createCell(10).setCellValue(caseRecord.getAcceptUnit()==null?"":caseRecord.getAcceptUnit().getName());
+            row.createCell(11).setCellValue(caseRecord.getAcceptPolice()==null?"":caseRecord.getAcceptPolice().getUser().getName());
+            row.createCell(12).setCellValue(caseRecord.getSlaveUnit()==null?"":caseRecord.getSlaveUnit().getName());
+            row.createCell(13).setCellValue(caseRecord.getSlavePolice()==null?"":caseRecord.getSlavePolice().getUser().getName());
             if (caseRecord.getOccurDate()!=null){
-                row.createCell(13).setCellValue(caseRecord.getOccurDate().toString());
+                row.createCell(14).setCellValue(caseRecord.getOccurDate().toString());
             }
             if (caseRecord.getAcceptDate()!=null){
-                row.createCell(14).setCellValue(caseRecord.getAcceptDate().toString());
+                row.createCell(15).setCellValue(caseRecord.getAcceptDate().toString());
             }
             if (caseRecord.getRegisterDate()!=null) {
-                row.createCell(15).setCellValue(caseRecord.getRegisterDate().toString());
+                row.createCell(16).setCellValue(caseRecord.getRegisterDate().toString());
             }
             if (caseRecord.getStartDate()!=null){
-                row.createCell(16).setCellValue(caseRecord.getStartDate().toString());
+                row.createCell(17).setCellValue(caseRecord.getStartDate().toString());
             }
             if (caseRecord.getCloseDate()!=null){
-                row.createCell(17).setCellValue(caseRecord.getCloseDate().toString());
+                row.createCell(18).setCellValue(caseRecord.getCloseDate().toString());
             }
+            row.createCell(19).setCellValue(caseRecord.getCaze()==null?"":caseRecord.getCaze().getCaseStatus().name());
+            row.createCell(20).setCellValue(caseRecord.getNote()==null?"":caseRecord.getNote());
 
         }
 
@@ -113,7 +113,7 @@ public class CaseRecordExcelServiceImpl implements CaseRecordExcelService{
 
 
     /**
-     * 导出Excel时，组合查询条件
+     * Jpa多条件组合查询
      * @param caseHandle
      * @param masterUnitId
      * @param acceptDateStart
@@ -176,7 +176,7 @@ public class CaseRecordExcelServiceImpl implements CaseRecordExcelService{
     }
 
     /**
-     * hibernate查找
+     * hibernate查找,组合查询条件
      * @param caseHandle
      * @param masterUnitId
      * @param acceptDateStart
@@ -207,7 +207,7 @@ public class CaseRecordExcelServiceImpl implements CaseRecordExcelService{
         }
         TypedQuery<CaseRecord> query = em.createQuery(querySb.toString(),CaseRecord.class);
         if (caseHandle!=null&&!caseHandle.equals("")){
-            CaseHandle caseHandle1Enum = CaseHandle.getMatchByValue(caseHandle);
+            CaseHandle caseHandle1Enum = CaseHandle.getMatchByKey(caseHandle);
             query.setParameter("caseHandle",caseHandle1Enum);
         }
         if (masterUnitId!=null&&!masterUnitId.equals("")){

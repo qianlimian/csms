@@ -18,6 +18,7 @@
     <mapping path="/caseScores/rank/caseRank.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/caseScores/detail.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/caseWarnings.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/bdmAlarm.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/caseOpening.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/caseMedias.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/bdm*.htm" decorator="/views/smart/layout/smart_layout.jsp"/>

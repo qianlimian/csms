@@ -315,7 +315,7 @@
                 url: self.restUrl + dataItem.id + '/saveMenus.do',
                 success: function (res) {
                     //提示
-                    self.notification.hide().show('保存成功！','success');
+                    self.notification.hide().success({message: '保存成功！'});
                 }
             });
         },
@@ -401,7 +401,7 @@
                 url: self.restUrl + dataItem.id + '/saveOperates.do',
                 success: function (res) {
                     //提示
-                    self.notification.hide().show('保存成功！','success');
+                    self.notification.hide().success({message: '保存成功！'});
                 }
             });
         },
@@ -458,7 +458,7 @@
                 url: self.restUrl + dataItem.id + '/saveRoles.do',
                 success: function (res) {
                     //提示
-                    self.notification.hide().show('保存成功！','success');
+                    self.notification.hide().success({message: '保存成功！'});
                 }
             });
         }

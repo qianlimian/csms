@@ -98,7 +98,7 @@
                                 type: 'GET',
                                 url: me.restUrl + "finishCase.do?caseRecordId=" + selectedItem.id,
                                 success: function (res) {
-                                    me.notification.hide().success("操作成功！");
+                                    me.notification.hide().success({ message: "操作成功！" });
                                 },
                                 error: function (jqXHR) {
                                     smart.alert(jqXHR.responseText);

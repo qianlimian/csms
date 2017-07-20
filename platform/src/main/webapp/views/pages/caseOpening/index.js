@@ -35,8 +35,6 @@
         },
 
         doExport: function () {
-            
-            // location.href=this.restUrl+"excel.do";
             smart.kendoui.window('#ctnExportWrap', {
                 content: this.restUrl + "caseExport.do",
                 title: "案件记录导出",
