@@ -50,8 +50,8 @@
                         {field: "caseCode", type: "string", title: "案件编号", width: 100},
                         {field: "caseName", type: "string", title: "案件名称", width: 100},
                         {field: "suspect", type: "string", title: "嫌疑人", width: 100},
-                        {field: "masterUnit", type: "string", title: "主办单位", width: 100},
-                        {field: "masterPoliceName", type: "string", title: "主办人", width: 100},
+                        {field: "masterUnit", type: "string", title: "主办单位", width: 100, mapping: "masterUnit.name"},
+                        {field: "masterPoliceName", type: "string", title: "主办人", width: 100, mapping: "masterPolice.user.name"},
                         {field: "caseStatus", type: "enum", title: "案件状态", width: 100,
                             values: smart.Enums["com.bycc.enumitem.CaseStatus"].getData()
                         }

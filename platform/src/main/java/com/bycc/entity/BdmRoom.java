@@ -111,6 +111,16 @@ public class BdmRoom implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
 	private List<BdmCamera> cameras = new ArrayList<BdmCamera>();
 
+	public BdmRoom(){}
+	//构造函数--构造测试数据用
+	public BdmRoom(String code, String name, RoomType type, BdmHandlingArea handlingArea, UsageStatus status) {
+		this.code = code;
+		this.name = name;
+		this.roomType = type;
+		this.handlingArea = handlingArea;
+		this.status = status;
+	}
+
 	public Integer getId() {
 		return id;
 	}

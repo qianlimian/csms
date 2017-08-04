@@ -6,6 +6,7 @@ import com.bycc.dto.bdmPoliceStation.BdmPoliceDto;
 import com.bycc.dto.bdmPoliceStation.BdmPoliceStationDto;
 import com.bycc.entity.BdmPolice;
 import com.bycc.entity.BdmPoliceStation;
+import com.bycc.enumitem.AreaType;
 import org.smartframework.common.kendo.QueryBean;
 import org.smartframework.manager.dao.user.UserDao;
 import org.smartframework.manager.entity.User;
@@ -28,22 +29,14 @@ public class BdmPoliceStationServiceImpl implements BdmPoliceStationService {
     @Autowired
     private UserDao userDao;
 
+
     /**
      * 按条件查询派出所列表
      */
     @Override
     public List<BdmPoliceStationDto> query(QueryBean qb) {
-        List<BdmPoliceStation> policeStations = null;
-        if (qb != null) {
-            policeStations = policeStationDao.findByQueryBean(qb);
-        } else {
-            policeStations = policeStationDao.findAll();
-        }
-        List<BdmPoliceStationDto> dtos = new ArrayList<BdmPoliceStationDto>();
-        for (BdmPoliceStation policeStation : policeStations) {
-            dtos.add(BdmPoliceStationDto.toDto(policeStation));
-        }
-        return dtos;
+        List<BdmPoliceStation> entities = policeStationDao.findByQueryBean(qb);
+        return BdmPoliceStationDto.toDtoList(entities);
     }
 
     /**
@@ -51,8 +44,13 @@ public class BdmPoliceStationServiceImpl implements BdmPoliceStationService {
      */
     @Override
     public BdmPoliceStationDto findById(Integer id) {
-        BdmPoliceStation policeStation = policeStationDao.findOne(id);
-        return BdmPoliceStationDto.toDto(policeStation);
+        BdmPoliceStation entity = policeStationDao.findOne(id);
+        return BdmPoliceStationDto.toDto(entity);
+    }
+
+    @Override
+    public BdmPoliceStation findByName(String name) {
+        return policeStationDao.findByName(name);
     }
 
     /**
@@ -60,7 +58,22 @@ public class BdmPoliceStationServiceImpl implements BdmPoliceStationService {
      */
     @Override
     public List<BdmPoliceStationDto> findAll() {
-        return query(null);
+        List<BdmPoliceStation> entities = policeStationDao.findAll();
+        return BdmPoliceStationDto.toDtoList(entities);
+    }
+
+    /**
+     * 查询所有派出所（地区参数）
+     */
+    @Override
+    public List<BdmPoliceStationDto> find4Select(String areaType) {
+
+        if (null == areaType || "".equals(areaType)) {
+            return findAll();
+        }
+
+        List<BdmPoliceStation> entities = policeStationDao.findByAreaType(AreaType.getMatchByKey(areaType));
+        return BdmPoliceStationDto.toDtoList(entities);
     }
 
     /**

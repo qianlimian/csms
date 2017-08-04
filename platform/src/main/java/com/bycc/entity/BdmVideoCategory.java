@@ -66,6 +66,13 @@ public class BdmVideoCategory implements Serializable {
 	@Column(name = "update_date_")
 	private Date updateDate;
 
+	public BdmVideoCategory(){}
+	//构造函数--构造测试数据用
+	public BdmVideoCategory(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
+
 	public Integer getId() {
 		return id;
 	}

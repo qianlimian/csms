@@ -22,7 +22,9 @@ import java.util.List;
 public interface CaseDao extends BaseJpaRepository<Case, Integer>{
 
     List<Case> findByMasterPolice(BdmPolice police);
+
     List<Case> findBySlavePolice(BdmPolice police);
+
     List<Case> findByMasterUnitOrSlaveUnit(BdmPoliceStation masterUnit, BdmPoliceStation slaveUnit);
 
 }

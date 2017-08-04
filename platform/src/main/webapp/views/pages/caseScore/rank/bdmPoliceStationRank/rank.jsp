@@ -5,7 +5,7 @@
 <body>
 <div id="ctnCaseScoreRank">	
 	<script id="template" type="text/x-kendo-template">
-		<a id="btnDoShow" class="k-button" smart-ability="edit"><span class="fa fa-search"></span>详情</a>
+		<a id="btnDoShow" class="k-button"><span class="fa fa-search"></span>详情</a>
 	</script>
 	<div id="rankMainGrid"></div>
 </div>

@@ -6,6 +6,5 @@
 <div id="ctnCaseWarningIndex">
 	<div id="mainGrid"></div>
 </div>
-<div id="ctnCaseRegisterEditWrap"></div>
 <script src="${ctx}/views/pages/caseWarning/index.js"></script>
 </body>

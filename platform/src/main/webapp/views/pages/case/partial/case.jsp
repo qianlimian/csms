@@ -28,7 +28,7 @@
 
     <div class="s-row-fluid">
         <label class="s-span9">案件类型</label>
-        <input class="s-span18" type="text" id="edit_caseType" data-bind="value:case.caseType"/>
+        <input class="s-span18" type="text" id="edit_caseType" data-bind="value:case.caseTypeName"/>
 
         <label class="s-span9">案件状态</label>
         <input class="s-span18" type="text" id="edit_caseStatus" data-bind="value:case.caseStatusName"/>
@@ -52,7 +52,7 @@
 
     <div class="s-row-fluid">
         <label class="s-span9">简要案情</label>
-        <input class="s-span45" type="text" id="edit_caseSummary" data-bind="value:case.caseSummary"/>
+        <textarea class="s-span45" type="text" id="edit_caseSummary" data-bind="value:case.caseSummary"/>
     </div>
 
     <div class="s-row-fluid">

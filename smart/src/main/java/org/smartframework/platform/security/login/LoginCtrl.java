@@ -17,7 +17,7 @@ public class LoginCtrl {
 	/**
 	 * @description 后台首页
 	 */
-	@RequestMapping(value = {"/", "/home", "/admin"})
+	@RequestMapping(value = {"/", "/home"})
 	public String home() {
 		return "/smart/frame/home";
 	}

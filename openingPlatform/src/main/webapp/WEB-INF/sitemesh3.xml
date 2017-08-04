@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!-- clear_layout默认装饰器 -->
+    <mapping path="/*" decorator="/views/smart/layout/clear_layout.jsp"/>
+    <mapping path="/index*" decorator="/views/smart/layout/clear_layout.jsp"/>
+
+    <!-- default_layout默认装饰器 -->
+    <!--<mapping path="/admin*" decorator="/views/smart/layout/smart_layout.jsp"/>-->
+
+    <!-- smart_layout装饰器  -->
+    <mapping path="/smart*" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/caseRecords.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/laws.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/laws/criminal.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/laws/civil.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/lawyers.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/complaints.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/statics.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+
+    <!-- 指明满足“/exclude.jsp*”的页面，将被排除，不被装饰 -->
+    <mapping path="/login*" exclue="true"/>
+    <mapping path="/*.do" exclue="true"/>
+    <mapping path="/**/*.do" exclue="true"/>
+    <mapping path="/**/edit.htm" exclue="true"/>
+    <mapping path="/**/load.htm" exclue="true"/>
+</sitemesh>

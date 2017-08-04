@@ -133,7 +133,16 @@ public class CaseScoreServiceImpl implements CaseScoreService {
         List<CaseScoreItem> items = itemDao.findByCaseScoreId(id);
         List<CaseScoreItemDto> dtos = new ArrayList<>();
         for (CaseScoreItem item : items) {
-            dtos.add(CaseScoreItemDto.toDto(item));
+        	BdmEvaluation evaluation = item.getEval();
+        	BdmEvaluation parent = null;
+        	BdmEvaluation root = null;
+        	if (evaluation != null) {
+				parent = evalDao.findOne(evaluation.getParent());
+				if (parent != null) {
+					root = evalDao.findOne(parent.getParent());
+				}
+			}
+            dtos.add(CaseScoreItemDto.toDto(item, parent, root));
         }
         return dtos;
     }
@@ -196,15 +205,16 @@ public class CaseScoreServiceImpl implements CaseScoreService {
         // 构造查询语句
  		StringBuilder queryBuilder = new StringBuilder("select police_id_, police_name_, police_station_name_, sum(total_score_) totalScore from view_police_score_statistics where police_id_ in :policeIds");
 		//grid过滤参数
-		Map<String, Object> filters = qb.getFilterMap();
+		Map<String, Object> filters = qb.getFilters();
 		if (filters != null) {
-			queryBuilder.append(" and " + filters.get("keys"));
+			String[] param = qb.getFiltersParam();
+			queryBuilder.append(" and " + String.join(" and ", param));
 		}
 		queryBuilder.append(" group by police_id_ ");
 		//grid排序参数
-		String sorts = qb.getSortString();
+		String[] sorts = qb.getSorts();
 		if (sorts != null) {
-			queryBuilder.append("order by " + sorts);
+			queryBuilder.append("order by " +  String.join(",", sorts));
 		} else {
 			queryBuilder.append("order by totalScore desc");
 		}
@@ -212,7 +222,7 @@ public class CaseScoreServiceImpl implements CaseScoreService {
 		Query query = em.createNativeQuery(queryBuilder.toString());
 		if (filters != null) {
 			//查询条件参数赋值
-			Map<String, Object> values = (Map) filters.get("values");
+			Map<String, Object> values = qb.getFiltersValue();
 			for (String key : values.keySet()) {
 				query.setParameter(key, values.get(key).toString());
 			}
@@ -255,15 +265,16 @@ public class CaseScoreServiceImpl implements CaseScoreService {
     	// 构造查询语句
  		StringBuilder queryBuilder = new StringBuilder("select unit_id_, unit_name_, unit_area_type_, sum(total_score_) totalScore from view_police_station_score_statistics where unit_id_ in :stationIds");
  		//grid过滤参数
-		Map<String, Object> filters = qb.getFilterMap();
+		Map<String, Object> filters = qb.getFilters();
 		if (filters != null) {
-			queryBuilder.append(" and " + filters.get("keys"));
+			String[] param = qb.getFiltersParam();
+			queryBuilder.append(" and " + String.join(" and ", param));
 		}
 		queryBuilder.append(" group by unit_id_ ");
 		//grid排序参数
-		String sorts = qb.getSortString();
+		String[] sorts = qb.getSorts();
 		if (sorts != null) {
-			queryBuilder.append("order by " + sorts);
+			queryBuilder.append("order by " + String.join(",", sorts));
 		} else {
 			queryBuilder.append("order by totalScore desc");
 		}
@@ -271,7 +282,7 @@ public class CaseScoreServiceImpl implements CaseScoreService {
 		Query query = em.createNativeQuery(queryBuilder.toString());
 		if (filters != null) {
 			//查询条件参数赋值
-			Map<String, Object> values = (Map) filters.get("values");
+			Map<String, Object> values = qb.getFiltersValue();
 			for (String key : values.keySet()) {
 				query.setParameter(key, values.get(key).toString());
 			}

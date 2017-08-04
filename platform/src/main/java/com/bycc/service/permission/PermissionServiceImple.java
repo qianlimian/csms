@@ -38,9 +38,10 @@ public class PermissionServiceImple implements PermissionService {
 	//-------------------------------查询当前用户所在单位的下属单位----------------------------------------
 	@Override
 	public List<BdmPoliceStation> findSubPoliceStations() {
-		BdmPolice police = policeDao.findByUserId(User.getCurrentUser().getUserId());
-		 BdmPoliceStation policeStation = police.getPoliceStation();
 		List<BdmPoliceStation> stations = new ArrayList<>();
+
+		BdmPoliceStation policeStation = findPoliceStation();
+
 		// 如果policeStation为空或类型是'派出所'则终止查找
 		if (policeStation == null || policeStation.getPoliceStationType() == PoliceStationType.PCS) {
 			return stations;

@@ -17,6 +17,8 @@ public interface CaseService {
 
 	List<CaseDto> query(String type, QueryBean queryBean);
 
+	List<CaseDto> query4Select(QueryBean queryBean);
+
 	CaseDto findById(Integer id);
 
 }

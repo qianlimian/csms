@@ -255,7 +255,7 @@ public class CaseMediaServiceImpl implements CaseMediaService {
 	 * 
 	 * @throws IOException
 	 */
-	public String saveFiles(MultipartFile uploadedFile, String contentRange, Integer caseRecordId, String categoryName)
+	public String saveFiles(MultipartFile uploadedFile, String contentRange, Integer caseRecordId, String categoryCode)
 			throws IOException {
 		String destPath = null;// 目的路径
 		String remoteLocal = REMOTE_LOCAL;// 本地文件存放文件夹
@@ -309,7 +309,7 @@ public class CaseMediaServiceImpl implements CaseMediaService {
 					CaseMedia entity = caseMediaDao.findByCaseRecordIdAndTitle(caseRecordId, fileName);
 					CaseMedia caseMedia = null;
 					Integer id = entity == null ? null : entity.getId();
-					caseMedia = CaseMediaDto.toEntity(id, fileName, destPath, bdmVideoCgDao.findByName(categoryName),
+					caseMedia = CaseMediaDto.toEntity(id, fileName, destPath, bdmVideoCgDao.findByCode(categoryCode),
 							null, cr, null);
 					caseMediaDao.save(caseMedia);
 					return range;

@@ -6,8 +6,10 @@ package com.bycc.service.caserecord;
 import java.text.ParseException;
 import java.util.List;
 
+import com.bycc.dto.CaseFindParamDto;
 import com.bycc.entity.CaseRecord;
 import com.bycc.enumitem.CaseHandle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.smartframework.common.kendo.QueryBean;
 
 import com.bycc.dto.CaseRecordDto;
@@ -50,5 +52,14 @@ public interface CaseRecordService {
 	 * 多条件复合查询
 	 * @return
      */
-	List<CaseRecord> findSearch(String handleStatus,String caseStatus,String masterUnit,String acceptStart,String acceptEnd,String closeStart,String closeEnd) throws ParseException;
+	List<CaseRecordDto> search(QueryBean queryBean,CaseFindParamDto caseFindParamDto) throws ParseException;
+
+	/**
+	 * 导出Excel文件
+	 * @param queryBean
+	 * @param caseFindParamDto
+	 * @return
+	 * @throws ParseException
+     */
+	HSSFWorkbook getExcel(QueryBean queryBean,CaseFindParamDto caseFindParamDto) throws ParseException;
 }

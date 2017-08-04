@@ -115,11 +115,11 @@ public class CaseRecordDto {
 			dto.setAcceptPoliceId(cr.getAcceptPolice() != null ? cr.getAcceptPolice().getId() : null);
 			dto.setAcceptPoliceName(cr.getAcceptPolice() != null ? cr.getAcceptPolice().getUser().getName() : null);
 		}
-		dto.setOccurDate(DateHelper.formatDateToString(cr.getOccurDate(), "yyyy-MM-dd"));
-		dto.setAcceptDate(DateHelper.formatDateToString(cr.getAcceptDate(), "yyyy-MM-dd"));
-		dto.setStartDate(DateHelper.formatDateToString(cr.getStartDate(), "yyyy-MM-dd"));
-		dto.setRegisterDate(DateHelper.formatDateToString(cr.getRegisterDate(), "yyyy-MM-dd"));
-		dto.setCloseDate(DateHelper.formatDateToString(cr.getCloseDate(), "yyyy-MM-dd"));
+		dto.setOccurDate(DateHelper.formatDateToString(cr.getOccurDate(), "yyyy-MM-dd hh:mm"));
+		dto.setAcceptDate(DateHelper.formatDateToString(cr.getAcceptDate(), "yyyy-MM-dd hh:mm"));
+		dto.setStartDate(DateHelper.formatDateToString(cr.getStartDate(), "yyyy-MM-dd hh:mm"));
+		dto.setRegisterDate(DateHelper.formatDateToString(cr.getRegisterDate(), "yyyy-MM-dd hh:mm"));
+		dto.setCloseDate(DateHelper.formatDateToString(cr.getCloseDate(), "yyyy-MM-dd hh:mm"));
 		return dto;
 	}
 
@@ -140,11 +140,11 @@ public class CaseRecordDto {
 		entity.setSuspect(this.suspect);
 		entity.setNote(this.note);
 		try {
-			entity.setOccurDate(DateHelper.formatStringToDate(this.occurDate, "yyyy-MM-dd"));
-			entity.setAcceptDate(DateHelper.formatStringToDate(this.acceptDate, "yyyy-MM-dd"));
-			entity.setRegisterDate(DateHelper.formatStringToDate(this.registerDate, "yyyy-MM-dd"));
-			entity.setStartDate(DateHelper.formatStringToDate(this.startDate, "yyyy-MM-dd"));
-			entity.setCloseDate(DateHelper.formatStringToDate(this.closeDate, "yyyy-MM-dd"));
+			entity.setAcceptDate(DateHelper.formatStringToDate(this.acceptDate, "yyyy-MM-dd hh:mm"));
+			entity.setRegisterDate(DateHelper.formatStringToDate(this.registerDate, "yyyy-MM-dd hh:mm"));
+			entity.setOccurDate(DateHelper.formatStringToDate(this.occurDate, "yyyy-MM-dd hh:mm"));
+			entity.setStartDate(DateHelper.formatStringToDate(this.startDate, "yyyy-MM-dd hh:mm"));
+			entity.setCloseDate(DateHelper.formatStringToDate(this.closeDate, "yyyy-MM-dd hh:mm"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

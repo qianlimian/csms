@@ -77,6 +77,15 @@ public class BdmClassification implements Serializable {
     @Column(name = "update_date_")
     private Date updateDate;
 
+
+    public BdmClassification() {}
+    //构造函数--构造测试数据用
+    public BdmClassification(CaseType caseType, String keyWord, RiskLevel riskLevel) {
+        this.caseType = caseType;
+        this.keyWord = keyWord;
+        this.riskLevel = riskLevel;
+    }
+
     public Integer getId() {
         return id;
     }

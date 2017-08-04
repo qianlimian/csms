@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+        
+    <!-- 不扫描带有@Controller注解的类。因为这些类已经随容器启动时扫描过了 -->  
+    <context:component-scan base-package="com.bycc,org.smartframework">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  
+    </context:component-scan>  
+        
+	<!--1.配置数据源-->	
+	<context:property-placeholder location="classpath:properties/dataSource.properties" ignore-unresolvable="true"/>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>${mysql.driverClassName}</value></property> 
+        <property name="url"><value>${mysql.url}</value></property> 
+        <property name="username"><value>${mysql.username}</value></property> 
+        <property name="password"><value>${mysql.password}</value></property> 
+	</bean>
+	
+	<!--2.配置实体管理工厂-->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaAdapter" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="packagesToScan">
+			<list>  
+                <value>com.bycc.entity</value>
+				<value>com.bycc.demo.entity</value>
+				<value>org.smartframework.manager.entity</value>
+            </list>
+        </property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="eclipselink.show_sql">true</prop>
+				<prop key="eclipselink.logging.parameters">true</prop>
+				<prop key="eclipselink.logging.level">FINE</prop>
+				<prop key="eclipselink.logging.level.sql">FINE</prop>
+				<prop key="eclipselink.weaving">static</prop>
+				<prop key="eclipselink.orm.throw.exceptions">true</prop>
+				<!-- 生成数据库相关参数 -->
+				<prop key="eclipselink.application-location">d:\</prop>
+				<prop key="eclipselink.create-ddl-jdbc-file-name">create.sql</prop>
+				<prop key="eclipselink.drop-ddl-jdbc-file-name">drop.sql</prop>
+				<prop key="eclipselink.ddl-generation">drop-and-create-tables</prop>
+				<prop key="eclipselink.ddl-generation.output-mode">sql-script</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform"/> 
+	</bean>
+	
+	<!-- 3.配置事务管理器-->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<!--springJPA配置-->
+	<jpa:repositories base-package="com.bycc.dao,com.bycc.demo.dao,org.smartframework.manager.dao"
+	 	              entity-manager-factory-ref="entityManagerFactory" 	 	             
+	                  factory-class="org.smartframework.platform.repository.jpa.BaseJpaRepositoryFactoryBean"
+	                  transaction-manager-ref="transactionManager"/>
+	
+</beans>

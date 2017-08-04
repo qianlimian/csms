@@ -148,7 +148,7 @@ public class OverviewServiceImpl implements OverviewService {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		BdmHandlingArea bdmHandlingArea = handlingAreaDao.findOne(areaId);
 		BdmPoliceStation bdmPoliceStation = bdmHandlingArea.getPoliceStation();
-		boolean locateState = true;
+		boolean locateState = false;
 		//获取办案区布局
 		List<BdmRoom> rooms =  roomDao.findByHandlingArea(bdmHandlingArea);
         List<BdmRoomDto> dtos = new ArrayList<>();
@@ -157,12 +157,13 @@ public class OverviewServiceImpl implements OverviewService {
             dtos.add(dto);
         }
 		
-		//获取定位信息
+		//定位信息Map
 		Map<Integer, Object> locateInfo = new HashMap<Integer,Object>();
 		CasePeople casePeople = null;
 		if (peopleId != null) {
 			casePeople = peopleDao.findOne(peopleId);
 		}
+		//有房间布局时请求定位服务获取定位信息
 		if (dtos.size() > 0) {
 			if (!StringHelper.isAllEmpty(bdmPoliceStation.getIp())) {
 				String locateResult = HttpUtil.sendGet("http://" + bdmPoliceStation.getIp() + ":8088/locate/get", "utf-8");
@@ -193,38 +194,13 @@ public class OverviewServiceImpl implements OverviewService {
 		    				}
 		    	        }
 		    		}
-				} else {
-					locateState = false;
+		    		locateState = true;
 				}
-			} else {
-				locateState = false;
 			}
 		}
-		
         resultMap.put("roomDtos", dtos);
         resultMap.put("locateInfo", locateInfo);
         resultMap.put("locateState", locateState);
-        
 		return resultMap;
 	}
-
-    /**
-     * @description 判读是否启用告警
-     */
-    @Override
-    public Boolean enableWarning() {
-        return true;
-    }
-
-    /**
-	 * @description 获取定位告警
-	 */
-    @Override
-    public Map<String, Object> findLocateWarning() {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("case", null);
-        resultMap.put("warning", "单人讯问！！！");
-        return resultMap;
-    }
-
 }

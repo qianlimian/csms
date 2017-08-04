@@ -47,6 +47,7 @@ public class CaseDto {
 	 * 案件类型
 	 */
 	private String caseType;
+    private String caseTypeName;
 
 	/**
 	 * 风险等级
@@ -140,10 +141,15 @@ public class CaseDto {
 		dto.setCaseCode(c.getCaseCode());
 		dto.setCaseName(c.getCaseName());
 		dto.setCaseSummary(c.getCaseSummary());
-		dto.setCaseType(c.getCaseType() != null ? c.getCaseType().value() : "");
+		if (c.getCaseType() != null) {
+            dto.setCaseType(c.getCaseType().key());
+            dto.setCaseTypeName(c.getCaseType().value());
+        }
 		dto.setRiskLevel(c.getRiskLevel() != null ? c.getRiskLevel().value() : "");
-		dto.setCaseStatus(c.getCaseStatus() != null ? c.getCaseStatus().key() : null);
-        dto.setCaseStatusName(c.getCaseStatus() != null ? c.getCaseStatus().value() : "");
+		if (c.getCaseStatus() != null) {
+            dto.setCaseStatus(c.getCaseStatus().key());
+            dto.setCaseStatusName(c.getCaseStatus().value());
+        }
 		dto.setSuspect(c.getSuspect());
         if (c.getAcceptUnit() != null) {
             dto.setAcceptUnitId(c.getAcceptUnit().getId());
@@ -169,12 +175,12 @@ public class CaseDto {
             dto.setAcceptPoliceId(c.getAcceptPolice() != null ? c.getAcceptPolice().getId() : null);
             dto.setAcceptPoliceName(c.getAcceptPolice() != null ? c.getAcceptPolice().getUser().getName() : null);
         }
-		dto.setOccurDate(c.getOccurDate() != null ? DateHelper.formatDateToString(c.getOccurDate(), "yyyy-MM-dd") : null);
-		dto.setAcceptDate(c.getAcceptDate() != null ? DateHelper.formatDateToString(c.getAcceptDate(), "yyyy-MM-dd") : null);
-		dto.setRegisterDate(c.getRegisterDate() != null ? DateHelper.formatDateToString(c.getRegisterDate(), "yyyy-MM-dd") : null);
-		dto.setCloseDate(c.getCloseDate() != null ? DateHelper.formatDateToString(c.getCloseDate(), "yyyy-MM-dd") : null);
-		dto.setInsertDate(c.getInsertDate() != null ? DateHelper.formatDateToString(c.getInsertDate(), "yyyy-MM-dd") : null);
-		dto.setUpdateDate(c.getUpdateDate() != null ? DateHelper.formatDateToString(c.getUpdateDate(), "yyyy-MM-dd") : null);
+		dto.setOccurDate(DateHelper.formatDateToString(c.getOccurDate(), "yyyy-MM-dd hh:mm"));
+		dto.setAcceptDate(DateHelper.formatDateToString(c.getAcceptDate(), "yyyy-MM-dd hh:mm"));
+		dto.setRegisterDate(DateHelper.formatDateToString(c.getRegisterDate(), "yyyy-MM-dd hh:mm"));
+		dto.setCloseDate(DateHelper.formatDateToString(c.getCloseDate(), "yyyy-MM-dd hh:mm"));
+		dto.setInsertDate(DateHelper.formatDateToString(c.getInsertDate(), "yyyy-MM-dd hh:mm"));
+		dto.setUpdateDate(DateHelper.formatDateToString(c.getUpdateDate(), "yyyy-MM-dd hh:mm"));
 		return dto;
 	}
 
@@ -232,6 +238,14 @@ public class CaseDto {
 
     public void setCaseType(String caseType) {
         this.caseType = caseType;
+    }
+
+    public String getCaseTypeName() {
+        return caseTypeName;
+    }
+
+    public void setCaseTypeName(String caseTypeName) {
+        this.caseTypeName = caseTypeName;
     }
 
     public String getRiskLevel() {

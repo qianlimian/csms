@@ -23,11 +23,11 @@
                         { field: "note", type: "string", title: "告警信息", width: 150 },
                         { field: "caseType", type: "enum", title: "案件类型", width: 100 ,
                           values: smart.Enums["com.bycc.enumitem.CaseType"].getData(), mapping: "caze.caseType"},
-                        { field: "policeStationName", type: "string", title: "主办单位", width: 150},
-                        { field: "policeName", type: "string", title: "主办人", width: 100},
+                        { field: "policeStationName", type: "string", title: "主办单位", width: 150, mapping: "caze.masterUnit.name"},
+                        { field: "policeName", type: "string", title: "主办人", width: 100, mapping: "caze.masterPolice.user.name"},
                         { field: "caseStatus", type: "enum", title: "案件状态", width: 100,
                           values: smart.Enums["com.bycc.enumitem.CaseStatus"].getData(), mapping: "caze.caseStatus"},
-                        { field: "updateTime", type: "date", title: "更新时间", width: 100, format: '{0:yyyy-MM-dd}'}
+                        { field: "updateTime", type: "date", title: "更新时间", width: 100, format: '{0:yyyy-MM-dd}', mapping: "updateDate"}
                     ]
                 })
             );
@@ -48,19 +48,6 @@
         containerId : "ctnCaseWarningIndex", //必需，Index模块的容器id
         restUrl: "/caseWarnings/", //必需，请求的rest地址
         editModule: {},
-        ymlModule: "caseWarning",
-        model: {//必需，model用于MVVM
-            inspect: {
-                id: "",
-                caseCode: '',
-                note:'',
-                caseName: '',
-                caseType: '',
-                policeStationName: '',
-                policeName: '',
-                updateTime:'',
-                caseStatus: ''
-            }
-        }
+        ymlModule: "caseWarning"
     });
 })();

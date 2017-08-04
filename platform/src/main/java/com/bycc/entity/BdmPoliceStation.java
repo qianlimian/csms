@@ -2,7 +2,6 @@ package com.bycc.entity;
 
 import com.bycc.enumitem.AreaType;
 import com.bycc.enumitem.PoliceStationType;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import java.util.List;
 		initialValue = 1,
 		allocationSize = 1
 )
+@NamedQueries({@NamedQuery(name = "com.bycc.entity.BdmPoliceStation.findAllPoliceStations", query = "SELECT o FROM BdmPoliceStation o order by o.id  ")})
 public class BdmPoliceStation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -102,6 +102,15 @@ public class BdmPoliceStation implements Serializable {
 	 */
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "policeStation", fetch = FetchType.LAZY)
 	private List<BdmPolice> polices = new ArrayList<BdmPolice>();
+
+	public BdmPoliceStation(){}
+	//构造函数--构造测试数据用
+	public BdmPoliceStation(String code, String name, AreaType areaType, PoliceStationType policeStationType) {
+		this.code = code;
+		this.name = name;
+		this.areaType = areaType;
+		this.policeStationType = policeStationType;
+	}
 
 	public Integer getId() {
 		return id;

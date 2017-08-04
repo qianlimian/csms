@@ -19,17 +19,14 @@
             smart.kendoui.comboBox(this.$("#edit_caseType"), {
                 dataSource: smart.Enums["com.bycc.enumitem.CaseType"].getData()
             });
-            smart.kendoui.comboBox(this.$("#edit_caseStatus"), {
-                dataSource: smart.Enums["com.bycc.enumitem.CaseStatus"].getData()
-            });
             smart.kendoui.comboBox(this.$("#edit_caseHandle"), {
                 dataSource: smart.Enums["com.bycc.enumitem.CaseHandle"].getData()
             });
-            smart.kendoui.datePicker(this.$("#edit_occurDate"));
-            smart.kendoui.datePicker(this.$("#edit_acceptDate"));
-            smart.kendoui.datePicker(this.$("#edit_registerDate"));
-            smart.kendoui.datePicker(this.$("#edit_startDate"));
-            smart.kendoui.datePicker(this.$("#edit_closeDate"));
+            smart.kendoui.datetimePicker(this.$("#edit_acceptDate"));
+            smart.kendoui.datetimePicker(this.$("#edit_registerDate"));
+            smart.kendoui.datetimePicker(this.$("#edit_occurDate"));
+            smart.kendoui.datetimePicker(this.$("#edit_startDate"));
+            smart.kendoui.datetimePicker(this.$("#edit_closeDate"));
 
             //cascade下拉组件
             this.masterUnit = smart.kendoui.comboBox($("#edit_masterUnitId"), {
@@ -219,11 +216,9 @@
 
         //选择回调事件
         itemSelectedHandler: function (item) {
-           // this.viewModel.set(this.modelName, item);
-           /* this.viewModel.set("caseRecord.id", "");*/
-            this.viewModel.set("caseRecord.caseId", item.id);      
-            this.viewModel.set("caseRecord.alarmCode",item.alarmCode);
-            this.viewModel.set("caseRecord.caseCode",item.caseCode);            
+            this.viewModel.set(this.modelName, item);
+            this.viewModel.set("caseRecord.caseId", item.id);
+            this.viewModel.set("caseRecord.id", "");
         }
     });
 

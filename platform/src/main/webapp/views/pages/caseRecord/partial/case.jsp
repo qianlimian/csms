@@ -34,15 +34,14 @@
         <input class="s-span18" type="text" id="edit_caseSummary" data-bind="value:caseRecord.caseSummary" disabled/>
     </div>
     <div class="s-row-fluid">
+        <label class="s-span9">案发时间</label>
+        <input class="s-span18" type="text" id="edit_occurDate" data-bind="value:caseRecord.occurDate" disabled/>
         <label class="s-span9">受案时间</label>
         <input class="s-span18" type="text" id="edit_acceptDate" data-bind="value:caseRecord.acceptDate" disabled/>
-
-        <label class="s-span9">立案时间</label>
-        <input class="s-span18" type="text" id="edit_registerDate" data-bind="value:caseRecord.registerDate" disabled/>
     </div>
     <div class="s-row-fluid">
-        <label class="s-span9">案件状态</label>
-        <input class="s-span18" type="text" id="edit_caseStatus" data-bind="value:caseRecord.caseStatus" disabled/>
+        <label class="s-span9">立案时间</label>
+        <input class="s-span18" type="text" id="edit_registerDate" data-bind="value:caseRecord.registerDate" disabled/>
     </div>
 
     <div class="s-row-fluid">
@@ -75,17 +74,14 @@
     </div>
 
     <div class="s-row-fluid">
-        <label class="s-span9">办理状态</label>
-        <input class="s-span18" type="text" id="edit_caseHandle" data-bind="value:caseRecord.caseHandle" disabled/>
-        <label class="s-span9">案发时间</label>
-        <input class="s-span18" type="text" id="edit_occurDate" data-bind="value:caseRecord.occurDate"/>
-    </div>
-    <div class="s-row-fluid">
         <label class="s-span9">办案时间</label>
         <input class="s-span18" type="text" id="edit_startDate" data-bind="value:caseRecord.startDate"/>
-
         <label class="s-span9">结案时间</label>
         <input class="s-span18" type="text" id="edit_closeDate" data-bind="value:caseRecord.closeDate"/>
+    </div>
+    <div class="s-row-fluid">
+        <label class="s-span9">办理状态</label>
+        <input class="s-span18" type="text" id="edit_caseHandle" data-bind="value:caseRecord.caseHandle" disabled/>
     </div>
 </form>
 

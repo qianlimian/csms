@@ -8,6 +8,7 @@
     <mapping path="/smart*" decorator="/views/smart/layout/smart_layout.jsp"/>
 
     <mapping path="/overviews.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/cases.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/cases/dispute.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/cases/civil.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/cases/criminal.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
@@ -22,6 +23,7 @@
     <mapping path="/caseOpening.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/caseMedias.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
     <mapping path="/bdm*.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
+    <mapping path="/statis/*.htm" decorator="/views/smart/layout/smart_layout.jsp"/>
 
     <!-- 指明满足“/exclude.jsp*”的页面，将被排除，不被装饰 -->
     <mapping path="/login*" exclue="true"/>

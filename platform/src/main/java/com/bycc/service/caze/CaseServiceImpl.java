@@ -61,6 +61,25 @@ public class CaseServiceImpl implements CaseService {
 	}
 
 	@Override
+	public List<CaseDto> query4Select(QueryBean qb) {
+
+        String[] arr = new String[] { "id not in :ids" };
+        Map<String, Object> map = new HashMap<String, Object>() {
+            {
+                put("ids", recordDao.getCaseIds());
+            }
+        };
+        List<Case>	cases = dao.findByQueryBeanCondition(arr, map, qb);
+
+		List<CaseDto> dtos = new ArrayList<CaseDto>();
+		for (Case c : cases) {
+			dtos.add(CaseDto.toDto(c));
+		}
+
+		return dtos;
+	}
+
+	@Override
 	public CaseDto findById(Integer id) {
 		Case caze = dao.findOne(id);
 		return CaseDto.toDto(caze);

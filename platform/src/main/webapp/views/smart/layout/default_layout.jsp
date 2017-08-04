@@ -36,11 +36,12 @@
   <link rel="stylesheet" href="${ctx}/views/smart/assets/kendoui/styles/kendo.moonlight.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/kendoui/styles/kendo.silver.css">
   <!-- smart -->
+  <!-- mergeToCSS:${ctx}/views/smart/assets/smart/styles/smart.min.css -->
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_kendoui_enhances.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_base.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_layout.css">
   <link rel="stylesheet" href="${ctx}/views/smart/assets/smart/styles/smart_frame.css">
-
+  <!-- mergeToCSS -->
   <!-- jQuery 2.2.3 -->
   <script src="${ctx}/views/smart/assets/jquery/jquery.min.js"></script>
   <!-- bootstrap-switch -->
@@ -48,6 +49,7 @@
   <!-- kendoUI -->
   <script src="${ctx}/views/smart/assets/kendoui/js/kendo.web.min.js"></script>
   <!-- smart -->
+  <!-- mergeToJS:${ctx}/views/smart/assets/smart/javascripts/smart.min.js --> 
   <script src="${ctx}/views/smart/assets/smart/javascripts/smart_kendoui_enhances.js"></script>
   <script src="${ctx}/views/smart/assets/smart/javascripts/smart_kendoui_extends.js"></script>
   <script src="${ctx}/views/smart/assets/smart/javascripts/smart_kendoui_searchbox.js"></script>
@@ -70,12 +72,12 @@
   <script src="${ctx}/views/smart/assets/smart/javascripts/smart-multi-index-module.js"></script>
   <script src="${ctx}/views/smart/assets/smart/javascripts/smart-multi-edit-module.js"></script>
   <script src="${ctx}/views/smart/assets/smart/javascripts/smart-select-module.js"></script>
-  
+  <!-- mergeToJS -->
   <sitemesh:write property='head'/>  
 </head>
 
-<body>
-<div id="s-panel" class="${userSetting.pageWidth} ${userSetting.menuPosition}">
+<body class="${userSetting.pageWidth} ${userSetting.menuPosition}">
+<div id="s-panel">
   <%@ include file="partial/header.jsp" %>
 
   <%@ include file="partial/panel.jsp" %>

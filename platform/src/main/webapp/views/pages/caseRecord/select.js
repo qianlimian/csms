@@ -12,12 +12,15 @@
             var self = this;
             smart.kendoui.grid(this.$("#mainGrid"),
                 $.extend(true, this.gridOptions(), {
+                    dataSource : {
+                        url: self.restUrl + "query4Select.do"
+                    },
                     columns: [
                         {field: "id", width: 100, hidden: true},
                         {field: "caseCode", type: "string", title: "案件编号", width: 100},
                         {field: "caseName", type: "string", title: "案件名称", width: 100},
                         {field: "suspect", type: "string", title: "嫌疑人", width: 100},
-                        {field: "masterUnitName", type: "string", title: "主办单位", width: 100},
+                        {field: "masterUnit", type: "string", title: "主办单位", width: 100},
                         {field: "masterPoliceName", type: "string", title: "主办人", width: 100},
                         {field: "acceptDate", type: "date", title: "受案时间", width: 100, format: '{0:yyyy-MM-dd}'},
                         {field: "caseStatus", type: "enum", title: "办理状态", width: 100,

@@ -54,6 +54,7 @@
             var self = this;
 
             //高级查询窗口
+            
             smart.bind('#' + this.containerId + ' #btnAdvancedQuery', [this.openQueryWin, this]);
 
             //确认查询、重置查询

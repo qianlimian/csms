@@ -33,6 +33,27 @@ public class CaseScoreItemDto {
 	private boolean selected;
 	
 	
+	public static CaseScoreItemDto toDto(CaseScoreItem item, BdmEvaluation parent, BdmEvaluation root) {
+		CaseScoreItemDto dto = new CaseScoreItemDto();
+		dto.setId(item.getId());
+		dto.setEvalId(item.getEval()!=null?item.getEval().getId():null);
+		dto.setCaseScoreId(item.getCaseScore() != null ? item.getCaseScore().getId() : null);
+		dto.setScore(item.getScore());
+		String standard = "";
+		if (root != null) {
+			standard = standard + root.getStandard() + "-";
+		}
+		if (parent != null) {
+			standard = standard + parent.getStandard() + "-";
+		}
+		BdmEvaluation evaluation = item.getEval();
+		if (evaluation != null) {
+			standard = standard + evaluation.getStandard();
+		}
+		dto.setStandard(standard);
+		return dto;
+	}
+	
 	public static CaseScoreItemDto toDto(CaseScoreItem item) {
 		CaseScoreItemDto dto = new CaseScoreItemDto();
 		dto.setId(item.getId());

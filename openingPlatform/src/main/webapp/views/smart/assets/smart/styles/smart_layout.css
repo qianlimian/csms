@@ -1,0 +1,871 @@
+
+/*
+ * s-container容器
+ */
+.s-container {
+	height: 100%;
+	padding: 1px 0 0 1px;
+	*zoom: 1
+}
+
+.s-container:before, .s-container:after {
+	display: table;
+	line-height: 0;
+	content: ""
+}
+
+.s-container:after {
+	clear: both
+}
+
+/*
+ * @description 固定row布局
+ * 特征：固定长度，递增20；无左边距，无下边距
+ * 算法：将1200px均分为60等份，s-row-n的长度为n*20px
+ */
+[class*="s-row"] {
+	display: block;
+	float: left
+}
+
+.s-row1 {
+	width: 20px
+}
+
+.s-row2 {
+	width: 40px;
+}
+
+.s-row3 {
+	width: 60px
+}
+
+.s-row4 {
+	width: 80px;
+}
+
+.s-row5 {
+	width: 100px
+}
+
+.s-row6 {
+	width: 120px
+}
+
+.s-row7 {
+	width: 140px
+}
+
+.s-row8 {
+	width: 160px
+}
+
+.s-row9 {
+	width: 180px
+}
+
+.s-row10 {
+	width: 200px
+}
+
+.s-row11 {
+	width: 220px
+}
+
+.s-row12 {
+	width: 240px
+}
+
+.s-row13 {
+	width: 260px
+}
+
+.s-row14 {
+	width: 280px
+}
+
+.s-row15 {
+	width: 300px
+}
+
+.s-row16 {
+	width: 320px
+}
+
+.s-row17 {
+	width: 340px
+}
+
+.s-row18 {
+	width: 360px
+}
+
+.s-row19 {
+	width: 380px
+}
+
+.s-row20 {
+	width: 400px
+}
+
+.s-row21 {
+	width: 420px
+}
+
+.s-row22 {
+	width: 440px
+}
+
+.s-row23 {
+	width: 460px
+}
+
+.s-row24 {
+	width: 480px
+}
+
+.s-row25 {
+	width: 500px
+}
+
+.s-row26 {
+	width: 520px
+}
+
+.s-row27 {
+	width: 540px
+}
+
+.s-row28 {
+	width: 560px
+}
+
+.s-row29 {
+	width: 580px
+}
+
+.s-row30 {
+	width: 600px
+}
+
+.s-row31 {
+	width: 620px
+}
+
+.s-row32 {
+	width: 640px
+}
+
+.s-row33 {
+	width: 660px
+}
+
+.s-row34 {
+	width: 680px
+}
+
+.s-row35 {
+	width: 700px
+}
+
+.s-row36 {
+	width: 720px
+}
+
+.s-row37 {
+	width: 740px
+}
+
+.s-row38 {
+	width: 760px
+}
+
+.s-row39 {
+	width: 780px
+}
+
+.s-row40 {
+	width: 800px
+}
+
+.s-row41 {
+	width: 820px
+}
+
+.s-row42 {
+	width: 840px
+}
+
+.s-row43 {
+	width: 860px
+}
+
+.s-row44 {
+	width: 880px
+}
+
+.s-row45 {
+	width: 900px
+}
+
+.s-row46 {
+	width: 920px
+}
+
+.s-row47 {
+	width: 940px
+}
+
+.s-row48 {
+	width: 960px
+}
+
+.s-row49 {
+	width: 980px
+}
+
+.s-row50 {
+	width: 1000px
+}
+
+.s-row51 {
+	width: 1020px
+}
+
+.s-row52 {
+	width: 1040px
+}
+
+.s-row53 {
+	width: 1060px
+}
+
+.s-row54 {
+	width: 1080px
+}
+
+.s-row55 {
+	width: 1100px
+}
+
+.s-row56 {
+	width: 1120px
+}
+
+.s-row57 {
+	width: 1140px
+}
+
+.s-row58 {
+	width: 1160px
+}
+
+.s-row59 {
+	width: 1180px
+}
+
+.s-row60 {
+	width: 1200px
+}
+
+/*
+ * @description 固定span布局
+ * 特征：固定长度，递增20px； 有左边距10px，有下边距5px
+ * 算法：将1200px均分为60等份，s-span-n的长度为n*20px-10px
+ */
+[class*="s-row"] [class*="s-span"] {
+	display: block;
+	float: left;
+	height: 26px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.s-span1 {
+	width: 10px;
+}
+
+.s-span2 {
+	width: 30px;
+}
+
+.s-span3 {
+	width: 50px;
+}
+
+.s-span4 {
+	width: 70px;
+}
+
+.s-span5 {
+	width: 90px;
+}
+
+.s-span6 {
+	width: 110px;
+}
+
+.s-span7 {
+	width: 130px;
+}
+
+.s-span8 {
+	width: 150px;
+}
+
+.s-span9 {
+	width: 170px;
+}
+
+.s-span10 {
+	width: 190px;
+}
+
+.s-span11 {
+	width: 210px;
+}
+
+.s-span12 {
+	width: 230px;
+}
+
+.s-span13 {
+	width: 250px;
+}
+
+.s-span14 {
+	width: 270px;
+}
+
+.s-span15 {
+	width: 290px;
+}
+
+.s-span16 {
+	width: 310px;
+}
+
+.s-span17 {
+	width: 330px;
+}
+
+.s-span18 {
+	width: 350px;
+}
+
+.s-span19 {
+	width: 370px;
+}
+
+.s-span20 {
+	width: 390px;
+}
+
+.s-span21 {
+	width: 410px;
+}
+
+.s-span22 {
+	width: 430px;
+}
+
+.s-span23 {
+	width: 450px;
+}
+
+.s-span24 {
+	width: 470px;
+}
+
+.s-span25 {
+	width: 490px;
+}
+
+.s-span26 {
+	width: 510px;
+}
+
+.s-span27 {
+	width: 530px;
+}
+
+.s-span28 {
+	width: 550px;
+}
+
+.s-span29 {
+	width: 570px;
+}
+
+.s-span30 {
+	width: 590px;
+}
+
+.s-span31 {
+	width: 610px;
+}
+
+.s-span32 {
+	width: 630px;
+}
+
+.s-span33 {
+	width: 650px;
+}
+
+.s-span34 {
+	width: 670px;
+}
+
+.s-span35 {
+	width: 690px;
+}
+
+.s-span36 {
+	width: 710px;
+}
+
+.s-span37 {
+	width: 730px;
+}
+
+.s-span38 {
+	width: 750px;
+}
+
+.s-span39 {
+	width: 770px;
+}
+
+.s-span40 {
+	width: 790px;
+}
+
+.s-span41 {
+	width: 810px;
+}
+
+.s-span42 {
+	width: 830px;
+}
+
+.s-span43 {
+	width: 850px;
+}
+
+.s-span44 {
+	width: 870px;
+}
+
+.s-span45 {
+	width: 890px;
+}
+
+.s-span46 {
+	width: 910px;
+}
+
+.s-span47 {
+	width: 930px;
+}
+
+.s-span48 {
+	width: 950px;
+}
+
+.s-span49 {
+	width: 970px;
+}
+
+.s-span50 {
+	width: 990px;
+}
+
+.s-span51 {
+	width: 1010px;
+}
+
+.s-span52 {
+	width: 1030px;
+}
+
+.s-span53 {
+	width: 1050px;
+}
+
+.s-span54 {
+	width: 1070px;
+}
+
+.s-span55 {
+	width: 1090px;
+}
+
+.s-span56 {
+	width: 1110px;
+}
+
+.s-span57 {
+	width: 1130px;
+}
+
+.s-span58 {
+	width: 1150px;
+}
+
+.s-span59 {
+	width: 1170px;
+}
+
+.s-span60 {
+	width: 1190px;
+}
+
+.s-row-fluid {
+	width: 100%;
+	*zoom: 1
+}
+
+.s-row-fluid:before, .s-row-fluid:after {
+	display: table;
+	line-height: 0;
+	content: ""
+}
+
+.s-row-fluid:after {
+	clear: both
+}
+
+/*
+* @description 流span布局
+* 特征：比例长度，递增20/1200；左边距10/1200，下边距5px
+* 算法：将1200均分为60等份，s-span-n的长度为 (n*20-10)/1200
+*/
+
+.s-row-fluid [class*="s-span"] {
+	display: block;
+	float: left;
+	height: 26px;
+	margin-left: .83333333%; /* 10/1200 */
+	margin-bottom: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.s-row-fluid .s-span1 {
+	width: .83333333% /* 10/1200 */
+}
+
+.s-row-fluid .s-span2 {
+	width: 2.5% /* 30/1200 */
+}
+
+.s-row-fluid .s-span3 {
+	width: 4.16666667% /* 50/1200 */
+}
+
+.s-row-fluid .s-span4 {
+	width: 5.83333333% /* 70/1200 */
+}
+
+.s-row-fluid .s-span5 {
+	width: 7.5% /* 90/1200 */
+}
+
+.s-row-fluid .s-span6 {
+	width: 9.16666667% /* 110/1200 */
+}
+
+.s-row-fluid .s-span7 {
+	width: 10.83333333% /* 130/1200 */
+}
+
+.s-row-fluid .s-span8 {
+	width: 12.5% /* 150/1200 */
+}
+
+.s-row-fluid .s-span9 {
+	width: 14.16666667% /* 170/1200 */
+}
+
+.s-row-fluid .s-span10 {
+	width: 15.83333333% /* 190/1200 */
+}
+
+.s-row-fluid .s-span11 {
+	width: 17.5% /* 210/1200 */
+}
+
+.s-row-fluid .s-span12 {
+	width: 19.16666667% /* 230/1200 */
+}
+
+.s-row-fluid .s-span13 {
+	width: 20.83333333% /* 250/1200 */
+}
+
+.s-row-fluid .s-span14 {
+	width: 22.5% /* 270/1200 */
+}
+
+.s-row-fluid .s-span15 {
+	width: 24.16666667% /* 290/1200 */
+}
+
+.s-row-fluid .s-span16 {
+	width: 25.83333333% /* 310/1200 */
+}
+
+.s-row-fluid .s-span17 {
+	width: 27.5% /* 330/1200 */
+}
+
+.s-row-fluid .s-span18 {
+	width: 29.16666667% /* 350/1200 */
+}
+
+.s-row-fluid .s-span19 {
+	width: 30.83333333% /* 370/1200 */
+}
+
+.s-row-fluid .s-span20 {
+	width: 32.5% /* 390/1200 */
+}
+
+.s-row-fluid .s-span21 {
+	width: 34.16666667% /*410/1200*/
+}
+
+.s-row-fluid .s-span22 {
+	width: 35.83333333% /*430/1200*/
+}
+
+.s-row-fluid .s-span23 {
+	width: 37.5% /*450/1200*/
+}
+
+.s-row-fluid .s-span24 {
+	width: 39.16666667% /*470/1200*/
+}
+
+.s-row-fluid .s-span25 {
+	width: 40.83333333% /*490/1200*/
+}
+
+.s-row-fluid .s-span26 {
+	width: 42.5% /* 510/1200 */
+}
+
+.s-row-fluid .s-span27 {
+	width: 44.16666667% /* 530/1200 */
+}
+
+.s-row-fluid .s-span28 {
+	width: 45.83333333% /* 550/1200 */
+}
+
+.s-row-fluid .s-span29 {
+	width: 47.5% /* 570/1200 */
+}
+
+.s-row-fluid .s-span30 {
+	width: 49.16666667% /* 590/1200 */
+}
+
+.s-row-fluid .s-span31 {
+	width: 50.83333333%
+}
+
+.s-row-fluid .s-span32 {
+	width: 52.5%
+}
+
+.s-row-fluid .s-span33 {
+	width: 54.16666667%
+}
+
+.s-row-fluid .s-span34 {
+	width: 55.83333333%
+}
+
+.s-row-fluid .s-span35 {
+	width: 57.5%
+}
+
+.s-row-fluid .s-span36 {
+	width: 59.16666667%
+}
+
+.s-row-fluid .s-span37 {
+	width: 60.83333333%
+}
+
+.s-row-fluid .s-span38 {
+	width: 62.5%
+}
+
+.s-row-fluid .s-span39 {
+	width: 64.16666667%
+}
+
+.s-row-fluid .s-span40 {
+	width: 65.83333333%
+}
+
+.s-row-fluid .s-span41 {
+	width: 67.5%
+}
+
+.s-row-fluid .s-span42 {
+	width: 69.16666667%
+}
+
+.s-row-fluid .s-span43 {
+	width: 70.83333333%
+}
+
+.s-row-fluid .s-span44 {
+	width: 72.5%
+}
+
+.s-row-fluid .s-span45 {
+	width: 74.16666667%
+}
+
+.s-row-fluid .s-span46 {
+	width: 75.83333333%
+}
+
+.s-row-fluid .s-span47 {
+	width: 77.5%
+}
+
+.s-row-fluid .s-span48 {
+	width: 79.16666667%
+}
+
+.s-row-fluid .s-span49 {
+	width: 80.83333333%
+}
+
+.s-row-fluid .s-span50 {
+	width: 82.5%
+}
+
+.s-row-fluid .s-span51 {
+	width: 84.16666667%
+}
+
+.s-row-fluid .s-span52 {
+	width: 85.83333333%
+}
+
+.s-row-fluid .s-span53 {
+	width: 87.5%
+}
+
+.s-row-fluid .s-span54 {
+	width: 89.16666667%
+}
+
+.s-row-fluid .s-span55 {
+	width: 90.83333333%
+}
+
+.s-row-fluid .s-span56 {
+	width: 92.5%
+}
+
+.s-row-fluid .s-span57 {
+	width: 94.16666667%
+}
+
+.s-row-fluid .s-span58 {
+	width: 95.83333333%
+}
+
+.s-row-fluid .s-span59 {
+	width: 97.5%
+}
+
+.s-row-fluid .s-span60 {
+	width: 99.16666667% /* 1190/1200 */
+}
+
+/*
+ * @description 流pct布局
+ * 特征：百分比长度，无左边距，无下边距
+ * 算法：s-pct-n的长度为n%
+ */
+.s-row-fluid [class*="s-pct"] {
+	margin: 0;
+	display: block;
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.s-row-fluid .s-pct10 {
+	width: 10%
+}
+
+.s-row-fluid .s-pct20 {
+	width: 20%
+}
+
+.s-row-fluid .s-pct25 {
+	width: 25%
+}
+
+.s-row-fluid .s-pct30 {
+	width: 30%
+}
+
+.s-row-fluid .s-pct33 {
+	width: 33%
+}
+
+.s-row-fluid .s-pct40 {
+	width: 40%
+}
+
+.s-row-fluid .s-pct45 {
+	width: 45%
+}
+
+.s-row-fluid .s-pct50 {
+	width: 50%
+}
+
+.s-row-fluid .s-pct55 {
+	width: 55%
+}
+
+.s-row-fluid .s-pct60 {
+	width: 60%
+}
+
+.s-row-fluid .s-pct70 {
+	width: 70%
+}
+
+.s-row-fluid .s-pct75 {
+	width: 75%
+}
+
+.s-row-fluid .s-pct80 {
+	width: 80%
+}
+
+.s-row-fluid .s-pct90 {
+	width: 90%
+}
+
+.s-row-fluid .s-pct100 {
+	width: 100%
+}

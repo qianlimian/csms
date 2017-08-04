@@ -65,15 +65,15 @@
 
                         if (pageable !== false) {
 
-                            var queryBean = {
+                            var queryParam = {
                                 queryBean : JSON.stringify(data)
                             };
 
                             if (options.parameterMap) {
-                                queryBean.condition = JSON.stringify(options.parameterMap());
+                                queryParam.condition = JSON.stringify(options.parameterMap());
                             }
 
-                            return queryBean;
+                            return queryParam;
                         } else {
                             return $.extend(data, {});
                         }
@@ -366,6 +366,23 @@
         return datePicker;
     };
 
+    //增强的自定义datetimepicker
+    smart.kendoui.datetimePicker = function (selector, options) {
+        options = $.extend(true, {
+            format: 'yyyy-MM-dd hh:mm'
+        }, options);
+
+        var datetimePicker = $(selector).kendoDateTimePicker(options).data('kendoDateTimePicker');
+
+        datetimePicker.element
+            .on("focusin.kendoDateTimePicker", function () { datetimePicker.open() })
+            .on("click.kendoDateTimePicker", function () { datetimePicker.open() });
+
+        smart.kendoui._removeSpanClass(selector);
+
+        return datetimePicker;
+    };
+
     //增强的自定义numericTextBox
     smart.kendoui.numericTextBox = function (selector, options) {
         var numericTextBox = $(selector).kendoNumericTextBox(options).data('kendoNumericTextBox');
@@ -488,6 +505,19 @@
     };
 
     //----------------------------扩展kendoui方法--------------------------------------
+    kendo.ui.Grid.prototype.getParameterMap = function () {
+        var dataSource = this.dataSource;
+        return {
+            take: dataSource._take,
+            skip : dataSource._skip,
+            page : dataSource._page,
+            pageSize : dataSource._pageSize,
+            total : dataSource._total,
+            filter : dataSource._filter,
+            sort : dataSource._sort
+        }
+    };
+
     kendo.ui.Grid.prototype.selectById = function (rowId) {
         if (rowId && rowId != -1) {
             var rowData = this.dataSource.get(rowId);

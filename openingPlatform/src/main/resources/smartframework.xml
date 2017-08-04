@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+        
+    <!-- ==================================================================================== -->
+	<!--spring帮助类，实现ApplicationContextAware接口，获得spring上下文 -->
+	<bean class="org.smartframework.platform.context.SpringContext"></bean>
+	
+	<!-- ==================================================================================== -->
+	<!-- 在save方法前配置bean校验切面 -->
+	<bean id="validateAspectBean" class="org.smartframework.platform.validate.ValidateAspect" />
+	<aop:config>
+		<aop:aspect id="validateAspect" ref="validateAspectBean">
+			<aop:pointcut id="ctrlSaveMethod"
+				expression="execution(* org.smartframework..*Ctrl.save*(..)) || execution(* com.bycc..*Ctrl.save*(..)) "/>
+			<aop:around method="dataValidate" pointcut-ref="ctrlSaveMethod" />
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- dto|enum 扫描路径配置 -->
+	<bean id="dtoReaderModel" class="org.smartframework.platform.dto.DtoReaderModelImpl" />
+	<bean id="dictionaryModel" class="org.smartframework.platform.dictionary.model.DictionaryModelImpl" autowire="byName">
+		<property name="entrys">
+			<list>
+				<value>classpath*:/com/bycc/**/entry.xml</value>
+				<value>classpath*:/org/smartframework/**/entry.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="scannerBean" class="org.smartframework.platform.scanner.ScannerImpl" autowire="byName">
+		<property name="packageName">
+			<list>
+				<value>com.bycc</value>
+				<value>org.smartframework</value>
+			</list>
+		</property>
+		<property name="readers">
+			<list>
+				<ref bean="dtoReaderModel" />
+				<ref bean="dictionaryModel" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

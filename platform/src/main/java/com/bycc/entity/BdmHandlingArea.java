@@ -102,6 +102,14 @@ public class BdmHandlingArea implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "handlingArea", fetch = FetchType.LAZY)
     private List<BdmStrap> straps = new ArrayList<BdmStrap>();
 
+    public BdmHandlingArea(){}
+    //构造函数--构造测试数据用
+    public BdmHandlingArea(String code, String name, BdmPoliceStation ps) {
+        this.code = code;
+        this.name = name;
+        this.policeStation = ps;
+    }
+
     public Integer getId() {
         return id;
     }

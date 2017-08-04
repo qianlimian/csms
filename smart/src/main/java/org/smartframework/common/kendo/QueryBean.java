@@ -105,8 +105,12 @@ public class QueryBean {
 
     /**
      * 获取过滤参数
+     *  {
+     *     keys: [ "name = :name", "age = :age"]
+     *     values: { name : "zhangsan", age : 1 }
+     *  }
      */
-    public Map<String, Object> getFilterMap() {
+    public Map<String, Object> getFilters() {
         LogicFilter lf = this.filter;
         if (lf == null) {
             return null;
@@ -127,15 +131,27 @@ public class QueryBean {
         }
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("keys", String.join(" and ", keys));
+        map.put("keys", keys);
         map.put("values", values);
         return map;
     }
 
+    public String[] getFiltersParam() {
+        Map<String, Object> filters = getFilters();
+        return (String[]) filters.get("keys");
+    }
+
+    public Map<String, Object> getFiltersValue() {
+        Map<String, Object> filters = getFilters();
+        return (Map<String, Object>) filters.get("values");
+    }
+
+
     /**
      * 获取排序参数
+     *  [ name desc, age asc ]
      */
-    public String getSortString () {
+    public String[] getSorts() {
         List<Sort> sorts = this.sort;
         if (sorts == null || sorts.isEmpty()) {
             return null;
@@ -146,7 +162,7 @@ public class QueryBean {
             Sort sort = sorts.get(i);
             sortArr[i] = sort.getField() + " " + sort.getDir();
         }
-        return String.join(",", sortArr);
+        return sortArr;
     }
 
     public int getPage() {

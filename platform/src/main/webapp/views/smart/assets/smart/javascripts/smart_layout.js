@@ -79,7 +79,7 @@ $(function () {
     $("#theme ul").smartTheme();
 
     //初始化switch选择器
-    var $panel = $('#s-panel'),
+    var $panel = $(document.body),
         $widthSwitch = $("input[name='widthSwitch']"),
         $navBarSwitch = $("input[name='navbarSwitch']");
 

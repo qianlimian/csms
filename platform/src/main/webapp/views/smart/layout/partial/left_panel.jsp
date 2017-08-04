@@ -24,7 +24,7 @@
                                 <ul class="s-menu s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
                                     <c:forEach items="${groupLeafMenu.leafMenus}" var="leafMenu">
                                         <li>
-                                            <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
+                                            <a href="${ctx}${leafMenu.url}" class="ellipsis <c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
                                         </li>
                                     </c:forEach>
                                 </ul>
@@ -57,7 +57,7 @@
                     <ul class="s-nav s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
                         <c:forEach items="${groupLeafMenu.leafMenus}" var="leafMenu">
                             <li>
-                                <a href="${ctx}${leafMenu.url}" class="<c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
+                                <a href="${ctx}${leafMenu.url}" class="ellipsis <c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
                             </li>
                         </c:forEach>
                     </ul>

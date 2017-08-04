@@ -33,7 +33,7 @@ import java.util.Map;
  * @date   09/02/2012
  * @author na.shi.wu.you (raistlic@gmail.com)
  */
-public abstract class  NumberText {
+public abstract class NumberText {
   
   /*----------------------------------------------------------------------------
    * not designed to be inherented outside this file

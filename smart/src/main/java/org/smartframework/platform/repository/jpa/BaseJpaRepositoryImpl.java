@@ -50,17 +50,17 @@ public class BaseJpaRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
 		}
 
 		//grid过滤参数
-		Map<String, Object> filters = queryBean.getFilterMap();
+		Map<String, Object> filters = queryBean.getFilters();
 		if (filters != null) {
-			hql.append(" and " + filters.get("keys"));
+			hql.append(" and " + String.join(" and ", queryBean.getFiltersParam()));
 
-			map.putAll((Map) filters.get("values"));
+			map.putAll(queryBean.getFiltersValue());
 		}
 
 		//grid排序参数
-		String sorts = queryBean.getSortString();
+        String[] sorts = queryBean.getSorts();
 		if (sorts != null) {
-			hql.append(" order by " + sorts);
+			hql.append(" order by " + String.join(",", sorts));
 		}
 
 		//构造查询
@@ -92,15 +92,15 @@ public class BaseJpaRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
 		StringBuilder hql = new StringBuilder("from " + entityName + " where 1=1");
 
 		//grid过滤参数
-		Map<String, Object> filters = queryBean.getFilterMap();
+		Map<String, Object> filters = queryBean.getFilters();
 		if (filters != null) {
-			hql.append(" and " + (String) filters.get("keys"));
+			hql.append(" and " + String.join(" and ", queryBean.getFiltersParam()));
 		}
 
 		//grid排序参数
-		String sorts = queryBean.getSortString();
+		String[] sorts = queryBean.getSorts();
 		if (sorts != null) {
-			hql.append(" order by " + sorts);
+			hql.append(" order by " + String.join(",", sorts));
 		}
 
 		//构造查询
@@ -108,7 +108,7 @@ public class BaseJpaRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
 
 		//grid过滤参数赋值
 		if (filters != null) {
-			Map<String, Object> values = (Map<String, Object>) filters.get("values");
+			Map<String, Object> values = queryBean.getFiltersValue();
 			for (String key : values.keySet()) {
 				query.setParameter(key, values.get(key));
 			}

@@ -79,7 +79,15 @@ public class BdmEvaluation implements Serializable {
     @Column(name = "update_date_")
     private Date updateDate;
 
-    
+    public BdmEvaluation() {}
+    //构造函数--构造测试数据用
+    public BdmEvaluation(String standard, Integer parent, BigDecimal score) {
+        this.standard = standard;
+        this.parent = parent;
+        this.score = score;
+    }
+
+
     public Integer getId() {
         return id;
     }

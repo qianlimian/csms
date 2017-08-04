@@ -63,6 +63,15 @@ public class BdmPoliceStationCtrl {
     }
 
     /**
+     * 查询所有
+     */
+    @RequestMapping("/find4Select")
+    @ResponseBody
+    public List<BdmPoliceStationDto> find4Select(@RequestParam(value="areaType", required=false) String areaType){
+        return service.find4Select(areaType);
+    }
+
+    /**
      * 按id查找
      */
     @RequestMapping("/findById")

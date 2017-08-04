@@ -67,6 +67,15 @@ public class BdmPoliceStationDto {
      */
     private List<Integer> deletes = new ArrayList<Integer>();
 
+
+    public static List<BdmPoliceStationDto> toDtoList(List<BdmPoliceStation> policeStations) {
+        List<BdmPoliceStationDto> dtos = new ArrayList<BdmPoliceStationDto>();
+        for (BdmPoliceStation policeStation : policeStations) {
+            dtos.add(toDto(policeStation));
+        }
+        return dtos;
+    }
+
     public static BdmPoliceStationDto toDto(BdmPoliceStation policeStation) {
         BdmPoliceStationDto dto = new BdmPoliceStationDto();
         dto.setId(policeStation.getId());

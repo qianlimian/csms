@@ -31,6 +31,8 @@
 var playingVideos = [];
 //播放视频的DIV数组
 var divTypes = [];
+//定时刷新定位
+var locateTimer;
 
 Array.prototype.contains = function ( needle ) {
 	for (i in this) {
@@ -39,6 +41,8 @@ Array.prototype.contains = function ( needle ) {
 	return false;
 }
 $(function(){
+    $(".content").height($(window).height() - $(".content").offset().top);
+
     //获取树数据
     function getTreeData() {
         var policeStationsStr = '${policeStations }';
@@ -89,16 +93,19 @@ $(function(){
 
     //树点击事件
     function onTreeNodeSelect(e){
-
+    	window.clearInterval(locateTimer);
         var treeView =  $("#ctnBdmPoliceStationListWrap").data("kendoTreeView");
         var selectedNode = treeView.dataItem(e.node);
         if (selectedNode.type == 'people') {
+        	locateTimer = setInterval(function(){dragRoomLayout(selectedNode.parent().parent().parent().parent().id, selectedNode.id)}, 10*1000);
         	dragRoomLayout(selectedNode.parent().parent().parent().parent().id, selectedNode.id);
         }
         if (selectedNode.type == 'station') {
+        	locateTimer = setInterval(function(){dragRoomLayout(selectedNode.id, null)}, 10*1000);
         	dragRoomLayout(selectedNode.id, null);
         }
         if (selectedNode.type == 'case') {
+        	locateTimer = setInterval(function(){dragRoomLayout(selectedNode.parent().parent().id, null)}, 10*1000);
         	dragRoomLayout(selectedNode.parent().parent().id, null);
         }
 
@@ -146,7 +153,10 @@ $(function(){
                         }); 
                     });
             	} else {
-            		smart.alert("获取定位信息失败！");
+            		if(roomDtos.length > 0) {
+            			smart.alert("获取定位信息失败！");
+            		}
+            		window.clearInterval(locateTimer);
             		//显示办案区布局
                     $('#ctnBdmRoomWrap').empty();
                     for (var i = 0; i < roomDtos.length; i++) {

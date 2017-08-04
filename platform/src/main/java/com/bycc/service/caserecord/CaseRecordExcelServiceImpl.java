@@ -43,18 +43,6 @@ public class CaseRecordExcelServiceImpl implements CaseRecordExcelService{
     @Override
     public HSSFWorkbook getExcel(String handleStatus,String masterUnit,String acceptStart,String acceptEnd,String closeStart,String closeEnd) throws ParseException {
         String[] excelHeader = { "ID","案件编号", "案件名称", "嫌疑人","主办单位","主办人","办理状态","警情编号","简要案情","案件类型","受理单位","受理人","协办单位","协办人","案发时间","受案时间","立案时间","办案时间","结案时间","案件状态","备注"};
-        //按条件查找相应的caseRecord
-        /*CaseHandle caseHandleEnum = CaseHandle.getMatchByValue(handleStatus);
-        BdmPoliceStation masterUnitEntity = bdmPoliceStationDao.findOne(Integer.valueOf(masterUnit));
-        Date acceptStartDate = DateHelper.formatStringToDate(acceptStart,"yyyy-MM-dd");
-        Date acceptEndDate = DateHelper.formatStringToDate(acceptEnd,"yyyy-MM-dd");
-        Date closeStartDate = DateHelper.formatStringToDate(closeStart,"yyyy-MM-dd");
-        Date closeEndDate = DateHelper.formatStringToDate(closeEnd,"yyyy-MM-dd");*/
-        //直接写Query的方法
-//        List<CaseRecord> list = caseRecordOpenDao.findCondition(caseHandleEnum,masterUnitEntity,acceptStartDate,acceptEndDate,closeStartDate,closeEndDate);
-        //使用组合条件的方法
-//        List<CaseRecord> list = caseRecordOpenExportDao.findAll(where(handleStatus,masterUnit,acceptStart,acceptEnd,closeStart,closeEnd));
-        //hibernate进行查找
         List<CaseRecord> list=findCaseRecordExport(handleStatus,masterUnit,acceptStart,acceptEnd,closeStart,closeEnd);
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet("sheet");

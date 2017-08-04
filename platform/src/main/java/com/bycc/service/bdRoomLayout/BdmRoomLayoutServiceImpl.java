@@ -45,7 +45,6 @@ public class BdmRoomLayoutServiceImpl implements BdmRoomLayoutService {
     @Override
     public void saveLayout(List<Map<String, Object>> list) {
         for (Map<String, Object> map : list) {
-            System.out.println(map);
             //{id=room1, h=, w=, x=, y=}
             String id = map.get("id").toString().substring(4);
             BdmRoom bdmRoom = roomDao.findOne(Integer.valueOf(id));

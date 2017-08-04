@@ -4,10 +4,13 @@
 package com.bycc.controller;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bycc.dto.CaseFindParamDto;
+import com.bycc.entity.CaseRecord;
 import com.bycc.service.bdmPoliceStation.BdmPoliceStationService;
 import com.bycc.service.caserecord.CaseRecordExcelService;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -61,7 +64,6 @@ public class CaseRecordCtrl {
      */
     @RequestMapping
     public String index(Model model) {
-        model.addAttribute("policeStations", psService.findAll());
         model.addAttribute("polices", psService.findAllSubs());
         return "/pages/caseRecord/index";
     }
@@ -144,6 +146,65 @@ public class CaseRecordCtrl {
     public CaseRecordDto finishCase(@RequestParam(value = "caseId", required = false) Integer caseId,
                                     @RequestParam(value = "caseRecordId", required = false) Integer caseRecordId) throws Exception {
         return service.finishCase(caseId, caseRecordId);
+    }
+
+
+    /**
+     * 查找CaseRecord(QueryBean,Condition)
+     * @return
+     */
+    @RequestMapping("search")
+    @ResponseBody
+    public Map<String, Object> search(@RequestParam("queryBean") QueryBean qb,
+                                   @RequestParam("condition") CaseFindParamDto caseFindParamDto) throws ParseException {
+
+        List<CaseRecordDto> dtos = service.search(qb,caseFindParamDto);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("total", qb.getTotal());
+        map.put("items", dtos);
+        return map;
+    }
+
+    /**
+     * 导出excel文件
+     */
+    @RequestMapping("excel")
+    @ResponseBody
+    public void excel(@RequestParam("param") CaseFindParamDto caseFindParamDto,@RequestParam("qb") QueryBean queryBean,HttpServletResponse response) throws IOException, ParseException {
+        HSSFWorkbook wb = service.getExcel(queryBean,caseFindParamDto);
+        String fileName = "案件信息";
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        wb.write(os);
+        byte[] content = os.toByteArray();
+        InputStream is = new ByteArrayInputStream(content);
+        // 设置response参数，可以打开下载页面
+        response.reset();
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment;filename="
+                + new String((fileName + ".xls").getBytes(), "iso-8859-1"));
+        ServletOutputStream out = response.getOutputStream();
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+
+        try {
+            bis = new BufferedInputStream(is);
+            bos = new BufferedOutputStream(out);
+            byte[] buff = new byte[2048];
+            int bytesRead;
+            // Simple read/write loop.
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                bos.write(buff, 0, bytesRead);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            if (bis != null)
+                bis.close();
+            if (bos != null)
+                bos.close();
+        }
     }
 
 }

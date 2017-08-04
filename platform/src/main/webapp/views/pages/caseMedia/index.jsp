@@ -5,10 +5,6 @@
 <body>
 
 <style>
-	/* html, body {
-	    min-height: 100% !important;  
-	    height: auto; 
-	} */
 	.s-row {
 		width: 100%;
 		display: block;
@@ -327,11 +323,6 @@
     var sortValue="${sort}";
     $(".s-input").val(filter);
     
-    if(total>0){
-    	$("body").height("auto");
-    }else{
-    	$("body").height("100%");
-    }
     //分页
     $.jqPaginator('#pagination', {
         //totalPages: parseInt(total/pageSize),

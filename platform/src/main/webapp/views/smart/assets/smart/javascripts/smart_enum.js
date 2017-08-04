@@ -159,6 +159,17 @@
         {value: true, text: "是"},
         {value: false, text: "否"}
     ]);
+    
+    new smart.Enum("com.bycc.enumitem.BdmAlarmType", [
+	    {value: "FCGGJ", text: "防串供告警"},
+	    {value: "SBGJ", text: "设备告警"},
+	    {value: "JYCSGJ", text: "羁押超时告警"}
+	]);
+    
+    new smart.Enum("com.bycc.enumitem.BdmAlarmStatus", [
+  	    {value: "JY", text: "已解决"},
+  	    {value: "WJY", text: "未解决"}
+  	]);
 })();
 
 

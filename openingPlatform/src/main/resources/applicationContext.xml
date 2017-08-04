@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:uti="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 不扫描带有@Controller注解的类。因为这些类已经随容器启动时扫描过了 -->
+    <context:component-scan base-package="com.bycc,org.smartframework">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+	<!--1.配置数据源-->
+	<context:property-placeholder location="classpath:properties/dataSource.properties" ignore-unresolvable="true"/>
+	<!--邮件配置-->
+	<uti:properties id="mailConfig" location="classpath:properties/mail.properties"/>
+	<!--短信平台配置-->
+	<uti:properties id="smsConfig" location="classpath:properties/sms.properties"/>
+
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig"/>
+    </bean>
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="autoCommit" value="false" />
+		<property name="poolName" value="springHikariCP" />
+		<!-- 等待连接池分配连接的最大时长，缺省30000毫秒（30秒），超过这个时长还没可用的连接则发生SQLException -->
+		<property name="connectionTimeout" value="300000" />
+		<!-- 一个连接idle状态的最大时长，缺省600000毫秒（10分钟），超时则被释放（retired） -->
+		<property name="idleTimeout" value="600000" />
+ 		<!-- 一个连接的生命时长，缺省1800000毫秒（30分钟），超时而且没被使用则被释放（retired） -->
+		<property name="maxLifetime" value="1800000" />
+		<!-- This is the query that will be executed just before a connection is given to you from the pool to validate that the connection to the database is still alive -->
+		<property name="connectionTestQuery" value="select 1" />
+		<!-- 连接池中允许的最大连接数。缺省值：10 -->
+		<property name="maximumPoolSize" value="10" />
+		<property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="url">${mysql.url}</prop>
+				<prop key="user">${mysql.username}</prop>
+				<prop key="password">${mysql.password}</prop>
+				<prop key="prepStmtCacheSize">250</prop>
+				<prop key="prepStmtCacheSqlLimit">2048</prop>
+				<prop key="cachePrepStmts">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--2.配置实体管理工厂-->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaAdapter" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="packagesToScan">
+			<list>
+                <value>com.bycc.entity</value>
+                <value>com.bycc.demo.entity</value>
+                <value>org.smartframework.manager.entity</value>
+            </list>
+        </property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+	</bean>
+
+	<!--3.配置事务管理器-->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!--4.配置事务属性-->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!--5.配置事务切面-->
+	<aop:config>
+		<!--声明切片路径，该路径下的类将在执行前被注入切片方法 -->
+		<aop:pointcut id="txPointcut" expression="execution(* com.bycc..*Service.*(..)) || execution(* org.smartframework..*Service.*(..))" />
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
+	</aop:config>
+
+	<!--springJPA配置-->
+	<jpa:repositories base-package="com.bycc.dao,com.bycc.demo.dao,org.smartframework.manager.dao"
+	 	              entity-manager-factory-ref="entityManagerFactory"
+	                  factory-class="org.smartframework.platform.repository.jpa.BaseJpaRepositoryFactoryBean"
+	                  transaction-manager-ref="transactionManager"/>
+
+	<!-- ==================================================================================== -->
+	<!-- springSecurity登陆实现 -->
+	<import resource="springSecurity.xml" />
+
+</beans>
