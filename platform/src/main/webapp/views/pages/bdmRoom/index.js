@@ -176,7 +176,10 @@
             $stationSubGrid.height(gridHeight/4);
             $cameraSubGrid.height(gridHeight/4);
 
-            smart.kendoui.fixGridHeight($indexGrid, $mainGrid, $stationSubGrid, $cameraSubGrid);
+            smart.kendoui.fixGridHeight($indexGrid);
+            smart.kendoui.fixGridHeight($mainGrid);
+            smart.kendoui.fixGridHeight($stationSubGrid);
+            smart.kendoui.fixGridHeight($cameraSubGrid);
         }
 
     });

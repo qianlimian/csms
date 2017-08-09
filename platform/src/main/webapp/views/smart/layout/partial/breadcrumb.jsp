@@ -2,7 +2,7 @@
 
 <ol class="s-breadcrumb">
     <li><a href="${ctx}">首页</a></li>
-    <li><a href="${ctx}${currentModuleMenu.url}">${currentModuleMenu.name}</a></li>
+    <li>${currentModuleMenu.name}</li>
     <c:if test="${not empty currentGroupMenu}">
         <li>${currentGroupMenu.name}</li>
     </c:if>

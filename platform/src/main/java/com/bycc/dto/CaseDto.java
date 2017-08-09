@@ -20,11 +20,6 @@ public class CaseDto {
 	private Integer id;
 
 	/**
-	 * 办案记录
-	 */
-	private Integer caseRecordId;
-
-	/**
 	 * 警情编号
 	 */
 	private String alarmCode;
@@ -133,10 +128,15 @@ public class CaseDto {
 	 */
 	private String note;
 
+    /**
+     * 办案记录
+     */
+    private Integer caseRecordId;
+    private String caseHandle;
+
 	public static CaseDto toDto(Case c) {
 		CaseDto dto = new CaseDto();
 		dto.setId(c.getId());
-		dto.setCaseRecordId(c.getCaseRecord() != null ? c.getCaseRecord().getId() : null);
 		dto.setAlarmCode(c.getAlarmCode());
 		dto.setCaseCode(c.getCaseCode());
 		dto.setCaseName(c.getCaseName());
@@ -165,15 +165,15 @@ public class CaseDto {
         }
         if (c.getSlavePolice() != null) {
             dto.setSlavePoliceId(c.getSlavePolice().getId());
-            dto.setSlavePoliceName(c.getSlavePolice().getUser() != null ? c.getSlavePolice().getUser().getName() : null);
+            dto.setSlavePoliceName(c.getSlavePolice().getUser().getName());
         }
         if (c.getMasterPolice() != null) {
-            dto.setMasterPoliceId(c.getMasterPolice() != null ? c.getMasterPolice().getId() : null);
-            dto.setMasterPoliceName(c.getMasterPolice() != null ? c.getMasterPolice().getUser().getName() : null);
+            dto.setMasterPoliceId(c.getMasterPolice().getId());
+            dto.setMasterPoliceName(c.getMasterPolice().getUser().getName());
         }
         if (c.getAcceptPolice() != null) {
-            dto.setAcceptPoliceId(c.getAcceptPolice() != null ? c.getAcceptPolice().getId() : null);
-            dto.setAcceptPoliceName(c.getAcceptPolice() != null ? c.getAcceptPolice().getUser().getName() : null);
+            dto.setAcceptPoliceId(c.getAcceptPolice().getId());
+            dto.setAcceptPoliceName(c.getAcceptPolice().getUser().getName());
         }
 		dto.setOccurDate(DateHelper.formatDateToString(c.getOccurDate(), "yyyy-MM-dd hh:mm"));
 		dto.setAcceptDate(DateHelper.formatDateToString(c.getAcceptDate(), "yyyy-MM-dd hh:mm"));
@@ -181,6 +181,13 @@ public class CaseDto {
 		dto.setCloseDate(DateHelper.formatDateToString(c.getCloseDate(), "yyyy-MM-dd hh:mm"));
 		dto.setInsertDate(DateHelper.formatDateToString(c.getInsertDate(), "yyyy-MM-dd hh:mm"));
 		dto.setUpdateDate(DateHelper.formatDateToString(c.getUpdateDate(), "yyyy-MM-dd hh:mm"));
+
+		//办案记录相关
+        if (c.getCaseRecord() != null) {
+            dto.setCaseRecordId(c.getCaseRecord().getId());
+            dto.setCaseHandle(c.getCaseRecord().getCaseHandle().key());
+        }
+
 		return dto;
 	}
 
@@ -432,4 +439,11 @@ public class CaseDto {
         this.note = note;
     }
 
+    public String getCaseHandle() {
+        return caseHandle;
+    }
+
+    public void setCaseHandle(String caseHandle) {
+        this.caseHandle = caseHandle;
+    }
 }

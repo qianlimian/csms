@@ -3,13 +3,6 @@
  * @author zhaochuanfeng
  */
 /* --------------------------layout布局------------------------------*/
-.smart-layout {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0 auto
-}
 
 #header {
     height: 60px;
@@ -66,7 +59,8 @@
 
 #s-panel {
     margin: 0 auto;
-    height: 100%;
+    min-height: 100%;
+    position: relative;
 }
 
 #s-left-panel {
@@ -89,7 +83,6 @@
 #s-main-panel {
     position: relative;
     padding-left: 220px;
-    height: calc(100% - 100px);
 }
 
 #footer {
@@ -106,46 +99,46 @@
 }
 
 /* ----------------------导航菜单栏--------------------------- */
-.s-nav,
-.s-menu {
+.s-top-menu,
+.s-left-menu {
     width: 100%;
     padding: 0;
     margin: 0;
     list-style: none
 }
 
-.s-nav li,
-.s-menu li {
+.s-top-menu li,
+.s-left-menu li {
     line-height: 25px
 }
 
-.s-nav li a,
-.s-menu li a {
+.s-top-menu li a,
+.s-left-menu li a {
     font-size: 12px;
     color: #444;
     text-decoration: none !important
 }
 
-.s-nav li a:hover,
-.s-menu li a:hover {
+.s-top-menu li a:hover,
+.s-left-menu li a:hover {
     color: #444;
     background: rgba(0, 0, 0, 0.05);
     cursor: pointer
 }
 
-.s-nav li a span,
-.s-menu li a span {
+.s-top-menu li a span,
+.s-left-menu li a span {
     padding: 0 5px
 }
 
 /* （顶部）一级菜单 */
-.s-nav.s-module-menu > li {
+.s-top-menu.s-module-menu > li {
     display: inline-block;
     border: 1px solid #ccc;
     border-bottom: 1px solid transparent;
 }
 
-.s-nav.s-module-menu > li > a {
+.s-top-menu.s-module-menu > li > a {
     font-size: 13px;
     color: #333;
     text-align: center;
@@ -155,40 +148,40 @@
     padding: 5px 10px
 }
 
-.s-nav.s-module-menu > li > a:hover {
+.s-top-menu.s-module-menu > li:hover > a {
     color: #333;
     background: rgba(0, 0, 0, 0.05);
     cursor: pointer
 }
 
 /* （左侧）一级菜单 */
-.s-menu.s-module-menu {
+.s-left-menu.s-module-menu {
     border-top: 1px solid #ccc
 }
 
-.s-menu.s-module-menu > li {
+.s-left-menu.s-module-menu > li {
     background-color: #f5f5f5;
     border-bottom: 1px solid #dfdfdf
 }
 
-.s-menu.s-module-menu > li > a {
+.s-left-menu.s-module-menu > li > a {
     display: block;
     padding: 5px 10px
 }
 
 /* 二、三级菜单 */
-.s-nav.s-group-menu {
+.s-top-menu.s-group-menu {
     border-bottom: 1px solid #ccc
 }
 
-.s-nav.s-group-menu li,
-.s-menu.s-group-menu li {
+.s-top-menu.s-group-menu li,
+.s-left-menu.s-group-menu li {
     line-height: 25px;
     border-top: 1px solid #ccc
 }
 
-.s-nav.s-group-menu li > a,
-.s-menu.s-group-menu li > a {
+.s-top-menu.s-group-menu li > a,
+.s-left-menu.s-group-menu li > a {
     display: block;
     padding: 5px 10px;
     text-indent: 10px;
@@ -196,8 +189,8 @@
 }
 
 /* 三级菜单 */
-.s-nav.s-leaf-menu li > a,
-.s-menu.s-leaf-menu li > a {
+.s-top-menu.s-leaf-menu li > a,
+.s-left-menu.s-leaf-menu li > a {
     text-indent: 20px
 }
 
@@ -211,10 +204,7 @@
     width: 80%;
     height: 100%;
     margin: 0 auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-top: 0;
-    border-bottom: 0
+    padding-top: 10px;
 }
 
 .s-portal-image > a {
@@ -261,6 +251,7 @@
 /*-----------------------切換寬度、菜单布局-----------------------------*/
 .fixed-width {
     width: 1200px;
+    margin: 0 auto;
     border: 1px solid #ccc
 }
 
@@ -273,11 +264,13 @@
     border: none !important;
 }
 
-.shrink-menu .top-nav, .expend-menu .left-nav {
+.expend-menu .s-shrink,
+.shrink-menu .s-expend {
     display: none !important;
 }
 
-.shrink-menu .left-nav, .expend-menu .top-nav {
+.shrink-menu .s-shrink,
+.expend-menu .s-expend {
     display: block !important;
 }
 
@@ -316,11 +309,8 @@
     text-align: center
 }
 
+.minified #s-top-panel,
 .minified #s-main-panel {
-    padding-left: 120px
-}
-
-.minified #s-top-panel {
     padding-left: 120px
 }
 
@@ -328,23 +318,24 @@
     display: none
 }
 
-.minified .s-menu.s-group-menu,
-.minified .s-nav.s-leaf-menu {
-    display: none;
+.minified .s-left-menu.s-group-menu,
+.minified .s-top-menu.s-leaf-menu {
+    display: none !important;
     position: absolute;
     left: 120px;
+    width: 120px;
     margin-top: -36px;
-    margin-left: 1px;
     background: #fff;
     border-right:1px solid #ccc;
     border-bottom:1px solid #ccc;
     border-left:1px solid #ccc
 }
 
-.minified .s-menu.s-leaf-menu {
-    display: none;
+.minified .s-left-menu.s-leaf-menu {
+    display: none !important;
     position: absolute;
     left: 120px;
+    width: 120px;
     margin-top: -36px;
     margin-left: -1px;
     background: #fff;
@@ -353,20 +344,26 @@
     border-left:1px solid #ccc
 }
 
-.minified .s-menu.s-module-menu > li > a,
-.minified .s-nav.s-group-menu li > a,
-.minified .s-menu.s-group-menu li > a {
+.minified .s-left-menu.s-module-menu > li > a,
+.minified .s-left-menu.s-group-menu > li > a,
+.minified .s-top-menu.s-group-menu > li > a {
     padding: 5px 0;
     text-align: left;
     text-indent: 10px
 }
-.minified .s-nav.s-leaf-menu li > a,
-.minified .s-menu.s-leaf-menu li > a {
-    padding: 5px 10px;
+
+.minified .s-left-menu.s-leaf-menu > li > a,
+.minified .s-top-menu.s-leaf-menu > li > a {
+    padding: 5px 0;
     text-align: center;
     text-indent: 0;
 }
 
+.minified .s-left-menu.s-module-menu > li:hover > ul,
+.minified .s-left-menu.s-group-menu > li:hover > ul,
+.minified .s-top-menu.s-group-menu > li:hover > ul {
+    display: block !important;
+}
 
 /* ----------------------面包屑--------------------------- */
 .s-breadcrumb {
@@ -523,8 +520,8 @@
 
 /* ----------------------不同主题的导航栏、面包屑等样式--------------------------- */
 /* ********************** .K-black ************************ */
-.k-black .s-nav li a:not(.k-state-selected),
-.k-black .s-menu li a:not(.k-state-selected),
+.k-black .s-top-menu li a:not(.k-state-selected),
+.k-black .s-left-menu li a:not(.k-state-selected),
 .k-black .s-breadcrumb {
     background: linear-gradient(to bottom,
     rgba(255, 255, 255, 0.12) 0,
@@ -536,15 +533,15 @@
 }
 
 .k-black body, .k-black .s-fieldset>label, .k-black fieldset, .k-black legend,
-.k-black .s-nav li a:hover,
-.k-black .s-menu li a:hover {
+.k-black .s-top-menu li a:hover,
+.k-black .s-left-menu li a:hover {
     background: #292525;
     color: #fff;
 }
 
 /************************ .K-blueopal ***********************/
-.k-blueopal .s-nav li a:not(.k-state-selected),
-.k-blueopal .s-menu li a:not(.k-state-selected),
+.k-blueopal .s-top-menu li a:not(.k-state-selected),
+.k-blueopal .s-left-menu li a:not(.k-state-selected),
 .k-blueopal .s-breadcrumb, .k-blueopal fieldset {
     background: linear-gradient(to bottom,
     rgba(255, 255, 255, 0.45) 0,
@@ -557,14 +554,14 @@
     background: #fff
 }
 
-.k-blueopal .s-nav li a:hover,
-.k-blueopal .s-menu li a:hover {
+.k-blueopal .s-top-menu li a:hover,
+.k-blueopal .s-left-menu li a:hover {
     background: #7BD2F6
 }
 
 /********************* .K-highcontrast ********************/
-.k-highcontrast .s-nav li a:not(.k-state-selected),
-.k-highcontrast .s-menu li a:not(.k-state-selected),
+.k-highcontrast .s-top-menu li a:not(.k-state-selected),
+.k-highcontrast .s-left-menu li a:not(.k-state-selected),
 .k-highcontrast .s-breadcrumb, .k-highcontrast fieldset, .k-highcontrast legend {
     background-color: #2C232B;
     color: #fff
@@ -583,8 +580,8 @@
     background: #1b141a
 }
 
-.k-highcontrast .s-nav li a:hover,
-.k-highcontrast .s-menu li a:hover {
+.k-highcontrast .s-top-menu li a:hover,
+.k-highcontrast .s-left-menu li a:hover {
     background-color: #A7008F;
     color: #fff
 }
@@ -596,8 +593,8 @@
 }
 
 /************************ .K-moonlight **********************/
-.k-moonlight .s-nav li a:not(.k-state-selected),
-.k-moonlight .s-menu li a:not(.k-state-selected),
+.k-moonlight .s-top-menu li a:not(.k-state-selected),
+.k-moonlight .s-left-menu li a:not(.k-state-selected),
 .k-moonlight .s-breadcrumb {
     background: linear-gradient(to bottom,
     rgba(255, 255, 255, 0.2) 0,
@@ -615,8 +612,8 @@
     color: #fff
 }
 
-.k-moonlight .s-nav li a:hover,
-.k-moonlight .s-menu li a:hover {
+.k-moonlight .s-top-menu li a:hover,
+.k-moonlight .s-left-menu li a:hover {
     background: #1F2A35;
     color: #fff
 }

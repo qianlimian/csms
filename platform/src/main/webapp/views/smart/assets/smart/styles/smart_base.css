@@ -65,8 +65,7 @@ body {
     background: url(../images/body.jpg) repeat;
     line-height: 20px;
     width: 100%;
-    min-height: 100%;
-    position: relative;
+    height: 100%;
     cursor: pointer;
 }
 

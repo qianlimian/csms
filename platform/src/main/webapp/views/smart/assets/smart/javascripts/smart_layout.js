@@ -1,27 +1,16 @@
 $(function () {
     //左侧Module菜单
-    $(".s-menu.s-module-menu>li>a").click(function () {
+    $(".s-left-menu.s-module-menu>li>a").click(function () {
         if (!$(document.body).hasClass("minified")) {
             if ($(this).next().is(':visible')) {
                 $(this).children('.s-icon-right').removeClass('fa-chevron-down').addClass('fa-chevron-right');
                 $(this).next().slideUp("fast");
             } else {
-                $(".s-menu.s-module-menu>li>a").children('.s-icon-right').removeClass('fa-chevron-down').addClass('fa-chevron-right');
-                $(".s-menu.s-module-menu>li>a").next().slideUp('fast');
+                $(".s-left-menu.s-module-menu>li>a").children('.s-icon-right').removeClass('fa-chevron-down').addClass('fa-chevron-right');
+                $(".s-left-menu.s-module-menu>li>a").next().slideUp('fast');
                 $(this).children('.s-icon-right').removeClass('fa-chevron-right').addClass('fa-chevron-down');
                 $(this).next().slideDown("fast");
             }
-        }
-    });
-
-    $(".s-menu.s-module-menu>li>a").mouseenter(function () {
-        if ($(document.body).hasClass("minified")) {
-            $(".s-menu.s-module-menu>li>a").next().hide();
-            $(this).next().show();
-        }
-    }).click(function () {
-        if ($(document.body).hasClass("minified")) {
-            $(".s-menu.s-module-menu>li>a").next().hide();
         }
     });
 
@@ -41,16 +30,6 @@ $(function () {
         }
     });
 
-    $(".s-group-menu>li>a").mouseenter(function () {
-        if ($(document.body).hasClass("minified")) {
-            $(".s-group-menu>li>a").next().hide();
-            $(this).next().show();
-        }
-    }).click(function () {
-        if ($(document.body).hasClass("minified")) {
-            $(".s-group-menu>li>a").next().hide();
-        }
-    });
 
     //收缩左侧边栏
     $("#minify").click(function() {
@@ -79,7 +58,7 @@ $(function () {
     $("#theme ul").smartTheme();
 
     //初始化switch选择器
-    var $panel = $(document.body),
+    var $panel = $("#s-panel"),
         $widthSwitch = $("input[name='widthSwitch']"),
         $navBarSwitch = $("input[name='navbarSwitch']");
 

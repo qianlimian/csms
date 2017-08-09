@@ -19,11 +19,11 @@
         </div>
         <div class="s-row-fluid">
       		<label class="s-span15 s-required">分数</label>
-      		<input class="s-span30" type="number" id="editEval_score" value="${item.score }"/>
+      		<input class="s-span30" type="text" id="editEval_score" value="${item.score }"/>
         </div>
         <div class="s-row-fluid">
       		<label class="s-span15 s-required">排序</label>
-      		<input class="s-span30" type="number" id="editEval_displayOrder" value="${item.displayOrder }"/>
+      		<input class="s-span30" type="text" id="editEval_displayOrder" value="${item.displayOrder }"/>
         </div>
     </form>
 </div>

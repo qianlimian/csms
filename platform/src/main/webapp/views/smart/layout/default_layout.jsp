@@ -76,8 +76,8 @@
   <sitemesh:write property='head'/>  
 </head>
 
-<body class="${userSetting.pageWidth} ${userSetting.menuPosition}">
-<div id="s-panel">
+<body>
+<div id="s-panel" class="${userSetting.pageWidth} ${userSetting.menuPosition}">
   <%@ include file="partial/header.jsp" %>
 
   <%@ include file="partial/panel.jsp" %>

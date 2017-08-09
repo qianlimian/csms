@@ -24,13 +24,13 @@
 		<a class="k-button" id="btnDoExport"><i class="fa fa-save"></i>导出</a>
     </div>
     <div class="s-query">
-		<div class="s-row-fluid">
-			<label class="s-span10">主办单位</label>
-			<input class="s-span15" type="text" id="master_unit"/>
+		<%--<div class="s-row-fluid">--%>
+			<%--<label class="s-span10">主办单位</label>--%>
+			<%--<input class="s-span15" type="text" id="master_unit"/>--%>
 
-			<label class="s-span10">办理状态</label>
-			<input class="s-span15" type="text" id="handle_status" />
-		</div>
+			<%--<label class="s-span10">办理状态</label>--%>
+			<%--<input class="s-span15" type="text" id="handle_status" />--%>
+		<%--</div>--%>
 		<div class="s-row-fluid">
 			<label class="s-span10">警情编号</label>
 			<input class="s-span15" type="text" id="alarm_code"/>

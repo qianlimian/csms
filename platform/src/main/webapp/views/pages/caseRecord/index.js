@@ -14,16 +14,16 @@
 
 
 
-            smart.kendoui.comboBox($("#handle_status"), {
-                dataSource: smart.Enums["com.bycc.enumitem.CaseHandle"].getData()
-            });
+            // smart.kendoui.comboBox($("#handle_status"), {
+            //     dataSource: smart.Enums["com.bycc.enumitem.CaseHandle"].getData()
+            // });
             smart.kendoui.datePicker($("#accept_data_start"));
             smart.kendoui.datePicker($("#accept_data_end"));
             smart.kendoui.datePicker($("#close_data_start"));
             smart.kendoui.datePicker($("#close_data_end"));
-            smart.kendoui.comboBox($("#master_unit"), {
-                dataSource: smart.Data.get('#police_stations_select')
-            });
+            // smart.kendoui.comboBox($("#master_unit"), {
+            //     dataSource: smart.Data.get('#police_stations_select')
+            // });
             smart.kendoui.comboBox($("#case_type"), {
                 dataSource: smart.Enums["com.bycc.enumitem.CaseType"].getData()
             });
@@ -47,10 +47,15 @@
                         {field: "id", width: 100, hidden: true},
                         {field: "caseCode", type: "string", title: "案件编号", width: 100},
                         {field: "caseName", type: "string", title: "案件名称", width: 100},
+                        {field: "caseType", type: "enum", title: "案件类型", width: 100,
+                            values: smart.Enums["com.bycc.enumitem.CaseType"].getData()
+                        },
                         {field: "suspect", type: "string", title: "嫌疑人", width: 100},
                         {field: "masterUnit", type: "string", title: "主办单位", width: 100,mapping:"masterUnit.name"},
                         {field: "masterPoliceName", type: "string", title: "主办人", width: 100,mapping:"masterPolice.user.name"},
-                        {field: "caseHandle", type: "enum", title: "办理状态", width: 150,
+                        {field: "slaveUnit", type: "string", title: "协办单位", width: 100,mapping:"slaveUnit.name"},
+                        {field: "slavePoliceName", type: "string", title: "协办人", width: 100,mapping:"slavePolice.user.name"},
+                        {field: "caseHandle", type: "enum", title: "办理状态", width: 100,
                             values: smart.Enums["com.bycc.enumitem.CaseHandle"].getData()
                         }
                     ]
@@ -198,7 +203,7 @@
             containerId:"ctnQueryWin",
             options:{
                 width : '600px',
-                height : '300px'
+                height : '250px'
             }
         },
         ymlModule: "caseRecord" 

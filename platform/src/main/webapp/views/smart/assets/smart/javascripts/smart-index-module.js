@@ -112,7 +112,7 @@
         //grid自适应高度
         resizeLayout:function () {
             var $grid = this.mainGrid.wrapper,
-                height = $(window).height() - $grid.offset().top - 5;
+                height = $(window).height() - $grid.offset().top;
 
             $grid.height(height);
 

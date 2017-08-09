@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <div id="s-left-panel">
-    <!--shrink 一级菜单-->
-    <ul class="s-menu s-module-menu left-nav" style="display: none">
+    <!--一级菜单-->
+    <ul class="s-left-menu s-module-menu s-shrink" style="display: none">
         <c:forEach items="${userModuleMenus}" var="moduleMenu">
             <li>
                 <a>
@@ -10,7 +10,7 @@
                     <span class="s-icon-right fa ${moduleMenu.id == currentModuleMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
                 </a>
                 <!--二级菜单-->
-                <ul class="s-menu s-group-menu" style="${moduleMenu.id == currentModuleMenu.id ?'display:block':'display:none'}">
+                <ul class="s-left-menu s-group-menu" style="${moduleMenu.id == currentModuleMenu.id ?'display:block':'display:none'}">
 
                     <c:forEach items="${moduleMenu.groupLeafMenus}" var="groupLeafMenu">
                         <!--二级group菜单-->
@@ -21,7 +21,7 @@
                                     <span class="s-icon-right fa ${groupLeafMenu.id == currentGroupMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
                                 </a>
                                 <!--三级leaf菜单-->
-                                <ul class="s-menu s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
+                                <ul class="s-left-menu s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
                                     <c:forEach items="${groupLeafMenu.leafMenus}" var="leafMenu">
                                         <li>
                                             <a href="${ctx}${leafMenu.url}" class="ellipsis <c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>
@@ -42,9 +42,8 @@
         </c:forEach>
     </ul>
 
-    <!--expend 二级菜单-->
-    <ul class="s-nav s-group-menu top-nav">
-
+    <!--二级菜单-->
+    <ul class="s-top-menu s-group-menu s-expend">
         <c:forEach items="${userGroupLeafMenus}" var="groupLeafMenu">
             <!--二级group菜单-->
             <c:if test="${fn:length(groupLeafMenu.leafMenus) > 0}">
@@ -54,7 +53,7 @@
                         <span class="s-icon-right fa ${groupLeafMenu.id == currentGroupMenu.id ?'fa-chevron-down':'fa-chevron-right'}"></span>
                     </a>
                     <!--三级菜单-->
-                    <ul class="s-nav s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
+                    <ul class="s-top-menu s-leaf-menu" style="${groupLeafMenu.id == currentGroupMenu.id ?'display:block':'display:none'}">
                         <c:forEach items="${groupLeafMenu.leafMenus}" var="leafMenu">
                             <li>
                                 <a href="${ctx}${leafMenu.url}" class="ellipsis <c:if test='${leafMenu.id == currentLeafMenu.id}'>k-state-selected</c:if>"><span class="fa fa-caret-right"></span>${leafMenu.name}</a>

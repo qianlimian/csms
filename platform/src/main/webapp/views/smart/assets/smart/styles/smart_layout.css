@@ -3,7 +3,6 @@
  * s-container容器
  */
 .s-container {
-	height: 100%;
 	padding: 1px 0 0 1px;
 	*zoom: 1
 }

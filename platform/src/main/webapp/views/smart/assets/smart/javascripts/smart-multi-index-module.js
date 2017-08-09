@@ -230,7 +230,7 @@
         resizeLayout:function () {
             var $mainGrid = this.mainGrid.wrapper,
                 $subGrid = this.subGrid.wrapper,
-                height = $(window).height() - $mainGrid.offset().top - 5;
+                height = $(window).height() - $mainGrid.offset().top;
 
             $mainGrid.height(height*3/4);
             $subGrid.height(height/4);

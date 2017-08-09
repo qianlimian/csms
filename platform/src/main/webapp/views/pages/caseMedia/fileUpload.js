@@ -150,8 +150,7 @@ function batchUpload(){
 		if(checkboxs[i].checked){
 			var fileUploadId="#"+checkboxs[i].value+"upload";
 			var a=$(fileUploadId).click();
-			console.log("------");
-			console.log(a);
+			
 		}		
 	}
 }
